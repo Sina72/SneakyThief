@@ -8,4 +8,5 @@ package model;
  */
 public class Intruder extends Agent {
 
+	private double visionRange;
 }
