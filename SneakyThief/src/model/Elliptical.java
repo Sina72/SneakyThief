@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * Elliptical shape with two radii.
+ * @author Stan
+ *
+ */
 public class Elliptical extends Shape {
 	
 	//width and height radius of the ellipse

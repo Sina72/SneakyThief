@@ -1,13 +1,14 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Observable;
 
 /**
  * Represents the map through which the agents move.
  * @author Stan
  *
  */
-public class Map {
+public class Map extends Observable{
 	//Stores all elements and their coordinates. Coordinates are the left bottom corner of the element.
 	private HashMap<MapCoordinate, MapElement> elements;
 	

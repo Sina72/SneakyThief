@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Circular shape with a radius.
+ * @author Stan
+ *
+ */
 public class Circular extends Shape {
 	
 	private double radius; //in meters
