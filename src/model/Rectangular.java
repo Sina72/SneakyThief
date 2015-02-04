@@ -5,7 +5,6 @@ public class Rectangular extends Shape {
 	//dimensions of the shape
 	private double height, width; //in meters
 
-	@Override
 	/**
 	 * @return width of the shape (after rotation).
 	 */
@@ -14,7 +13,6 @@ public class Rectangular extends Shape {
 		return 0;
 	}
 
-	@Override
 	/**
 	 * @return height of the shape (after rotation).
 	 */

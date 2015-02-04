@@ -10,7 +10,8 @@ import java.util.Observable;
  */
 public class Map extends Observable {
 	//Stores all elements and their coordinates. Coordinates are the left bottom corner of the element.
-	private HashMap<MapCoordinate, MapElement> elements;
+	private HashMap<Obstruction, MapCoordinate> obstructions;
+	private HashMap<Agent, MapCoordinate> agents;
 
 	//Dimensions of the map
 	private double mapWidth, mapHeight;
@@ -23,8 +24,11 @@ public class Map extends Observable {
 	 * @param c2 coordinate of element two
 	 * @return true if they intersect, false otherwise
 	 */
-	private static boolean intersects(MapElement e1, MapCoordinate c1,
+	public static boolean intersects(MapElement e1, MapCoordinate c1,
 			MapElement e2, MapCoordinate c2) {
+		
+		//TODO:Implement method
+		
 		return false;
 	}
 }
