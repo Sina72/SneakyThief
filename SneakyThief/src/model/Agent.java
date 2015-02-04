@@ -7,4 +7,5 @@ package model;
  */
 public class Agent extends MapElement {
 	
+	private double movingSpeed;
 }
