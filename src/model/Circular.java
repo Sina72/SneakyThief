@@ -6,7 +6,7 @@ package model;
  *
  */
 public class Circular extends Shape {
-	
+
 	private double radius; //in meters
 
 	@Override
@@ -26,7 +26,7 @@ public class Circular extends Shape {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 	/**
 	 * 
 	 * @return radius of the shape

@@ -1,7 +1,7 @@
 package model;
 
 public class Rectangular extends Shape {
-	
+
 	//dimensions of the shape
 	private double height, width; //in meters
 
@@ -22,5 +22,5 @@ public class Rectangular extends Shape {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 }

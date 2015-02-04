@@ -7,5 +7,15 @@ package model;
  */
 public class MapElement {
 	//shape of the mapElement
+	private double orientation;
+
+	public void setOrientation(double value) {
+		this.orientation = value;
+	}
+
+	public double getOrientation() {
+		return this.orientation;
+	}
+
 	private Shape shape;
 }

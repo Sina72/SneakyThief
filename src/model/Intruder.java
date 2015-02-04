@@ -8,5 +8,4 @@ package model;
  */
 public class Intruder extends Agent {
 
-	
 }

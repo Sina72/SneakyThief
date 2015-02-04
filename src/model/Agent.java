@@ -6,7 +6,7 @@ package model;
  *
  */
 public class Agent extends MapElement {
-	
+
 	private double movingSpeed;
 	private double visionRange;
 }
