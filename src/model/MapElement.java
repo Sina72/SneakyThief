@@ -8,6 +8,12 @@ package model;
 public class MapElement {
 	//shape of the mapElement
 	private double orientation;
+	private Shape shape;
+	
+	public MapElement(Shape shape, double orientation){
+		this.shape = shape;
+		this.orientation = orientation;
+	}
 
 	public void setOrientation(double value) {
 		this.orientation = value;
@@ -17,5 +23,5 @@ public class MapElement {
 		return this.orientation;
 	}
 
-	private Shape shape;
+	
 }

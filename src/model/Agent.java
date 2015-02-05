@@ -8,6 +8,24 @@ package model;
 public class Agent extends MapElement {
 	
 	/**
+	 * Default constructor
+	 */
+	public Agent(){
+		//default values should be changed/ moved to XML?
+		this(new Circular(0.25),0.0);
+	}
+	
+	/**
+	 * Constructor 
+	 * @param shape Shape to represent the agent
+	 * @param orientation Begin orientation of the agent in angular degrees counterclockwise
+	 */
+	public Agent(Shape shape, double orientation) {
+		super(shape, orientation);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * Sets all the basic constant variables, the sprint is switched off.
 	 * 
 	 * @param maxSpeed The maximum speed of the robot in m/s
@@ -40,7 +58,7 @@ public class Agent extends MapElement {
 	 * @param maxSprintTime The maximum time that the robot can sprint
 	 * @param sprintRest The time the robot needs to rest before it can sprint
 	 */
-	public void setConstands(double maxSpeed, double maxAngle, double visionAngle, double maxVisionRange, double maxSprintSpeed, double maxSprintAngle, double maxSprintTime, double sprintRest){
+	public void setConstants(double maxSpeed, double maxAngle, double visionAngle, double maxVisionRange, double maxSprintSpeed, double maxSprintAngle, double maxSprintTime, double sprintRest){
 		m_maxMovingSpeed = maxSpeed;
 		m_maxAngle = maxAngle;
 		m_maxVisionRange = maxVisionRange;
