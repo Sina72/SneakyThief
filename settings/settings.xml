@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- the agents witch should be placed on the map -->
+<agents>
+	<surveillance id="1">
+		<baseSpeed>1.4</baseSpeed> <!-- The base speed in m/s -->
+		<maxTurnSpeed>180</maxTurnSpeed><!-- the maximal turn speed in  -->
+		<visionRange>6</visionRange> <!-- The maximal vision range in meters -->
+		<visionAngle>45</visionAngle> <!-- The vision angel in degrees -->
+		<startLocation> <!-- The start location in x,y format -->
+			<x>1.0</x>
+			<y>1.0</y>
+		</startLocation>
+	</surveillance>
+	
+	<surveillance id="2">
+		<baseSpeed>1.4</baseSpeed>
+		<maxTurnSpeed>180</maxTurnSpeed>
+		<visionRange>6</visionRange>
+		<visionAngle>45</visionAngle>
+		<startLocation>
+			<x>3.0</x>
+			<y>3.0</y>
+		</startLocation>
+	</surveillance>
+	
+	<intruder id="1">
+		<baseSpeed>1.4</baseSpeed>
+		<maxTurnSpeed>180</maxTurnSpeed>
+		<visionRange>7.5</visionRange>
+		<visionAngle>45</visionAngle>
+		<sprint> <!-- settings for the sprint modus -->
+			<speed>3</speed> <!-- the maximum sprint speed -->
+			<time>5</time> <!-- The maximum sprint time-->
+			<rest>10</rest> <!-- The rest time before the sprint can be preformed -->
+		</sprint>
+		<startLocation>
+			<x>5.0</x>
+			<y>5.0</y>
+		</startLocation>
+	</intruder>
+</agents>

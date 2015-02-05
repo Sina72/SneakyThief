@@ -9,6 +9,11 @@ public class Circular extends Shape {
 
 	private double radius; //in meters
 
+	public Circular(double radius) {
+		super();
+		this.radius = radius;
+	}
+
 	/**
 	 * 
 	 * @return radius of the shape

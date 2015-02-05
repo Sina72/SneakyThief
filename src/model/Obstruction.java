@@ -7,4 +7,9 @@ package model;
  */
 public class Obstruction extends MapElement {
 
+	public Obstruction(Shape shape, double orientation) {
+		super(shape, orientation);
+		// TODO Auto-generated constructor stub
+	}
+
 }

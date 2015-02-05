@@ -21,4 +21,10 @@ public class Rectangular extends Shape {
 		return 0;
 	}
 
+	public Rectangular(double height, double width) {
+		super();
+		this.height = height;
+		this.width = width;
+	}
+
 }
