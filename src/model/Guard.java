@@ -17,5 +17,10 @@ public class Guard extends Agent {
 		super(shape, orientation);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void enterSentry(){
+		//TODO: implement
+		//something happening to vision range etc. need to read defaults from settings.xml?
+	}
 
 }

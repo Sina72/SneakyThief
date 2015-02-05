@@ -33,9 +33,10 @@ public class Agent extends MapElement {
 	 * @param visionAngle The vision angel of the robot in degrees
 	 * @param maxVisionRange the maximum vision range of the robot in meters
 	 */
-	public void setConstants(double maxSpeed, double maxAngle, double visionAngle, double maxVisionRange){
+	public void setConstants(double maxSpeed, double maxAngle, double visionAngle,double minVisionRange, double maxVisionRange){
 		m_maxMovingSpeed = maxSpeed;
 		m_maxAngle = maxAngle;
+		m_minVisionRange = minVisionRange;
 		m_maxVisionRange = maxVisionRange;
 		m_visionAngle = visionAngle;
 		
@@ -58,9 +59,10 @@ public class Agent extends MapElement {
 	 * @param maxSprintTime The maximum time that the robot can sprint
 	 * @param sprintRest The time the robot needs to rest before it can sprint
 	 */
-	public void setConstants(double maxSpeed, double maxAngle, double visionAngle, double maxVisionRange, double maxSprintSpeed, double maxSprintAngle, double maxSprintTime, double sprintRest){
+	public void setConstants(double maxSpeed, double maxAngle, double visionAngle, double minVisionRange, double maxVisionRange, double maxSprintSpeed, double maxSprintAngle, double maxSprintTime, double sprintRest){
 		m_maxMovingSpeed = maxSpeed;
 		m_maxAngle = maxAngle;
+		m_minVisionRange = minVisionRange;
 		m_maxVisionRange = maxVisionRange;
 		m_visionAngle = visionAngle;
 		m_maxSprintSpeed = maxSprintSpeed;
@@ -71,6 +73,8 @@ public class Agent extends MapElement {
 	
 	private double m_maxMovingSpeed;
 	private double m_maxAngle;
+	//Vision range can also have minimum (see sentry description)
+	private double m_minVisionRange;
 	private double m_maxVisionRange;
 	private double m_visionAngle;
 	
