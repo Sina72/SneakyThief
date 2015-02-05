@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -10,4 +11,8 @@ import javax.swing.JPanel;
  */
 public class ControllerPanel extends JPanel {
 
+	public ControllerPanel()
+	{
+		JButton startgame = new JButton("Begin Simulation");
+	}
 }
