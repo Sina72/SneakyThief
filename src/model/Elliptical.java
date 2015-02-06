@@ -18,19 +18,17 @@ public class Elliptical extends Shape {
 	}
 
 	/**
-	 * @return width of the shape after rotation
+	 * @return width of the shape before rotation
 	 */
 	double getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return widthRadius*2;
 	}
 
 	/**
-	 * @return height of the shape after rotation
+	 * @return height of the shape before rotation
 	 */
 	double getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return heightRadius*2;
 	}
 
 }

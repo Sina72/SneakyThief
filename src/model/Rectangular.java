@@ -6,19 +6,17 @@ public class Rectangular extends Shape {
 	private double height, width; //in meters
 
 	/**
-	 * @return width of the shape (after rotation).
+	 * @return width of the shape (before rotation).
 	 */
 	double getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return width;
 	}
 
 	/**
-	 * @return height of the shape (after rotation).
+	 * @return height of the shape (before rotation).
 	 */
 	double getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return height;
 	}
 
 	public Rectangular(double height, double width) {

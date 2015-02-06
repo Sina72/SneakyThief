@@ -53,8 +53,9 @@ public class Map extends Observable {
 	 */
 	private boolean checkOutOfBounds(MapElement element,
 			MapCoordinate coordinate) {
-		// TODO Auto-generated method stub
-		return false;
+		return 
+				coordinate.getX() + element.getWidth() > mapWidth || // width is exceeded
+				coordinate.getY() + element.getHeight() > mapHeight; // height is exceeded
 	}
 
 	public Obstruction getObstruction(Obstruction obstruction) {

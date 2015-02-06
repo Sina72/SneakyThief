@@ -22,4 +22,14 @@ public class Circular extends Shape {
 		return radius;
 	}
 
+	@Override
+	double getWidth() {
+		return radius*2;
+	}
+
+	@Override
+	double getHeight() {
+		return radius*2;
+	}
+
 }
