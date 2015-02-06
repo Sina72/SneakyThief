@@ -18,6 +18,14 @@ public abstract class MapElement {
 	public void setOrientation(double value) {
 		this.orientation = value;
 	}
+	
+	/**
+	 * Rotates the MapElement with a certain amount of degrees (counterclockwise)
+	 * @param value
+	 */
+	public void rotate(double value){
+		this.orientation += value;
+	}
 
 	public double getOrientation() {
 		return this.orientation;

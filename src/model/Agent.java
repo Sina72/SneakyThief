@@ -86,4 +86,80 @@ public class Agent extends MapElement {
 	
 	private double m_movingSpeed;
 	private double m_visionRange;
+	/**
+	 * @return the m_maxMovingSpeed
+	 */
+	public double getMaxMovingSpeed() {
+		return m_maxMovingSpeed;
+	}
+
+	/**
+	 * @return the m_maxAngle
+	 */
+	public double getMaxAngle() {
+		return m_maxAngle;
+	}
+
+	/**
+	 * @return the m_minVisionRange
+	 */
+	public double getMinVisionRange() {
+		return m_minVisionRange;
+	}
+
+	/**
+	 * @return the m_maxVisionRange
+	 */
+	public double getMaxVisionRange() {
+		return m_maxVisionRange;
+	}
+
+	/**
+	 * @return the m_visionAngle
+	 */
+	public double getVisionAngle() {
+		return m_visionAngle;
+	}
+
+	/**
+	 * @return the m_maxSprintSpeed
+	 */
+	public double getMaxSprintSpeed() {
+		return m_maxSprintSpeed;
+	}
+
+	/**
+	 * @return the m_maxSprintAngle
+	 */
+	public double getMaxSprintAngle() {
+		return m_maxSprintAngle;
+	}
+
+	/**
+	 * @return the m_maxSprintTime
+	 */
+	public double getMaxSprintTime() {
+		return m_maxSprintTime;
+	}
+
+	/**
+	 * @return the m_sprintRest
+	 */
+	public double getSprintRest() {
+		return m_sprintRest;
+	}
+
+	/**
+	 * @return the m_movingSpeed
+	 */
+	public double getMovingSpeed() {
+		return m_movingSpeed;
+	}
+
+	/**
+	 * @return the m_visionRange
+	 */
+	public double getVisionRange() {
+		return m_visionRange;
+	}
 }

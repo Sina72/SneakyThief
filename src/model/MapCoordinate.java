@@ -1,11 +1,13 @@
 package model;
 
 /**
- * Coordinate on the map
+ * Coordinate on the map. Should be in the left bottom corner of 
+ * rectangular shaped elements and in the center of elliptical 
+ * and circular shaped elements
  * @author Stan
  *
  */
-public class MapCoordinate {
+public class MapCoordinate{
 	private double x;
 	private double y;
 	
@@ -41,5 +43,39 @@ public class MapCoordinate {
 	 */
 	public void setY(double y) {
 		this.y = y;
+	}
+	
+	/**
+	 * 
+	 * @return the distance of the coordinate from the origin
+	 */
+	public double absoluteValue(){
+		return getDistance(new MapCoordinate(0,0), this);
+	}
+	
+	public boolean equals(Object o){
+		if(!(o instanceof MapCoordinate))
+			return false;
+		return 
+				this.x == ((MapCoordinate) o).getX() && 
+				this.y == ((MapCoordinate) o).getY();
+	}
+	
+	public static double getDistance(
+			MapCoordinate c1, 
+			MapCoordinate c2) {
+		return Math.sqrt(Math.pow(c1.x-c2.x,2)+Math.pow(c1.y-c2.y, 2));
+	}
+
+	/**
+	 * 
+	 * @param c1 coordinate one
+	 * @param c2 coordinate two
+	 * @return the angle between two coordinates
+	 */
+	public static double getAngle(
+			MapCoordinate c1,
+			MapCoordinate c2) {
+		return Math.atan( (c2.y-c1.y) / (c2.x - c1.x) );
 	}
 }
