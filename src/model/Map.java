@@ -28,12 +28,35 @@ public class Map extends Observable {
 	 * Adds an Obstruction to t map
 	 * @param obstruction The Obstruction to be added to the map
 	 * @param coordinate the MapCoordinate of the left bottom corner of the obstruction.
-	 * @throws OutOfBoundsException if the obstruction does not fit into the map at the specified coordinates
 	 */
-	public void addObstruction(Obstruction obstruction, MapCoordinate coordinate) throws OutOfBoundsException, OverlapException{
-		//TODO: Implementation including out of bounds check
+	private void addObstruction(Obstruction obstruction, MapCoordinate coordinate){
+		obstructions.put(obstruction, coordinate);
 	}
 	
+	/**
+	 * Checks whether there is overlap between the specified and any existing MapElement
+	 * @param element The element to be checked
+	 * @param coordinate At this coordinate
+	 * @return
+	 */
+	private boolean checkOverlap(MapElement element,
+			MapCoordinate coordinate) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * Checks whether the MapElement would go out of bound at the specified MapCoordinate
+	 * @param element MapElement that should be checked
+	 * @param coordinate The MapCoordinate at which the MapElement should be checked
+	 * @return
+	 */
+	private boolean checkOutOfBounds(MapElement element,
+			MapCoordinate coordinate) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	public Obstruction getObstruction(Obstruction obstruction) {
 		//TODO: implementation
 		return null;
@@ -56,12 +79,20 @@ public class Map extends Observable {
 	 * @throws OutOfBoundsException if the MapElement does not fit into the map at the specified coordinates.
 	 */
 	public void addMapElement(MapElement element, MapCoordinate coordinate) throws OutOfBoundsException, OverlapException{
+		
+		//check whether the placement is valid
+		if(checkOutOfBounds(element,coordinate))
+			throw new OutOfBoundsException();
+		if(checkOverlap(element,coordinate))
+			throw new OverlapException();
+		
+		//call the right function based on MapElement type
 		if(element instanceof Obstruction)
 			addObstruction((Obstruction) element, coordinate);
 		else if(element instanceof Agent)
 			addAgent((Agent) element, coordinate);
 		else{
-			//TODO: default implementation
+			System.err.println("Invalid MapElement");
 		}
 	}
 	
@@ -69,16 +100,16 @@ public class Map extends Observable {
 	 * Remove Obstruction from the Map
 	 * @param obstruction Obstruction to be removed.
 	 */
-	public void removeObstruction(Obstruction obstruction){
-		//TODO: implement removeObstruction
+	private void removeObstruction(Obstruction obstruction){
+		obstructions.remove(obstruction);
 	}
 	
 	/**
 	 * Remove Agent from the Map
 	 * @param agent Agent to be removed
 	 */
-	public void removeAgent(Agent agent){
-		//TODO: implement removeAgent
+	private void removeAgent(Agent agent){
+		agents.remove(agent);
 	}
 	
 	/**
@@ -91,12 +122,11 @@ public class Map extends Observable {
 		if(element instanceof Agent)
 			removeAgent((Agent) element);
 		else{
-			//TODO: default case
+			System.err.println("Invalid MapElement");
 		}
 	}
 
 
-	
 
 	/**
 	 * Checks whether two elements, each at a coordinate on the map, intersect

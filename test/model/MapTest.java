@@ -34,7 +34,7 @@ public class MapTest {
 						new Rectangular(10, 10),  //shape
 						0.0 //orientation
 						);
-		map.addObstruction(
+		map.addMapElement(
 				obstruction, 
 				new MapCoordinate(
 						0.0, //x
@@ -59,7 +59,7 @@ public class MapTest {
 								), 
 						0.0 //orientation
 						);
-		map.addObstruction(
+		map.addMapElement(
 				obstruction, 
 				new MapCoordinate(
 						101.0, 	//x
