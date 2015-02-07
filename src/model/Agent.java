@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 /**
  * Basic class for the different agents
  * @author Stan, Robert
@@ -22,7 +24,26 @@ public class Agent extends MapElement {
 	 */
 	public Agent(Shape shape, double orientation) {
 		super(shape, orientation);
+		beliefMap = new Map(this.getWidth(),this.getHeight());
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Inform the agent about placements it can see. It should only be able to see obstructions as lines, but agents as a whole.
+	 * @param placements
+	 */
+	public void inform(List<MapPlacement<? extends MapElement>> placements){
+		for(MapPlacement<? extends MapElement> placement : placements){
+			try {
+				beliefMap.addMapElement(placement.getMapElement(), placement.getMapCoordinate());
+			} catch (OutOfBoundsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (OverlapException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -86,6 +107,10 @@ public class Agent extends MapElement {
 	
 	private double m_movingSpeed;
 	private double m_visionRange;
+	
+	
+	private Map beliefMap;
+	
 	/**
 	 * @return the m_maxMovingSpeed
 	 */

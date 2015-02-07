@@ -15,7 +15,6 @@ public class Guard extends Agent {
 	
 	public Guard(Shape shape, double orientation) {
 		super(shape, orientation);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void enterSentry(){

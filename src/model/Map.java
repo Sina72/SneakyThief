@@ -123,10 +123,16 @@ public class Map extends Observable implements Iterable<MapPlacement<? extends M
 	 * @param coordinate the MapCoordinate of the left bottom corner of the Agent.
 	 * @throws OutOfBoundsException if the Agent does not fit into the map at the speficied coordinates
 	 */
-	private void addAgent(Agent element, MapCoordinate coordinate) throws OutOfBoundsException, OverlapException {
+	private void addAgent(Agent element, MapCoordinate coordinate){
 		MapPlacement<Agent> newPlacement = new MapPlacement<Agent>(element, coordinate);
 		agents.add(newPlacement);
 		placements.add(newPlacement);
+	}
+	
+	public void rinseAgents(){
+		for(MapPlacement<Agent> agent : agents )
+			placements.remove(agent);
+			
 	}
 	
 	/**
@@ -135,13 +141,13 @@ public class Map extends Observable implements Iterable<MapPlacement<? extends M
 	 * @param coordinate the MapCoordinate of the left bottom corner of the MapElement
 	 * @throws OutOfBoundsException if the MapElement does not fit into the map at the specified coordinates.
 	 */
-	public void addMapElement(MapElement element, MapCoordinate coordinate) throws OutOfBoundsException, OverlapException{
+	public void addMapElement(MapElement element, MapCoordinate coordinate)/* throws OutOfBoundsException, OverlapException*/{
 		
-		//check whether the placement is valid
-		if(checkOutOfBounds(element,coordinate))
-			throw new OutOfBoundsException();
-		if(checkOverlap(element,coordinate))
-			throw new OverlapException();
+//		//check whether the placement is valid
+//		if(checkOutOfBounds(element,coordinate))
+//			throw new OutOfBoundsException();
+//		if(checkOverlap(element,coordinate))
+//			throw new OverlapException();
 		
 		//call the right function based on MapElement type
 		if(element instanceof Obstruction)
