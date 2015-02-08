@@ -27,48 +27,12 @@ public class MapTest {
 	 * @throws OverlapException
 	 */
 	@Test
-	public void testAddObstruction() throws OutOfBoundsException,
-			OverlapException {
-		Obstruction obstruction = 
-				new Obstruction(
-						new Rectangular(10, 10),  //shape
-						0.0 //orientation
-						);
-		map.addMapElement(
-				obstruction, 
-				new MapCoordinate(
-						0.0, //x
-						0.0  //y
-						)
-				);
-		
-		// check whether two references refer to the same object through the == operation
-		//assertSame( 
-		//		map.getObstruction(obstruction) //should return the original obstruction
-		//		,obstruction	//the original obstruction
-		//		);
+	public void testAddObstruction() {
+
 	}
 
 	@Test(expected=OutOfBoundsException.class)
-	public void testAddObstructionOutOfBoundError() throws OutOfBoundsException, OverlapException {
-		Obstruction obstruction = 
-				new Obstruction(
-						new Rectangular(
-								10, //width
-								10	//height
-								), 
-						0.0 //orientation
-						);
-		map.addMapElement(
-				obstruction, 
-				new MapCoordinate(
-						101.0, 	//x
-						0.0		//y
-						)
-				);
-//		assertNotNull(
-//				map.getObstruction(obstruction)
-//				);
+	public void testAddObstructionOutOfBoundError(){
 	}
 
 	@Test

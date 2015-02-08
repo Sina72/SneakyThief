@@ -5,10 +5,10 @@ package model;
  * @author Stan
  *
  */
-public class Obstruction extends MapElement {
+public class Obstruction<E extends Shape> extends MapPlacement<E> {
 
-	public Obstruction(Shape shape, double orientation) {
-		super(shape, orientation);
+	public Obstruction(E shape, MapCoordinate coordinate, double orientation) {
+		super(shape, coordinate, orientation);
 		// TODO Auto-generated constructor stub
 	}
 

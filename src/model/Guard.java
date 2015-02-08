@@ -13,8 +13,8 @@ public class Guard extends Agent {
 		//TODO: setConstants(????)
 	}
 	
-	public Guard(Shape shape, double orientation) {
-		super(shape, orientation);
+	public Guard(Circular shape, MapCoordinate coordinate, double orientation) {
+		super(shape,coordinate, orientation);
 	}
 	
 	public void enterSentry(){

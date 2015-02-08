@@ -25,4 +25,5 @@ public class Rectangular extends Shape {
 		this.width = width;
 	}
 
+
 }

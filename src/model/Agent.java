@@ -7,14 +7,14 @@ import java.util.List;
  * @author Stan, Robert
  *
  */
-public class Agent extends MapElement {
+public class Agent extends MapPlacement<Circular> {
 	
 	/**
 	 * Default constructor
 	 */
 	public Agent(){
 		//default values should be changed/ moved to XML?
-		this(new Circular(0.25),0.0);
+		this(new Circular(0.25),new MapCoordinate(0,0),0.0);
 	}
 	
 	/**
@@ -22,27 +22,22 @@ public class Agent extends MapElement {
 	 * @param shape Shape to represent the agent
 	 * @param orientation Begin orientation of the agent in angular degrees counterclockwise
 	 */
-	public Agent(Shape shape, double orientation) {
-		super(shape, orientation);
-		beliefMap = new Map(this.getWidth(),this.getHeight());
+	public Agent(Circular shape, MapCoordinate coordinate, double orientation) {
+		super(shape, coordinate, orientation);
+		beliefMap = new Map(this.getWidth(),super.getHeight());
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Inform the agent about placements it can see. It should only be able to see obstructions as lines, but agents as a whole.
 	 * @param placements
 	 */
-	public void inform(List<MapPlacement<? extends MapElement>> placements){
-		for(MapPlacement<? extends MapElement> placement : placements){
-			try {
-				beliefMap.addMapElement(placement.getMapElement(), placement.getMapCoordinate());
-			} catch (OutOfBoundsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (OverlapException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	public void inform(
+			List<MapPlacement> placements
+			){
+		for(MapPlacement placement : placements){
+				beliefMap.addPlacement(placement);
+
 		}
 	}
 
@@ -54,7 +49,9 @@ public class Agent extends MapElement {
 	 * @param visionAngle The vision angel of the robot in degrees
 	 * @param maxVisionRange the maximum vision range of the robot in meters
 	 */
-	public void setConstants(double maxSpeed, double maxAngle, double visionAngle,double minVisionRange, double maxVisionRange){
+	public void setConstants(
+			double maxSpeed, double maxAngle, double visionAngle,
+			double minVisionRange, double maxVisionRange){
 		m_maxMovingSpeed = maxSpeed;
 		m_maxAngle = maxAngle;
 		m_minVisionRange = minVisionRange;
@@ -80,7 +77,10 @@ public class Agent extends MapElement {
 	 * @param maxSprintTime The maximum time that the robot can sprint
 	 * @param sprintRest The time the robot needs to rest before it can sprint
 	 */
-	public void setConstants(double maxSpeed, double maxAngle, double visionAngle, double minVisionRange, double maxVisionRange, double maxSprintSpeed, double maxSprintAngle, double maxSprintTime, double sprintRest){
+	public void setConstants(
+			double maxSpeed, double maxAngle, double visionAngle, 
+			double minVisionRange, double maxVisionRange, double maxSprintSpeed, 
+			double maxSprintAngle, double maxSprintTime, double sprintRest){
 		m_maxMovingSpeed = maxSpeed;
 		m_maxAngle = maxAngle;
 		m_minVisionRange = minVisionRange;

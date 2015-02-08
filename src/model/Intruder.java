@@ -13,8 +13,8 @@ public class Intruder extends Agent {
 		//TODO: setConstants(???) with sprint
 	}
 	
-	public Intruder(Shape shape, double orientation) {
-		super(shape, orientation);
+	public Intruder(Circular shape, MapCoordinate coordinate, double orientation) {
+		super(shape, coordinate, orientation);
 		// TODO Auto-generated constructor stub
 	}
 

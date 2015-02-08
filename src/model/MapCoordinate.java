@@ -61,6 +61,22 @@ public class MapCoordinate{
 				this.y == ((MapCoordinate) o).getY();
 	}
 	
+	public MapCoordinate minus(MapCoordinate c){
+		return new MapCoordinate(x - c.x, y - c.y);
+	}
+	
+	public MapCoordinate plus(MapCoordinate c){
+		return new MapCoordinate(x + c.x, y + c.y);
+	}
+	
+	public MapCoordinate divideBy(double p){
+		return new MapCoordinate(x / p, y / p);
+	}
+	
+	public double crossProduct(MapCoordinate c){
+		return x * c.y - y * c.x;
+	}
+	
 	public static double getDistance(
 			MapCoordinate c1, 
 			MapCoordinate c2) {
