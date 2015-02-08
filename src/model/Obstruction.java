@@ -12,4 +12,6 @@ public class Obstruction extends MapElement {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 }
