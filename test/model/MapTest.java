@@ -1,6 +1,8 @@
 package model;
 
 import static org.junit.Assert.*;
+import model.exceptions.OutOfBoundsException;
+import model.exceptions.OverlapException;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,5 @@
-package model;
+package model.geometry;
+
 
 /**
  * Circular shape with a radius.

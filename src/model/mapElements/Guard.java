@@ -1,4 +1,7 @@
-package model;
+package model.mapElements;
+
+import model.geometry.Circular;
+import model.geometry.Coordinate;
 
 /**
  * The guard agents.
@@ -13,7 +16,7 @@ public class Guard extends Agent {
 		//TODO: setConstants(????)
 	}
 	
-	public Guard(Circular shape, MapCoordinate coordinate, double orientation) {
+	public Guard(Circular shape, Coordinate coordinate, double orientation) {
 		super(shape,coordinate, orientation);
 	}
 	

@@ -1,20 +1,24 @@
-package model;
+package model.mapElements;
 
 import java.util.List;
+
+import model.Map;
+import model.geometry.Circular;
+import model.geometry.Coordinate;
 
 /**
  * Basic class for the different agents
  * @author Stan, Robert
  *
  */
-public class Agent extends MapPlacement<Circular> {
+public class Agent extends MapPlacement {
 	
 	/**
 	 * Default constructor
 	 */
 	public Agent(){
 		//default values should be changed/ moved to XML?
-		this(new Circular(0.25),new MapCoordinate(0,0),0.0);
+		this(new Circular(0.25),new Coordinate(0,0),0.0);
 	}
 	
 	/**
@@ -22,7 +26,7 @@ public class Agent extends MapPlacement<Circular> {
 	 * @param shape Shape to represent the agent
 	 * @param orientation Begin orientation of the agent in angular degrees counterclockwise
 	 */
-	public Agent(Circular shape, MapCoordinate coordinate, double orientation) {
+	public Agent(Circular shape, Coordinate coordinate, double orientation) {
 		super(shape, coordinate, orientation);
 		beliefMap = new Map(this.getWidth(),super.getHeight());
 		// TODO Auto-generated constructor stub

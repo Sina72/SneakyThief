@@ -1,4 +1,4 @@
-package model;
+package model.geometry;
 
 /**
  * Coordinate on the map. Should be in the left bottom corner of 
@@ -7,12 +7,12 @@ package model;
  * @author Stan
  *
  */
-public class MapCoordinate{
+public class Coordinate{
 	private double x;
 	private double y;
 	
 	
-	public MapCoordinate(double x, double y) {
+	public Coordinate(double x, double y) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -50,36 +50,36 @@ public class MapCoordinate{
 	 * @return the distance of the coordinate from the origin
 	 */
 	public double absoluteValue(){
-		return getDistance(new MapCoordinate(0,0), this);
+		return getDistance(new Coordinate(0,0), this);
 	}
 	
 	public boolean equals(Object o){
-		if(!(o instanceof MapCoordinate))
+		if(!(o instanceof Coordinate))
 			return false;
 		return 
-				this.x == ((MapCoordinate) o).getX() && 
-				this.y == ((MapCoordinate) o).getY();
+				this.x == ((Coordinate) o).getX() && 
+				this.y == ((Coordinate) o).getY();
 	}
 	
-	public MapCoordinate minus(MapCoordinate c){
-		return new MapCoordinate(x - c.x, y - c.y);
+	public Coordinate minus(Coordinate c){
+		return new Coordinate(x - c.x, y - c.y);
 	}
 	
-	public MapCoordinate plus(MapCoordinate c){
-		return new MapCoordinate(x + c.x, y + c.y);
+	public Coordinate plus(Coordinate c){
+		return new Coordinate(x + c.x, y + c.y);
 	}
 	
-	public MapCoordinate divideBy(double p){
-		return new MapCoordinate(x / p, y / p);
+	public Coordinate divideBy(double p){
+		return new Coordinate(x / p, y / p);
 	}
 	
-	public double crossProduct(MapCoordinate c){
+	public double determinant(Coordinate c){
 		return x * c.y - y * c.x;
 	}
 	
 	public static double getDistance(
-			MapCoordinate c1, 
-			MapCoordinate c2) {
+			Coordinate c1, 
+			Coordinate c2) {
 		return Math.sqrt(Math.pow(c1.x-c2.x,2)+Math.pow(c1.y-c2.y, 2));
 	}
 
@@ -90,8 +90,8 @@ public class MapCoordinate{
 	 * @return the angle between two coordinates
 	 */
 	public static double getAngle(
-			MapCoordinate c1,
-			MapCoordinate c2) {
+			Coordinate c1,
+			Coordinate c2) {
 		return Math.atan( (c2.y-c1.y) / (c2.x - c1.x) );
 	}
 }
