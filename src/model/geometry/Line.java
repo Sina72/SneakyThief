@@ -40,7 +40,10 @@ public class Line extends Polygonal {
 	public boolean liesOnLine(Coordinate c){
 		double a = getSlope();
 		double b = getIntercept();
-		if(Math.abs( c.getX() * a + b - c.getY() ) < EPSILON)
+		if(
+				Math.abs( c.getX() * a + b - c.getY() ) < EPSILON && //coordinate is on span of line
+				c.getX() >= begin.getX() && c.getX() <= end.getX() && //coordinate is in x-range
+				c.getY() >= begin.getY() && c.getY() <= end.getY()) //coordinate is in y-range (is this check necessary?)
 			return true;
 		return false;
 	}

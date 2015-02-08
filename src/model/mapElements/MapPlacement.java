@@ -90,11 +90,27 @@ public class MapPlacement {
 	 */
 	private static boolean intersectLineLine(MapPlacement placement, MapPlacement otherPlacement) {
 		
-		Coordinate p = placement.getCoordinate().plus(((Line) placement.getShape()).getBegin());
-		Coordinate r = ((Line) placement.getShape()).getEnd();
+		//begin line 1
+		Coordinate p = 
+				placement.getCoordinate().plus(
+					((Line) placement.getShape()).getBegin()
+				);
+		//end line 1 minus begin line 1
+		Coordinate r = 
+				((Line) placement.getShape()).getEnd().minus(
+					((Line) placement.getShape()).getBegin()
+				);
 		
-		Coordinate q = otherPlacement.getCoordinate().plus(((Line) otherPlacement.getShape()).getBegin());
-		Coordinate s = ((Line) otherPlacement.getShape()).getEnd();
+		//begin line 2
+		Coordinate q = 
+				otherPlacement.getCoordinate().plus(
+					((Line) otherPlacement.getShape()).getBegin()
+				);
+		//end line 2 minus begin line 2
+		Coordinate s = 
+				((Line) otherPlacement.getShape()).getEnd().minus(
+					((Line) otherPlacement.getShape()).getBegin()
+				);
 		
 		Coordinate qMinP = q.minus(p);
 		double rCrossS = r.determinant(s);
@@ -103,7 +119,7 @@ public class MapPlacement {
 			return false;
 		
 		double t = qMinP.determinant(s.divideBy(rCrossS));
-		double u = qMinP.determinant(s.divideBy(rCrossS)); 
+		double u = qMinP.determinant(r.divideBy(rCrossS)); 
 		
 		if(t <= 1 && t >= 0 && u <= 1 && u >= 0)
 			return true;
@@ -120,25 +136,29 @@ public class MapPlacement {
 	private static boolean intersectPolyPoly(MapPlacement placement, MapPlacement otherPlacement) {
 		
 		for(Line line1 : ((Polygonal) placement.shape).toLines())
-			for(Line line2 : ((Polygonal) otherPlacement.shape).toLines())
+			for(Line line2 : ((Polygonal) otherPlacement.shape).toLines()){
+				MapPlacement one = new MapPlacement(
+						line1,
+						placement.coordinate,
+						placement.orientation);
+				MapPlacement two = new MapPlacement(
+						line2,
+						otherPlacement.coordinate,
+						otherPlacement.orientation);
 				if(intersectLineLine(
-						new MapPlacement(
-								line1,
-								placement.coordinate,
-								placement.orientation), 
-						new MapPlacement(
-								line2,
-								otherPlacement.coordinate,
-								otherPlacement.orientation)
-						)) return true;
+						one, //MapPlacement one 
+						two	//MapPlacement two
+						)) 
+					return true;
+			}
 				
 		
 		return false;
 	}
 	
 	private static boolean intersectCircLine(
-			MapPlacement circ //circular
-			, MapPlacement line //line
+			MapPlacement circ, //circular
+			MapPlacement line //line
 			){
 		
 		//Get begin and end of the line relative to the centre of the circle
@@ -157,7 +177,8 @@ public class MapPlacement {
 				dif.getX()*dif.getX() - 
 				det*det;
 		
-		if(disc < 0) return false;
+		if(disc < 0) 
+			return false;
 		
 		//calculate intersection
 		// coordinates relative of the circle centre
@@ -165,7 +186,7 @@ public class MapPlacement {
 				(
 					det * 
 					dif.getY() - 
-					Math.signum(dif.getY()) * 
+					sgn(dif.getY()) * 
 					dif.getX() * 
 					Math.sqrt(disc)
 				) /
@@ -178,7 +199,6 @@ public class MapPlacement {
 					-det * 
 					dif.getX() - 
 					Math.abs(dif.getY()) * 
-					dif.getX() * 
 					Math.sqrt(disc)
 				) /
 				(
@@ -188,7 +208,42 @@ public class MapPlacement {
 		// lineBegin and lineEnd are relative to the centre of the circle, and so are the x and y of the coordinate.
 		// if the intersection lies on the line segement there is an intersection. Otherwise the intersection lies outside
 		// the line segment.
-		return new Line(lineBegin,lineEnd).liesOnLine(new Coordinate(x,y));
+		if(new Line(lineBegin,lineEnd).liesOnLine(new Coordinate(x,y)))
+			return true;
+		
+		x = 
+				(
+					det * 
+					dif.getY() + 
+					sgn(dif.getY()) * 
+					dif.getX() * 
+					Math.sqrt(disc)
+				) /
+				(
+					dr*dr
+				);
+		
+		y = 
+				(
+					-det * 
+					dif.getX() + 
+					Math.abs(dif.getY()) * 
+					Math.sqrt(disc)
+				) /
+				(
+					dr*dr
+				);
+		
+		if(new Line(lineBegin,lineEnd).liesOnLine(new Coordinate(x,y)))
+			return true;
+		
+		return false;
+		
+	}
+	
+	private static double sgn(double a){
+		if (a < 0) return -1.0;
+		return 1.0;
 	}
 	
 	/**
