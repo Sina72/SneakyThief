@@ -16,9 +16,9 @@ public class Agent extends MapPlacement {
 	/**
 	 * Default constructor
 	 */
-	public Agent(){
+	public Agent(Coordinate coordinate){
 		//default values should be changed/ moved to XML?
-		this(new Circular(0.25),new Coordinate(0,0),0.0);
+		this(new Circular(0.25),coordinate,0.0);
 	}
 	
 	/**
@@ -36,9 +36,7 @@ public class Agent extends MapPlacement {
 	 * Inform the agent about placements it can see. It should only be able to see obstructions as lines, but agents as a whole.
 	 * @param placements
 	 */
-	public void inform(
-			List<MapPlacement> placements
-			){
+	public void inform( List<MapPlacement> placements ){
 		for(MapPlacement placement : placements){
 				beliefMap.addPlacement(placement);
 

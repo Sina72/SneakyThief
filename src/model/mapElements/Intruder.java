@@ -11,8 +11,8 @@ import model.geometry.Coordinate;
  */
 public class Intruder extends Agent {
 
-	public Intruder(){
-		super();
+	public Intruder(Coordinate coordinate){
+		super( coordinate );
 		//TODO: setConstants(???) with sprint
 	}
 	

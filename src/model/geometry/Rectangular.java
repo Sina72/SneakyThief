@@ -8,5 +8,8 @@ public class Rectangular extends Polygonal {
 		super(points);
 	}
 
+	public Rectangular(double width, double height){
+		this(new Coordinate(0,0), new Coordinate(width,height));
+	}
 
 }

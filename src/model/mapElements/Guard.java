@@ -11,8 +11,8 @@ import model.geometry.Coordinate;
  */
 public class Guard extends Agent {
 
-	public Guard(){
-		super();
+	public Guard(Coordinate coordinate){
+		super(coordinate);
 		//TODO: setConstants(????)
 	}
 	

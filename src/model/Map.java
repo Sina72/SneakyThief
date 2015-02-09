@@ -33,6 +33,8 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		mapWidth = width;
 		mapHeight = height;
 		placements = new ArrayList<MapPlacement>();
+		obstructions = new ArrayList<Obstruction>();
+		agents = new ArrayList<Agent>();
 	}
 	
 	/**
