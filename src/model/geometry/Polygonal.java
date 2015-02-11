@@ -19,6 +19,10 @@ public class Polygonal extends Shape {
 		this.points = points;
 	}
 	
+	public List<Coordinate> getCoordinates(){
+		return points;
+	}
+	
 	/**
 	 * 
 	 * @return List<Line> of line representation of the polygon
@@ -63,4 +67,27 @@ public class Polygonal extends Shape {
 		return maxY - minY;
 	}
 
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Polygonal){
+			for(Coordinate c : points)
+				if(!((Polygonal) obj).points.contains(c))
+					return false;
+			return true;
+		}else{
+			return false;
+		}
+		
+		
+	}
+
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+	
 }

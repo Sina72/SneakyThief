@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,6 +13,9 @@ import model.Map;
  * Draws a map on a JPanel
  * 
  * @author Stan
+ *
+ *
+ *
  *
  */
 public class MapPanel extends JPanel implements Observer {

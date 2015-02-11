@@ -32,4 +32,19 @@ public class Circular extends Shape {
 	public double getHeight() {
 		return radius*2;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Circular)
+			return super.equals(obj) && ((Circular) obj).radius == this.radius;
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+	
+	
 }
