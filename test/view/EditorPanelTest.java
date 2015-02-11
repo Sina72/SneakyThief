@@ -33,7 +33,7 @@ public class EditorPanelTest {
 	@Test
 	public static void test() {
 		JFrame frame = new JFrame();
-		frame.setSize(300, 300);
+		frame.setSize(500, 300);
 		
 		EditorPanel ep = new EditorPanel();
 		frame.add(ep);

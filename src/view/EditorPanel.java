@@ -16,6 +16,7 @@ import javax.swing.JTextField;
  */
 public class EditorPanel extends JPanel 
 {
+	//THIS PANEL PLACED ON THE LEFT OF THE BORDER LAYOUT
 	public EditorPanel()
 	{
 		//OUR MENU OPTIONS
@@ -25,25 +26,25 @@ public class EditorPanel extends JPanel
 		JLabel heightlabel = new JLabel("Height: ");
 		JTextField heightinput = new JTextField("Must be >200");
 		JLabel guardlabel = new JLabel("Guard number: ");	
-		JTextField guardinput = new JTextField();
+		JTextField guardinput = new JTextField("1");
 		JLabel thieflabel = new JLabel("Thief number: ");	
 		JTextField thiefinput = new JTextField("1");
 		JLabel sentrylabel = new JLabel("Sentry number: ");	
-		JTextField sentryinput = new JTextField();
+		JTextField sentryinput = new JTextField("1");
 		JLabel goallabel = new JLabel("Amount of goal zones: ");	
-		JTextField goalinput = new JTextField();
-		JLabel guardmarkerlabel = new JLabel("Choose the markers available to the guards.");	
-		JLabel thiefmarkerlabel = new JLabel("Choose the markers available to the thieves.");	
-		JRadioButton guardmarker1 = new JRadioButton();
-		JRadioButton thiefmarker1 = new JRadioButton();		
-		JRadioButton guardmarker2 = new JRadioButton();
-		JRadioButton thiefmarker2 = new JRadioButton();	
-		JRadioButton guardmarker3 = new JRadioButton();
-		JRadioButton thiefmarker3 = new JRadioButton();	
-		JRadioButton guardmarker4 = new JRadioButton();
-		JRadioButton thiefmarker4 = new JRadioButton();	
-		JRadioButton guardmarker5 = new JRadioButton();
-		JRadioButton thiefmarker5 = new JRadioButton();	
+		JTextField goalinput = new JTextField("1");
+		JLabel guardmarkerlabel = new JLabel("Markers available to the guards.");	
+		JLabel thiefmarkerlabel = new JLabel("Markers available to the thieves.");	
+		JRadioButton guardmarker1 = new JRadioButton("Guard Marker 1");
+		JRadioButton thiefmarker1 = new JRadioButton("Thief Marker 1");		
+		JRadioButton guardmarker2 = new JRadioButton("Guard Marker 2");
+		JRadioButton thiefmarker2 = new JRadioButton("Thief Marker 2");	
+		JRadioButton guardmarker3 = new JRadioButton("Guard Marker 3");
+		JRadioButton thiefmarker3 = new JRadioButton("Thief Marker 3");	
+		JRadioButton guardmarker4 = new JRadioButton("Guard Marker 4");
+		JRadioButton thiefmarker4 = new JRadioButton("Thief Marker 4");	
+		JRadioButton guardmarker5 = new JRadioButton("Guard Marker 5");
+		JRadioButton thiefmarker5 = new JRadioButton("Thief Marker 5");	
 		
 		//ADD OPTIONS IN THIS ORDER
 		this.setLayout(mainlayout);

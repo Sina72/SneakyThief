@@ -13,6 +13,7 @@ import javax.swing.JPanel;
  */
 public class ControllerPanel extends JPanel {
 
+	
 	public ControllerPanel()
 	{
 		//CREATE ELEMENTS

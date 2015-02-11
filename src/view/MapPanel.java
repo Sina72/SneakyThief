@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,8 +14,13 @@ import model.Map;
  * 
  * @author Stan
  *
+ *
+ *
+ *
  */
 public class MapPanel extends JPanel implements Observer {
+	
+	//THIS PANEL PLACED ON THE RIGHT OF THE BORDER LAYOUT
 	private Map map;
 
 	@Override
