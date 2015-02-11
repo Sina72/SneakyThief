@@ -94,4 +94,6 @@ public class Coordinate{
 			Coordinate c2) {
 		return Math.atan( (c2.y-c1.y) / (c2.x - c1.x) );
 	}
+	
+	
 }
