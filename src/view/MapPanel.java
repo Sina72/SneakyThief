@@ -12,6 +12,9 @@ import model.Map;
  * 
  * @author Stan
  *
+ *
+ *
+ *
  */
 public class MapPanel extends JPanel implements Observer {
 	private Map map;
