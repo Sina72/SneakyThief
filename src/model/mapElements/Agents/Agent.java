@@ -1,10 +1,11 @@
-package model.mapElements;
+package model.mapElements.Agents;
 
 import java.util.List;
 
 import model.Map;
 import model.geometry.Circular;
 import model.geometry.Coordinate;
+import model.mapElements.MapPlacement;
 
 /**
  * Basic class for the different agents

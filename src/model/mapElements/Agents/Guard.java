@@ -1,4 +1,4 @@
-package model.mapElements;
+package model.mapElements.Agents;
 
 import model.geometry.Circular;
 import model.geometry.Coordinate;

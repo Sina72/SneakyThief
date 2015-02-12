@@ -8,7 +8,9 @@ import java.util.Observer;
  * @author Stan
  *
  */
-public class Game extends Observable implements Observer {
+public class GameController extends Observable implements Observer {
+	
+	private final double dt = 1;
 
 	@Override
 	public void update(Observable o, Object arg) {

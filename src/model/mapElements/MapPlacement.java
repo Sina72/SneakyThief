@@ -5,6 +5,7 @@ import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.geometry.Polygonal;
 import model.geometry.Shape;
+import model.mapElements.Areas.Area;
 
 
 public class MapPlacement {
@@ -65,6 +66,20 @@ public class MapPlacement {
 		if(thisShape instanceof Circular && otherShape instanceof Circular)
 			return intersectCircCirc(this, otherPlacement);
 		
+		return false;
+	}
+	
+	/**
+	 * Checks whether there is overlap between an placement and an area. Can be used to check whether an agent 
+	 * is in the shade or outside, but also to check for other MapPlacements such as sentries.
+	 * 
+	 * @param placement the placement to be checked
+	 * @param area The area to be checked
+	 * @return true if the placement has overlap with the area, false otherwise
+	 */
+	private static boolean inArea(MapPlacement placement, Area area){
+		//TODO: should return whether there is an overlap between this and the specified area
+		//IDEA: use .intersects(MapPlacement placement) method
 		return false;
 	}
 

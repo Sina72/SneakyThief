@@ -8,9 +8,10 @@ import java.util.Observable;
 import model.exceptions.OutOfBoundsException;
 import model.geometry.Coordinate;
 import model.geometry.Line;
-import model.mapElements.Agent;
 import model.mapElements.MapPlacement;
-import model.mapElements.Obstruction;
+import model.mapElements.Agents.Agent;
+import model.mapElements.Areas.Area;
+import model.mapElements.obstructions.Obstruction;
 
 /**
  * Represents the map through which the agents move.
@@ -25,6 +26,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 
 	private List<Obstruction> obstructions;
 	private List<Agent> agents;
+	private List<Area> areas;
 
 	//Dimensions of the map
 	private double mapWidth, mapHeight;
@@ -35,6 +37,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		placements = new ArrayList<MapPlacement>();
 		obstructions = new ArrayList<Obstruction>();
 		agents = new ArrayList<Agent>();
+		areas = new ArrayList<Area>();
 	}
 	
 	/**
@@ -63,6 +66,8 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 */
 	private boolean inView(Agent agent, Coordinate coordinate){
 		
+		
+		//TODO: shade implementation
 		double orientation = agent.getOrientation();
 		double visionAngle = agent.getVisionAngle();
 		double maxVision = agent.getMaxVisionRange();
@@ -102,6 +107,12 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		obstructions.add(obstruction);
 		placements.add(obstruction);
 	}
+	
+	private void addArea( Area area ){
+		areas.add(area);
+		placements.add(area);
+	}
+	
 	
 	/**
 	 * Checks whether there is overlap between the specified and any existing MapElement

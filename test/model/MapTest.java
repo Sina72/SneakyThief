@@ -10,10 +10,10 @@ import model.exceptions.OverlapException;
 import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.geometry.Rectangular;
-import model.mapElements.Guard;
-import model.mapElements.Intruder;
 import model.mapElements.MapPlacement;
-import model.mapElements.Obstruction;
+import model.mapElements.Agents.Guard;
+import model.mapElements.Agents.Intruder;
+import model.mapElements.obstructions.Obstruction;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,6 +38,7 @@ public class MapTest {
 		Obstruction obstruction = new Obstruction(
 				new Rectangular(10.0,20.0), 
 				new Coordinate(0,0), 
+				0,
 				0);
 		
 		map.addPlacement(obstruction);
@@ -94,7 +95,7 @@ public class MapTest {
 		Obstruction obstruction = new Obstruction(
 				new Line( new Coordinate (5,10) ),
 				new Coordinate (15,0),
-				0
+				0, 0
 				);
 		map.addPlacement(obstruction);
 		
