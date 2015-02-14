@@ -40,9 +40,15 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		areas = new ArrayList<Area>();
 	}
 	
-	public void move(Agent a, Coordinate c){
-		//needs to check for collisions with other objects and stop movement when
+	public Obstruction move(Agent a, Coordinate c){
+		//TODO:needs to check for collisions with other objects and stop movement when
 		//the agents collides with an object or exists the screen.
+		a.move(c);
+		//TODO return obstruction if any, otherwise null
+		return null;
+	}
+	
+	public void unobstructedMove(Agent a, Coordinate c){
 		a.move(c);
 	}
 	
@@ -51,7 +57,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * @param agent agent of which the view should be determined
 	 * @return List<Agent> of all agents in view of Agent agent
 	 */
-	public List<Agent> getInView(Agent agent){
+	public List<Agent> getAgentsInView(Agent agent){
 		ArrayList<Agent> agentsInView = new ArrayList<Agent>();
 		
 		Iterator<Agent> it = agents.iterator();
@@ -62,6 +68,12 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		}
 
 		return agentsInView;
+	}
+	
+	public List<Obstruction> getObstructionsInView(Agent agent){
+		ArrayList<Obstruction> obstructionsInView = new ArrayList<Obstruction>();
+		//TODO: implement a method that returns obstructions in view of an as as few as possible separate lines.
+		return obstructionsInView;
 	}
 	
 	/**

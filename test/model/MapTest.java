@@ -67,7 +67,7 @@ public class MapTest {
 		map.addPlacement(intruder);
 		
 		//intruder should be seen by the agent
-		assertSame(map.getInView(guard).get(0), intruder);
+		assertSame(map.getAgentsInView(guard).get(0), intruder);
 		
 	}
 	
@@ -100,7 +100,7 @@ public class MapTest {
 		map.addPlacement(obstruction);
 		
 		//intruder should not be seen by the guard
-		assertTrue(map.getInView(guard).isEmpty());
+		assertTrue(map.getAgentsInView(guard).isEmpty());
 		
 	}
 

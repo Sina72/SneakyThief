@@ -1,5 +1,7 @@
 package model.mapElements.agents;
 
+import model.geometry.Coordinate;
+
 public class Move {
 	
 	public Move(double direction, double speed){
@@ -33,6 +35,14 @@ public class Move {
 	 */
 	public void setSpeed(double speed) {
 		this.speed = speed;
+	}
+	
+	/**
+	 * 
+	 * @return Coordinate representing the normal direction vector
+	 */
+	public Coordinate getDirectionCoordinate(){
+		return new Coordinate(Math.cos(direction), Math.sin(direction));
 	}
 	
 	

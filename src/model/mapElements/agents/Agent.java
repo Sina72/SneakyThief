@@ -37,10 +37,11 @@ public class Agent extends MapPlacement {
 	 * Inform the agent about placements it can see. It should only be able to see obstructions as lines, but agents as a whole.
 	 * @param placements
 	 */
-	public void inform( List<MapPlacement> placements ){
+	public void inform( List<? extends MapPlacement> placements ){
+		beliefMap.rinseAgents();
 		for(MapPlacement placement : placements){
 				beliefMap.addPlacement(placement);
-
+		//TODO: finish inform method. Agents and obstructions should be put on the map
 		}
 	}
 	
@@ -49,6 +50,7 @@ public class Agent extends MapPlacement {
 	 * @return Move that the agent wants to make
 	 */
 	public Move getMove(){
+		//TODO: make move planner, random to start with
 		return null;
 	}
 
