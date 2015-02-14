@@ -9,8 +9,8 @@ import model.exceptions.OutOfBoundsException;
 import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.mapElements.MapPlacement;
-import model.mapElements.Agents.Agent;
-import model.mapElements.Areas.Area;
+import model.mapElements.agents.Agent;
+import model.mapElements.areas.Area;
 import model.mapElements.obstructions.Obstruction;
 
 /**
@@ -38,6 +38,12 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		obstructions = new ArrayList<Obstruction>();
 		agents = new ArrayList<Agent>();
 		areas = new ArrayList<Area>();
+	}
+	
+	public void move(Agent a, Coordinate c){
+		//needs to check for collisions with other objects and stop movement when
+		//the agents collides with an object or exists the screen.
+		a.move(c);
 	}
 	
 	/**
@@ -211,6 +217,18 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	@Override
 	public Iterator<MapPlacement> iterator() {
 		return placements.iterator();
+	}
+	
+	public Iterator<Agent> agentIterator() {
+		return agents.iterator();
+	}
+	
+	public Iterator<Obstruction> obstructionIterator(){
+		return obstructions.iterator();
+	}
+	
+	public Iterator<Area> areaIterator(){
+		return areas.iterator();
 	}
 
 }

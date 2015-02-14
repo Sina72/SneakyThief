@@ -5,7 +5,7 @@ import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.geometry.Polygonal;
 import model.geometry.Shape;
-import model.mapElements.Areas.Area;
+import model.mapElements.areas.Area;
 
 
 public class MapPlacement {
@@ -67,6 +67,14 @@ public class MapPlacement {
 			return intersectCircCirc(this, otherPlacement);
 		
 		return false;
+	}
+	
+	/**
+	 * Moves the placement
+	 * @param c Relative Coordinate
+	 */
+	public void move(Coordinate c){
+		this.coordinate = this.coordinate.plus(c);
 	}
 	
 	/**

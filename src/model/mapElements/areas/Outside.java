@@ -1,4 +1,4 @@
-package model.mapElements.Areas;
+package model.mapElements.areas;
 
 import model.geometry.Coordinate;
 import model.geometry.Shape;

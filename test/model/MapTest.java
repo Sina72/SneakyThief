@@ -11,8 +11,8 @@ import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.geometry.Rectangular;
 import model.mapElements.MapPlacement;
-import model.mapElements.Agents.Guard;
-import model.mapElements.Agents.Intruder;
+import model.mapElements.agents.Guard;
+import model.mapElements.agents.Intruder;
 import model.mapElements.obstructions.Obstruction;
 
 import org.junit.Ignore;

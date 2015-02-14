@@ -1,4 +1,4 @@
-package model.mapElements.Agents;
+package model.mapElements.agents;
 
 import java.util.List;
 
@@ -42,6 +42,14 @@ public class Agent extends MapPlacement {
 				beliefMap.addPlacement(placement);
 
 		}
+	}
+	
+	/**
+	 * Gets the move the agent wants to make
+	 * @return Move that the agent wants to make
+	 */
+	public Move getMove(){
+		return null;
 	}
 
 	/**
