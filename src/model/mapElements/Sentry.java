@@ -1,8 +1,7 @@
-package model.mapElements.obstructions;
+package model.mapElements;
 
 import model.geometry.Coordinate;
 import model.geometry.Shape;
-import model.mapElements.MapPlacement;
 
 public class Sentry extends MapPlacement {
 

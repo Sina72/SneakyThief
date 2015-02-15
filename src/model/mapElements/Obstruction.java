@@ -1,8 +1,7 @@
-package model.mapElements.obstructions;
+package model.mapElements;
 
 import model.geometry.Coordinate;
 import model.geometry.Shape;
-import model.mapElements.MapPlacement;
 
 /**
  * Common structure for all obstructions
@@ -11,6 +10,11 @@ import model.mapElements.MapPlacement;
  */
 public class Obstruction extends MapPlacement {
 
+	public static enum ObstructionType {
+		WALL, WINDOW, DOOR, TREE
+	}
+
+	
 	ObstructionType type;
 	//0 is completely imp ermeable, 1 is completely permeable
 	double permeability;

@@ -8,9 +8,9 @@ import java.util.TimerTask;
 
 import model.Map;
 import model.geometry.Coordinate;
+import model.mapElements.Obstruction;
 import model.mapElements.agents.Agent;
 import model.mapElements.agents.Move;
-import model.mapElements.obstructions.Obstruction;
 
 /**
  * Controls the game actions / time flow

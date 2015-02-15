@@ -9,9 +9,10 @@ import model.exceptions.OutOfBoundsException;
 import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.mapElements.MapPlacement;
+import model.mapElements.Obstruction;
+import model.mapElements.Sentry;
 import model.mapElements.agents.Agent;
 import model.mapElements.areas.Area;
-import model.mapElements.obstructions.Obstruction;
 
 /**
  * Represents the map through which the agents move.
@@ -22,15 +23,25 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	//Stores all elements and their coordinates. Coordinates are the left bottom corner of the element.
 	//Since Obstructions and Agents are keys, every obstruction or agent can only occur once on the map.
 	
+	//list of all elements
 	private List<MapPlacement> placements;
 
+	//list of obstructions
 	private List<Obstruction> obstructions;
+	
+	//list of agents
 	private List<Agent> agents;
+	
+	//list of sentries
+	private List<Sentry> sentries;
+	
+	//list of areas
 	private List<Area> areas;
 
 	//Dimensions of the map
 	private double mapWidth, mapHeight;
 	
+	//constructor
 	public Map(double width, double height){
 		mapWidth = width;
 		mapHeight = height;
@@ -38,6 +49,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		obstructions = new ArrayList<Obstruction>();
 		agents = new ArrayList<Agent>();
 		areas = new ArrayList<Area>();
+		sentries = new ArrayList<Sentry>();
 	}
 	
 	public Obstruction move(Agent a, Coordinate c){
@@ -48,10 +60,19 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		return null;
 	}
 	
+	//moves an agent without checking any obstructions
+	//used for moving agents past permeable obstructions
 	public void unobstructedMove(Agent a, Coordinate c){
 		a.move(c);
 	}
 	
+	/**
+	 * changes the orientation of an agent
+	 * does not check for any conditions since agents are circular, so rotation is always valid
+	 * 
+	 * @param a Agent to be rotated
+	 * @param angle The angle (in radians) of the rotation
+	 */
 	public void rotate(Agent a, double angle){
 		a.rotate(angle);
 	}
@@ -74,9 +95,16 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		return agentsInView;
 	}
 	
+	/**
+	 * gets all the obstructions that the agent can see in the form of a list of lines.
+	 * @param agent Agent to be checked
+	 * @return List of Obstructions that the agent can see
+	 */
 	public List<Obstruction> getObstructionsInView(Agent agent){
 		ArrayList<Obstruction> obstructionsInView = new ArrayList<Obstruction>();
 		//TODO: implement a method that returns obstructions in view of an as as few as possible separate lines.
+		//different obstructions should be represented by different lines
+		//the lines should maintain the properties of the obstruction, like permeability.
 		return obstructionsInView;
 	}
 	
@@ -87,7 +115,6 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * @return true if coordinate in view, false otherwise
 	 */
 	private boolean inView(Agent agent, Coordinate coordinate){
-		
 		
 		//TODO: shade implementation
 		double orientation = agent.getOrientation();
@@ -130,11 +157,23 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		placements.add(obstruction);
 	}
 	
+	/**
+	 * Adds an area to the map
+	 * @param area
+	 */
 	public void addArea( Area area ){
 		areas.add(area);
 		placements.add(area);
 	}
 	
+	/**
+	 * Adds a sentry to the map
+	 * @param sentry
+	 */
+	public void addSentry(Sentry sentry){
+		sentries.add(sentry);
+		placements.add(sentry);
+	}
 	
 	/**
 	 * Checks whether there is overlap between the specified and any existing MapElement
@@ -172,6 +211,10 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		placements.add(agent);
 	}
 	
+	/**
+	 * removes all agents from the map. Used for beliefMaps, where the agent might want to remove
+	 * all its beliefs of where the other agents are from its internal map.
+	 */
 	public void rinseAgents(){
 		for(Agent agent : agents )
 			placements.remove(agent);
@@ -185,7 +228,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * @throws OutOfBoundsException if the MapElement does not fit into the map at the specified coordinates.
 	 */
 	public void addPlacement(MapPlacement placement)/* throws OutOfBoundsException, OverlapException*/{
-		
+		//TODO: Do we want these exceptions here? or maybe check this at the mapBuilder?
 		//check whether the placement is valid
 		if(checkOutOfBounds(placement) || checkOverlap(placement))
 			return;
@@ -235,16 +278,36 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		return placements.iterator();
 	}
 	
+	/**
+	 * Iterates over the agents in the map
+	 * @return iterator over all the agents in the map
+	 */
 	public Iterator<Agent> agentIterator() {
 		return agents.iterator();
 	}
 	
+	/**
+	 * Iterates over all the obstructions in the map
+	 * @return iterator over the obstructions in the map
+	 */
 	public Iterator<Obstruction> obstructionIterator(){
 		return obstructions.iterator();
 	}
 	
+	/**
+	 * Iterates over all the areas in the map
+	 * @return iterator over the areas in the map.
+	 */
 	public Iterator<Area> areaIterator(){
 		return areas.iterator();
+	}
+	
+	/**
+	 * Iterators over all the sentries in the map
+	 * @return iterator over the sentries in the map.
+	 */
+	public Iterator<Sentry> sentryIterator(){
+		return sentries.iterator();
 	}
 
 }
