@@ -1,6 +1,7 @@
 package model.mapElements.agents;
 
 import java.util.List;
+import java.util.Random;
 
 import model.Map;
 import model.geometry.Circular;
@@ -50,8 +51,13 @@ public class Agent extends MapPlacement {
 	 * @return Move that the agent wants to make
 	 */
 	public Move getMove(){
-		//TODO: make move planner, random to start with
-		return null;
+		//make a random move (random direction, random speed, and random rotation)
+		Random r = new Random();
+		return new Move(
+				r.nextDouble()*360, // random direction
+				r.nextDouble()*this.m_maxMovingSpeed, //random moving speed
+				r.nextDouble()*this.m_maxAngle*2 - this.m_maxAngle //random rotation speed
+				);
 	}
 
 	/**

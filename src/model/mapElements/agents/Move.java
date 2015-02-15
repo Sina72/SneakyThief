@@ -4,13 +4,26 @@ import model.geometry.Coordinate;
 
 public class Move {
 	
-	public Move(double direction, double speed){
+	public Move(double direction, double speed, double rotationSpeed){
 		this.direction = direction;
 		this.speed = speed;
+		this.rotationSpeed = rotationSpeed;
+	}
+	
+	public Move(double direction, double speed){
+		this(direction,speed,0);
+	}
+	
+	public Move(double rotationSpeed){
+		this(0,0,rotationSpeed);
 	}
 	
 	private double direction;
 	private double speed;
+	
+	//rotation of an agent in speed. positive for counterclockwise rotation, negative for clockwise rotation. 
+	//Speed in angular degrees per second
+	private double rotationSpeed;
 	
 	/**
 	 * @return the direction
@@ -43,6 +56,20 @@ public class Move {
 	 */
 	public Coordinate getDirectionCoordinate(){
 		return new Coordinate(Math.cos(direction), Math.sin(direction));
+	}
+
+	/**
+	 * @return the rotationSpeed
+	 */
+	public double getRotationSpeed() {
+		return rotationSpeed;
+	}
+
+	/**
+	 * @param rotationSpeed the rotationSpeed to set
+	 */
+	public void setRotationSpeed(double rotationSpeed) {
+		this.rotationSpeed = rotationSpeed;
 	}
 	
 	

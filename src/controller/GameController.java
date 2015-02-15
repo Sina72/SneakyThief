@@ -96,6 +96,8 @@ public class GameController extends Observable {
 
 			// if obstruction met, store obstruction
 			Obstruction o = map.move(agent, moveCoordinate);
+			//rotate the agent (always allowed as agents are circular)
+			map.rotate(agent, move.getRotationSpeed()*dt);
 
 			// if obstruction met
 			if (o != null) {

@@ -77,6 +77,10 @@ public class MapPlacement {
 		this.coordinate = this.coordinate.plus(c);
 	}
 	
+	public void rotate(double angle){
+		this.orientation += angle;
+	}
+	
 	/**
 	 * Checks whether there is overlap between an placement and an area. Can be used to check whether an agent 
 	 * is in the shade or outside, but also to check for other MapPlacements such as sentries.

@@ -52,6 +52,10 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		a.move(c);
 	}
 	
+	public void rotate(Agent a, double angle){
+		a.rotate(angle);
+	}
+	
 	/**
 	 * Returns all agents in view
 	 * @param agent agent of which the view should be determined
@@ -126,7 +130,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		placements.add(obstruction);
 	}
 	
-	private void addArea( Area area ){
+	public void addArea( Area area ){
 		areas.add(area);
 		placements.add(area);
 	}
