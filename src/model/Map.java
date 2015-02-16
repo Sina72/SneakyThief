@@ -10,9 +10,9 @@ import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.mapElements.MapPlacement;
 import model.mapElements.Obstruction;
-import model.mapElements.Sentry;
 import model.mapElements.agents.Agent;
 import model.mapElements.areas.Area;
+import model.mapElements.areas.Sentry;
 
 /**
  * Represents the map through which the agents move.

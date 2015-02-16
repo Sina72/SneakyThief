@@ -16,7 +16,7 @@ public class Obstruction extends MapPlacement {
 
 	
 	ObstructionType type;
-	//0 is completely imp ermeable, 1 is completely permeable
+	//0 is completely impermeable, 1 is completely permeable
 	double permeability;
 	
 	public Obstruction(Shape shape, Coordinate coordinate, double orientation, double permeability) {
