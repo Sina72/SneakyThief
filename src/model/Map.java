@@ -55,6 +55,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	public Obstruction move(Agent a, Coordinate c){
 		//TODO:needs to check for collisions with other objects and stop movement when
 		//the agents collides with an object or exists the screen.
+		// test pushing @Sina
 		a.move(c);
 		//TODO return obstruction if any, otherwise null
 		return null;
