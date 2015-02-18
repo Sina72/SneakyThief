@@ -32,6 +32,15 @@ public class Circular extends Shape {
 	public double getHeight() {
 		return radius*2;
 	}
+	
+	/**
+	 * @return the coordinate of edge of circle at given angle from the centre of the circle
+	 * 
+	 */
+	public Coordinate getEdgeCoordinate(double angle) {
+		Coordinate edge = new Coordinate(Math.round(radius * Math.cos(angle)),Math.round(radius * Math.sin(angle)));
+		return edge;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

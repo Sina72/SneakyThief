@@ -32,6 +32,7 @@ public class Agent extends MapPlacement {
 		super(shape, coordinate, orientation);
 		beliefMap = new Map(this.getWidth(),super.getHeight());
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -135,6 +136,18 @@ public class Agent extends MapPlacement {
 	 */
 	public double getMaxMovingSpeed() {
 		return m_maxMovingSpeed;
+	}
+	
+	/**
+	 * 
+	 * I am not sure if casting circular will work in this case!
+	 * I could also make it a static method in Circular class with radius and angle as input.
+	 * @return the the coordinate of edge of agent from the centre of the circle at a given angle
+	 * By Sina.
+	 */
+	public Coordinate getEdge(double angle) {
+		Circular agentShape = (Circular) super.getShape();
+		return agentShape.getEdgeCoordinate(angle);
 	}
 
 	/**

@@ -8,6 +8,8 @@ import java.util.Observable;
 import model.exceptions.OutOfBoundsException;
 import model.geometry.Coordinate;
 import model.geometry.Line;
+import model.geometry.Polygonal;
+import model.geometry.Rectangular;
 import model.mapElements.MapPlacement;
 import model.mapElements.Obstruction;
 import model.mapElements.agents.Agent;
@@ -52,15 +54,58 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		sentries = new ArrayList<Sentry>();
 	}
 	
+	//moves the agent to an input coordinate, stops at obstructions in the way.
+	//by Sina
 	public Obstruction move(Agent a, Coordinate c){
-		//TODO:needs to check for collisions with other objects and stop movement when
-		//the agents collides with an object or exists the screen.
-		// test pushing @Sina
-		a.move(c);
-		//TODO return obstruction if any, otherwise null
-		return null;
+		
+		
+		// Finding the Area of the move path as a rectangle
+		Coordinate aCoordinate = a.getCoordinate();
+		double angleOfMove = Coordinate.getAngle(a.getCoordinate(),c);
+		
+		Coordinate aEdgeCoordinate = a.getEdge(angleOfMove - Math.atan(0.5));
+		Coordinate aLeftBottom = aCoordinate.minus(aEdgeCoordinate);
+		
+		Coordinate cRightTop = c.plus(aEdgeCoordinate);
+		Rectangular movePath = new Rectangular(aLeftBottom, cRightTop);
+		
+		double distAToC = Coordinate.getDistance(aCoordinate,c);
+		double shortestDist = distAToC;
+		Obstruction closestObstruction = null;
+		//checks for obstructions
+		for(Obstruction o : obstructions)
+		{
+			// I was not sure about the coordinate and Orientation parameters 
+			//I left them as zero since the movePath already has a coordinate and orientation.
+			if(o.intersects(new MapPlacement(movePath,new Coordinate(0,0),0)))
+			{
+				
+				Coordinate centreOfObst = o.getCentreCoordinate();
+				double distToObstruction = Coordinate.getDistance(centreOfObst,aCoordinate);
+				if (shortestDist > distToObstruction )
+				{
+					shortestDist = distToObstruction;
+					closestObstruction = o;
+				}
+			}	
+		}
+		if(closestObstruction == null)
+		{
+			a.move(c);
+			return null;
+		}
+		
+		// Finds the coordinates where the collision can happen and moves there
+		double radiusOfObstr = Math.sqrt(Math.pow(closestObstruction.getCentreCoordinate().getX(),2) + Math.pow(closestObstruction.getCentreCoordinate().getY(),2));
+		Coordinate collision = new Coordinate (radiusOfObstr * Math.cos(angleOfMove - Math.PI), radiusOfObstr * Math.sin(angleOfMove - Math.PI));
+		// I did not consider the radius of the agent itself. Will be added...
+		a.move(collision);
+		return closestObstruction;
 	}
 	
+
+	
+
 	//moves an agent without checking any obstructions
 	//used for moving agents past permeable obstructions
 	public void unobstructedMove(Agent a, Coordinate c){
@@ -310,5 +355,8 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	public Iterator<Sentry> sentryIterator(){
 		return sentries.iterator();
 	}
+	
+	
+
 
 }
