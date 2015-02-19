@@ -21,8 +21,12 @@ public class Guard extends Agent {
 	}
 	
 	public void enterSentry(){
-		//TODO: implement
+		//TODO: implement enterSentry
 		//something happening to vision range etc. need to read defaults from settings.xml?
+	}
+	
+	public void leaveSentry(){
+		//TODO: implement leaveSentry()
 	}
 
 }

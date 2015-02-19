@@ -56,6 +56,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	
 	//moves the agent to an input coordinate, stops at obstructions in the way.
 	//by Sina
+	//TODO: test classes
 	public Obstruction move(Agent a, Coordinate c){
 		
 		
@@ -96,9 +97,16 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		}
 		
 		// Finds the coordinates where the collision can happen and moves there
-		double radiusOfObstr = Math.sqrt(Math.pow(closestObstruction.getCentreCoordinate().getX(),2) + Math.pow(closestObstruction.getCentreCoordinate().getY(),2));
-		Coordinate collision = new Coordinate (radiusOfObstr * Math.cos(angleOfMove - Math.PI), radiusOfObstr * Math.sin(angleOfMove - Math.PI));
-		// I did not consider the radius of the agent itself. Will be added...
+		double radiusOfObstr = Math.sqrt(
+				Math.pow(closestObstruction.getCentreCoordinate().getX(),2) + 
+				Math.pow(closestObstruction.getCentreCoordinate().getY(),2)
+				);
+		
+		Coordinate collision = new Coordinate (
+				radiusOfObstr * Math.cos(angleOfMove - Math.PI), 
+				radiusOfObstr * Math.sin(angleOfMove - Math.PI)
+				);
+		//TODO: I did not consider the radius of the agent itself. Will be added...
 		a.move(collision);
 		return closestObstruction;
 	}

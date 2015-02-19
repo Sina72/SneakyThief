@@ -2,6 +2,12 @@ package model.mapElements.agents;
 
 import model.geometry.Coordinate;
 
+/**
+ *A move that an agent can make, indicating a direction, a speed, and an angular speed.
+ * 
+ * @author Stan
+ *
+ */
 public class Move {
 	
 	public Move(double direction, double speed, double rotationSpeed){
