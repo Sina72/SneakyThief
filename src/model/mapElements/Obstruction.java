@@ -40,14 +40,6 @@ public class Obstruction extends MapPlacement {
 		return permeability;
 	}
 	
-	//returns the coordinates for the centre of any Obstruction
-	//By Sina 
-	public Coordinate getCentreCoordinate(){
-		double xToCentre = super.getCoordinate().getX() + super.getWidth() / 2;
-		double yToCentre = super.getCoordinate().getY() + super.getHeight() / 2;
-		return super.getCoordinate().plus(new Coordinate(xToCentre,yToCentre));
-	}
-	
 	public void setPermeability(double newPermeability){
 		if(newPermeability <= 1 && newPermeability >= 0)
 			this.permeability = newPermeability;
