@@ -101,9 +101,9 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 			return null;
 		}
 
-		Coordinate nextStep = aCoordinate.plus(new Coordinate((aVisionRange - aRadius)
-				* Math.cos(angleOfMove) , (aVisionRange - aRadius)
-				* Math.sin(angleOfMove) ));
+		Coordinate nextStep = aCoordinate.plus(new Coordinate
+				((aVisionRange - aRadius) * Math.cos(angleOfMove) , 
+				(aVisionRange - aRadius) * Math.sin(angleOfMove) ));
 
 		a.move(nextStep);
 		return move(a, destination);
@@ -119,10 +119,8 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * changes the orientation of an agent does not check for any conditions
 	 * since agents are circular, so rotation is always valid
 	 * 
-	 * @param a
-	 *            Agent to be rotated
-	 * @param angle
-	 *            The angle (in radians) of the rotation
+	 * @param a Agent to be rotated
+	 * @param angle The angle (in radians) of the rotation
 	 */
 	public void rotate(Agent a, double angle) {
 		a.rotate(angle);
@@ -131,8 +129,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	/**
 	 * Returns all agents in view
 	 * 
-	 * @param agent
-	 *            agent of which the view should be determined
+	 * @param agent agent of which the view should be determined
 	 * @return List<Agent> of all agents in view of Agent agent
 	 */
 	public List<Agent> getAgentsInView(Agent agent) {
@@ -149,11 +146,9 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	}
 
 	/**
-	 * gets all the obstructions that the agent can see in the form of a list of
-	 * lines.
+	 * gets all the obstructions that the agent can see in the form of a list of lines.
 	 * 
-	 * @param agent
-	 *            Agent to be checked
+	 * @param agent Agent to be checked
 	 * @return List of Obstructions that the agent can see
 	 */
 	public List<Obstruction> getObstructionsInView(Agent agent) {
@@ -169,10 +164,8 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	/**
 	 * Checks whether a coordinate is in view of an agent
 	 * 
-	 * @param agent
-	 *            agent of which the view should be determined
-	 * @param coordinate
-	 *            coordinate to check whether it is in view of the agent
+	 * @param agent agent of which the view should be determined
+	 * @param coordinate coordinate to check whether it is in view of the agent
 	 * @return true if coordinate in view, false otherwise
 	 */
 	private boolean inView(Agent agent, Coordinate coordinate) {
@@ -185,17 +178,18 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 
 		// checks within range
 		Coordinate agentPosition = agent.getCoordinate();
-		double distanceBetweenAgents = Coordinate.getDistance(agentPosition,
-				coordinate);
-		if (distanceBetweenAgents > maxVision
-				|| distanceBetweenAgents < minVision)
+		double distanceBetweenAgents = Coordinate.getDistance(agentPosition, coordinate);
+		if (
+				distanceBetweenAgents > maxVision || 
+				distanceBetweenAgents < minVision)
 			return false;
 
 		// checks within view angle
 		double angleBetweenAgents = Coordinate.getAngle(agentPosition,
 				coordinate);
-		if (angleBetweenAgents > orientation + visionAngle / 2
-				|| angleBetweenAgents < orientation - visionAngle / 2)
+		if (
+				angleBetweenAgents > orientation + visionAngle / 2 || 
+				angleBetweenAgents < orientation - visionAngle / 2)
 			return false;
 
 		// checks for obstructions
@@ -208,12 +202,10 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	}
 
 	/**
-	 * Adds an Obstruction to t map
+	 * Adds an Obstruction to the map
 	 * 
-	 * @param obstruction
-	 *            The Obstruction to be added to the map
-	 * @param coordinate
-	 *            the Coordinate of the left bottom corner of the obstruction.
+	 * @param obstruction The Obstruction to be added to the map
+	 * @param coordinate the Coordinate of the left bottom corner of the obstruction.
 	 */
 	private void addObstruction(Obstruction obstruction) {
 		obstructions.add(obstruction);
@@ -241,13 +233,10 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	}
 
 	/**
-	 * Checks whether there is overlap between the specified and any existing
-	 * MapElement
+	 * Checks whether there is overlap between the specified and any existing MapElement
 	 * 
-	 * @param element
-	 *            The element to be checked
-	 * @param coordinate
-	 *            At this coordinate
+	 * @param element The element to be checked
+	 * @param coordinate At this coordinate
 	 * @return
 	 */
 	private boolean checkOverlap(MapPlacement placement) {
@@ -261,29 +250,22 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * Checks whether the MapElement would go out of bound at the specified
 	 * Coordinate
 	 * 
-	 * @param element
-	 *            MapElement that should be checked
-	 * @param coordinate
-	 *            The Coordinate at which the MapElement should be checked
+	 * @param element MapElement that should be checked
+	 * @param coordinate The Coordinate at which the MapElement should be checked
 	 * @return
 	 */
 	private boolean checkOutOfBounds(MapPlacement placement) {
-		return placement.getCoordinate().getX() + placement.getWidth() > mapWidth
-				|| // width is exceeded
-				placement.getCoordinate().getY() + placement.getHeight() > mapHeight; // height
-																						// is
-																						// exceeded
+		return
+				placement.getCoordinate().getX() + placement.getWidth() > mapWidth || // width is exceeded
+				placement.getCoordinate().getY() + placement.getHeight() > mapHeight; // height is exceeded
 	}
 
 	/**
 	 * Adds an Agent to the map
 	 * 
-	 * @param obstruction
-	 *            The Agent to be added to the map
-	 * @param coordinate
-	 *            the Coordinate of the left bottom corner of the Agent.
-	 * @throws OutOfBoundsException
-	 *             if the Agent does not fit into the map at the speficied
+	 * @param obstruction The Agent to be added to the map
+	 * @param coordinate the Coordinate of the left bottom corner of the Agent.
+	 * @throws OutOfBoundsException if the Agent does not fit into the map at the speficied
 	 *             coordinates
 	 */
 	private void addAgent(Agent agent) {
@@ -304,19 +286,11 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 
 	/**
 	 * 
-	 * @param element
-	 *            The MapElement to be added to the map
-	 * @param coordinate
-	 *            the Coordinate of the left bottom corner of the MapElement
-	 * @throws OutOfBoundsException
-	 *             if the MapElement does not fit into the map at the specified
-	 *             coordinates.
+	 * @param element The MapElement to be added to the map
+	 * @param coordinate the Coordinate of the left bottom corner of the MapElement
+	 * @throws OutOfBoundsException if the MapElement does not fit into the map at the specified coordinates.
 	 */
-	public void addPlacement(MapPlacement placement)/*
-													 * throws
-													 * OutOfBoundsException,
-													 * OverlapException
-													 */{
+	public void addPlacement(MapPlacement placement)/* throws OutOfBoundsException, OverlapException*/{
 		// TODO: Do we want these exceptions here? or maybe check this at the
 		// mapBuilder?
 		// check whether the placement is valid
@@ -356,8 +330,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	/**
 	 * Remove MapElement from the Map
 	 * 
-	 * @param element
-	 *            MapElement to be removed.
+	 * @param element MapElement to be removed.
 	 */
 	public void removeMapElement(MapPlacement placement) {
 		if (placement instanceof Obstruction)
