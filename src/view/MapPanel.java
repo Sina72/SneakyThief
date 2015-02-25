@@ -1,3 +1,4 @@
+
 package view;
 
 import java.awt.Graphics;
@@ -11,12 +12,6 @@ import model.Map;
 
 /**
  * Draws a map on a JPanel
- * 
- * @author Stan
- *
- *
- *
- *
  */
 public class MapPanel extends JPanel implements Observer {
 	
@@ -27,5 +22,20 @@ public class MapPanel extends JPanel implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void draw()
+	{
+		/*for each MapPlacement we must draw it, essentially drawing the map
+		 * get map
+		 * get placements
+		 * draw placements
+		*/
+	
+	}
+	
+	public void drawShape(Shape newshape)
+	{
+		
 	}
 }

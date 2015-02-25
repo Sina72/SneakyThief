@@ -23,6 +23,30 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	
 	private List<MapPlacement> placements;
 
+	public List<MapPlacement> getPlacements() {
+		return placements;
+	}
+
+	public void setPlacements(List<MapPlacement> placements) {
+		this.placements = placements;
+	}
+
+	public List<Obstruction> getObstructions() {
+		return obstructions;
+	}
+
+	public void setObstructions(List<Obstruction> obstructions) {
+		this.obstructions = obstructions;
+	}
+
+	public List<Agent> getAgents() {
+		return agents;
+	}
+
+	public void setAgents(List<Agent> agents) {
+		this.agents = agents;
+	}
+
 	private List<Obstruction> obstructions;
 	private List<Agent> agents;
 
