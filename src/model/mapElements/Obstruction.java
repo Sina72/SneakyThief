@@ -10,11 +10,40 @@ import model.geometry.Shape;
  */
 public class Obstruction extends MapPlacement {
 
-	public Obstruction(Shape shape, Coordinate coordinate, double orientation) {
-		super(shape, coordinate, orientation);
-		// TODO Auto-generated constructor stub
+	public static enum ObstructionType {
+		WALL, WINDOW, DOOR, TREE
 	}
 
+	
+	ObstructionType type;
+	//0 is completely impermeable, 1 is completely permeable
+	double permeability;
+	
+	public Obstruction(Shape shape, Coordinate coordinate, double orientation, double permeability) {
+		super(shape, coordinate, orientation);
+		this.permeability = permeability;
+	}
+	
+	public Obstruction(Shape shape, Coordinate coordinate, double orientation){
+		this(shape, coordinate, orientation, 0);
+	}
+
+	public void setType(ObstructionType type){
+		this.type = type;
+	}
+	
+	public ObstructionType getType(){
+		return type;
+	}
+	
+	public double getPermeability(){
+		return permeability;
+	}
+	
+	public void setPermeability(double newPermeability){
+		if(newPermeability <= 1 && newPermeability >= 0)
+			this.permeability = newPermeability;
+	}
 	
 
 }

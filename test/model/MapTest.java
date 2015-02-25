@@ -10,10 +10,10 @@ import model.exceptions.OverlapException;
 import model.geometry.Coordinate;
 import model.geometry.Line;
 import model.geometry.Rectangular;
-import model.mapElements.Guard;
-import model.mapElements.Intruder;
 import model.mapElements.MapPlacement;
 import model.mapElements.Obstruction;
+import model.mapElements.agents.Guard;
+import model.mapElements.agents.Intruder;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,6 +38,7 @@ public class MapTest {
 		Obstruction obstruction = new Obstruction(
 				new Rectangular(10.0,20.0), 
 				new Coordinate(0,0), 
+				0,
 				0);
 		
 		map.addPlacement(obstruction);
@@ -66,7 +67,7 @@ public class MapTest {
 		map.addPlacement(intruder);
 		
 		//intruder should be seen by the agent
-		assertSame(map.getInView(guard).get(0), intruder);
+		assertSame(map.getAgentsInView(guard).get(0), intruder);
 		
 	}
 	
@@ -94,12 +95,12 @@ public class MapTest {
 		Obstruction obstruction = new Obstruction(
 				new Line( new Coordinate (5,10) ),
 				new Coordinate (15,0),
-				0
+				0, 0
 				);
 		map.addPlacement(obstruction);
 		
 		//intruder should not be seen by the guard
-		assertTrue(map.getInView(guard).isEmpty());
+		assertTrue(map.getAgentsInView(guard).isEmpty());
 		
 	}
 

@@ -1,10 +1,12 @@
-package model.mapElements;
+package model.mapElements.agents;
 
 import java.util.List;
+import java.util.Random;
 
 import model.Map;
 import model.geometry.Circular;
 import model.geometry.Coordinate;
+import model.mapElements.MapPlacement;
 
 /**
  * Basic class for the different agents
@@ -30,17 +32,33 @@ public class Agent extends MapPlacement {
 		super(shape, coordinate, orientation);
 		beliefMap = new Map(this.getWidth(),super.getHeight());
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
 	 * Inform the agent about placements it can see. It should only be able to see obstructions as lines, but agents as a whole.
 	 * @param placements
 	 */
-	public void inform( List<MapPlacement> placements ){
+	public void inform( List<? extends MapPlacement> placements ){
+		beliefMap.rinseAgents();
 		for(MapPlacement placement : placements){
 				beliefMap.addPlacement(placement);
-
+		//TODO: finish inform method. Agents and obstructions should be put on the map
 		}
+	}
+	
+	/**
+	 * Gets the move the agent wants to make
+	 * @return Move that the agent wants to make
+	 */
+	public Move getMove(){
+		//make a random move (random direction, random speed, and random rotation)
+		Random r = new Random();
+		return new Move(
+				r.nextDouble()*360, // random direction
+				r.nextDouble()*this.m_maxMovingSpeed, //random moving speed
+				r.nextDouble()*this.m_maxAngle*2 - this.m_maxAngle //random rotation speed
+				);
 	}
 
 	/**

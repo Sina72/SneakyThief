@@ -17,10 +17,11 @@ public class MapPanel extends JPanel implements Observer {
 	
 	//THIS PANEL PLACED ON THE RIGHT OF THE BORDER LAYOUT
 	private Map map;
-
+	
+	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		// TODO update the map
 
 	}
 	

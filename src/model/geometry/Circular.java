@@ -33,6 +33,7 @@ public class Circular extends Shape {
 		return radius*2;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Circular)
