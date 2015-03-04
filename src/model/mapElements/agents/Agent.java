@@ -8,6 +8,7 @@ import model.geometry.Circular;
 import model.geometry.Coordinate;
 import model.mapElements.MapPlacement;
 
+
 /**
  * Basic class for the different agents
  * @author Stan, Robert

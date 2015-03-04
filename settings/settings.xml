@@ -6,21 +6,11 @@
 		<maxTurnSpeed>180</maxTurnSpeed><!-- the maximal turn speed in  -->
 		<visionRange>6</visionRange> <!-- The maximal vision range in meters -->
 		<visionAngle>45</visionAngle> <!-- The vision angel in degrees -->
-		<startLocation> <!-- The start location in x,y format -->
-			<x>1.0</x>
-			<y>1.0</y>
-		</startLocation>
-	</surveillance>
-	
-	<surveillance id="2">
-		<baseSpeed>1.4</baseSpeed>
-		<maxTurnSpeed>180</maxTurnSpeed>
-		<visionRange>6</visionRange>
-		<visionAngle>45</visionAngle>
-		<startLocation>
-			<x>3.0</x>
-			<y>3.0</y>
-		</startLocation>
+		<visionRangeStructures>10</visionRangeStructures>
+		<visionRangeTowers>18</visionRangeTowers>
+
+		
+
 	</surveillance>
 	
 	<intruder id="1">
@@ -28,14 +18,10 @@
 		<maxTurnSpeed>180</maxTurnSpeed>
 		<visionRange>7.5</visionRange>
 		<visionAngle>45</visionAngle>
-		<sprint> <!-- settings for the sprint modus -->
-			<speed>3</speed> <!-- the maximum sprint speed -->
-			<time>5</time> <!-- The maximum sprint time-->
-			<rest>10</rest> <!-- The rest time before the sprint can be preformed -->
-		</sprint>
-		<startLocation>
-			<x>5.0</x>
-			<y>5.0</y>
-		</startLocation>
+		<sprintSpeed>3</sprintSpeed> <!-- the maximum sprint speed -->
+		<sprintTime>5</sprintTime> <!-- The maximum sprint time-->
+		<sprintRest>10</sprintRest> <!-- The rest time before the sprint can be preformed -->
+		<visionRangeStructures>10</visionRangeStructures>
+		<visionRangeTowers>18</visionRangeTowers>
 	</intruder>
 </agents>
