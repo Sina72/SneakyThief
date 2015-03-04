@@ -81,56 +81,75 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		sentries = new ArrayList<Sentry>();
 	}
 
-	// moves the agent to an input coordinate, stops at obstructions in the way.
-	// by Sina
-	// TODO: test classes
+		/**
+	 * 
+	 * checks the path of the agent a to the Destination
+	 * moves the agent to the destination or the closest obstructions.
+	 * @return the obstructions (if any) along the path.
+	 * by Sina
+	 * TODO: test classes
+	 */
+	
 	public Obstruction move(Agent a, Coordinate destination) {
 
 		// we create three view lines for the agent in order to check the
 		// obstructions according to the agent's vision abilities.
 		Coordinate aCoordinate = a.getCoordinate();
 		double angleOfMove = Coordinate.getAngle(a.getCoordinate(), destination);
-		double aVisionRange = a.getMaxVisionRange();
 		double aRadius = a.getHeight() / 2;
+		double distAToC = Coordinate.getDistance(aCoordinate,destination) + aRadius;
 
-		// I am not sure if the vision range is from the center of the agent ??
-		Coordinate middleFront = aCoordinate.plus(new Coordinate(aVisionRange
-				* Math.cos(angleOfMove), aVisionRange * Math.sin(angleOfMove)));
-		Line middleSight = new Line(aCoordinate, middleFront);
-
-		double maxCollisionsAngle = 2 * Math.asin(aRadius / aVisionRange);
-
-		Coordinate leftFront = aCoordinate.plus(new Coordinate(aVisionRange
-				* Math.cos(angleOfMove + maxCollisionsAngle), aVisionRange
-				* Math.sin(angleOfMove + maxCollisionsAngle)));
-		Line leftSight = new Line(aCoordinate, leftFront);
-
-		Coordinate rightFront = aCoordinate.plus(new Coordinate(aVisionRange
-				* Math.cos(angleOfMove - maxCollisionsAngle), aVisionRange
-				* Math.sin(angleOfMove - maxCollisionsAngle)));
-		Line rightSight = new Line(aCoordinate, rightFront);
-
+		Line sight = new Line(new Coordinate(0, 0), new Coordinate(distAToC, 0));
+		Coordinate aLeftHand = aCoordinate.plus(new Coordinate(- aRadius,0));
+		Coordinate aRightHand = aCoordinate.plus(new Coordinate(aRadius,0));
+		
+		double shortestDist = Double.POSITIVE_INFINITY;
+		Obstruction obst = null;
+		
 		for (Obstruction o : obstructions) {
-			if (o.intersects(new MapPlacement(middleSight,
-					new Coordinate(0, 0), 0))
-					|| o.intersects(new MapPlacement(rightSight,
-							new Coordinate(0, 0), 0))
-					|| o.intersects(new MapPlacement(leftSight, new Coordinate(
-							0, 0), 0)))
-				return o;
+			
+			if (o.intersects(new MapPlacement(sight, aCoordinate, angleOfMove))) {
+				shortestDist = distToCollision(aCoordinate, o,distAToC,angleOfMove,shortestDist);
+				obst = o;
+			}
+			
+			if (o.intersects(new MapPlacement(sight, aLeftHand, angleOfMove))) {
+				shortestDist = distToCollision (aLeftHand, o,distAToC,angleOfMove,shortestDist);
+				obst = o;
+			}
+			if (o.intersects(new MapPlacement(sight, aRightHand, angleOfMove))) {
+				shortestDist = distToCollision (aRightHand, o,distAToC,angleOfMove,shortestDist);
+				obst = o;
+			}
 		}
 
-		if (middleSight.liesOnLine(destination)) {
-			a.move(destination);
-			return null;
+		if(obst != null) {
+			Coordinate possibleDestin = new Coordinate(
+					Math.cos(angleOfMove) * (shortestDist - aRadius),
+					Math.sin(angleOfMove) * (shortestDist - aRadius));
+			a.move(possibleDestin);
+			return obst;
 		}
-
-		Coordinate nextStep = aCoordinate.plus(new Coordinate
-				((aVisionRange - aRadius) * Math.cos(angleOfMove) , 
-				(aVisionRange - aRadius) * Math.sin(angleOfMove) ));
-
-		a.move(nextStep);
-		return move(a, destination);
+		
+		a.move(destination);
+		return null;
+			
+	}
+	
+	/**
+	 * 
+	 * @return the distance to a possible collision
+	 *
+	 */
+	private double distToCollision (Coordinate orgin,Obstruction collidedObs, 
+		double distAToC, double angleOfMove,double shortest)
+	{
+		double angleToObstruction = Coordinate.getAngle(orgin, collidedObs.getCoordinate());
+		double adjacent = distAToC * Math.abs(Math.cos(angleToObstruction));
+		double distToObstruction =  adjacent / (Math.abs(Math.cos(angleOfMove)));
+		if ( shortest > distToObstruction )
+			return distToObstruction;
+		return shortest;
 	}
 
 	// moves an agent without checking any obstructions
