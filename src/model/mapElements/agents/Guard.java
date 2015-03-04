@@ -6,7 +6,7 @@ import model.geometry.Coordinate;
 /**
  * The guard agents.
  * 
- * @author Stan
+ * @author Stan, Robert
  *
  */
 public class Guard extends Agent {
@@ -20,13 +20,28 @@ public class Guard extends Agent {
 		super(shape,coordinate, orientation);
 	}
 	
+	public int LoadSettingsXML(String pathToXML){
+		return -1;
+	}
+	
 	public void enterSentry(){
-		//TODO: implement enterSentry
-		//something happening to vision range etc. need to read defaults from settings.xml?
+		//TODO sleep ()
+		m_currentSpeed = 0;
+		m_currentAngle = m_senteryVieuwAngle;
+		m_currentMaxVisionRange = m_senteryMaxVieuwRange;
+		m_currentMinVisionRange = m_senteryMinVieuwRange;
 	}
 	
 	public void leaveSentry(){
-		//TODO: implement leaveSentry()
+		//TODO sleep()
+		m_currentSpeed = 0;
+		m_currentAngle = m_maxAngle;
+		m_currentMaxVisionRange = m_maxVisionRange;
+		m_currentMinVisionRange = m_minVisionRange;
 	}
-
+	
+	protected double m_senteryMaxVieuwRange;
+	protected double m_senteryMinVieuwRange;
+	protected double m_senteryVieuwAngle;
+	
 }

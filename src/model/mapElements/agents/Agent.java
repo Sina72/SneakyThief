@@ -60,7 +60,15 @@ public class Agent extends MapPlacement {
 				r.nextDouble()*this.m_maxAngle*2 - this.m_maxAngle //random rotation speed
 				);
 	}
-
+	
+	/**
+	 * overwrite this function is the classes witch extend this one
+	 * @param pathToXML The path to the xml file
+	 * @return 0 on success -1 if not overwritten -2 if file does not exist -3 if incorrect file 
+	 */
+	public int LoadSettingsXML(String pathToXML){
+		return -1;
+	}
 	/**
 	 * Sets all the basic constant variables, the sprint is switched off.
 	 * 
@@ -77,59 +85,44 @@ public class Agent extends MapPlacement {
 		m_minVisionRange = minVisionRange;
 		m_maxVisionRange = maxVisionRange;
 		m_visionAngle = visionAngle;
-		
-		m_maxSprintSpeed = 0;
-		m_maxSprintAngle = 0;
-		m_maxSprintTime = 0;
-		m_sprintRest = 0;
 	}
 	
-	/**
-	  Sets all the basic constant variables including the sprint
-	 * 
-	 * @param maxSpeed The maximum speed of the robot in m/s
-	 * @param maxAngle The maximum angle the robot can make in degrees/s
-	 * @param visionAngle The vision angel of the robot in degrees
-	 * @param maxVisionRange the maximum vision range of the robot in meters
-	 * 
-	 * @param maxSprintSpeed The maximum sprint speed in m/s
-	 * @param maxSprintAngle The maximum angle the robot can make 
-	 * @param maxSprintTime The maximum time that the robot can sprint
-	 * @param sprintRest The time the robot needs to rest before it can sprint
-	 */
-	public void setConstants(
-			double maxSpeed, double maxAngle, double visionAngle, 
-			double minVisionRange, double maxVisionRange, double maxSprintSpeed, 
-			double maxSprintAngle, double maxSprintTime, double sprintRest){
-		m_maxMovingSpeed = maxSpeed;
-		m_maxAngle = maxAngle;
-		m_minVisionRange = minVisionRange;
-		m_maxVisionRange = maxVisionRange;
-		m_visionAngle = visionAngle;
-		m_maxSprintSpeed = maxSprintSpeed;
-		m_maxSprintAngle = maxSprintAngle;
-		m_maxSprintTime = maxSprintTime;
-		m_sprintRest = sprintRest;
+	protected double m_maxMovingSpeed;
+	protected double m_maxAngle;
+	protected double m_minVisionRange;
+	protected double m_maxVisionRange;
+	protected double m_visionAngle;
+	
+	protected double m_visionRange;
+	
+	protected double m_wallVisableRange;
+	protected double m_senteryVisableRange;
+	
+	protected double m_currentSpeed;
+	protected double m_currentAngle;
+	protected double m_currentMaxVisionRange;
+	protected double m_currentMinVisionRange;
+	protected boolean m_isHidden;
+	
+	protected Map beliefMap;
+	
+	public double getM_currentSpeed() {
+		return m_currentSpeed;
 	}
-	
-	private double m_maxMovingSpeed;
-	private double m_maxAngle;
-	//Vision range can also have minimum (see sentry description)
-	private double m_minVisionRange;
-	private double m_maxVisionRange;
-	private double m_visionAngle;
-	
-	private double m_maxSprintSpeed;
-	private double m_maxSprintAngle;
-	private double m_maxSprintTime;
-	private double m_sprintRest;
-	
-	
-	private double m_movingSpeed;
-	private double m_visionRange;
-	
-	
-	private Map beliefMap;
+
+
+	public double getM_currentAngle() {
+		return m_currentAngle;
+	}
+
+
+	public double getM_currentMaxVisionRange() {
+		return m_currentMaxVisionRange;
+	}
+
+	public double getM_currentMinVisionRange() {
+		return m_currentMinVisionRange;
+	}
 	
 	/**
 	 * @return the m_maxMovingSpeed
@@ -166,40 +159,6 @@ public class Agent extends MapPlacement {
 		return m_visionAngle;
 	}
 
-	/**
-	 * @return the m_maxSprintSpeed
-	 */
-	public double getMaxSprintSpeed() {
-		return m_maxSprintSpeed;
-	}
-
-	/**
-	 * @return the m_maxSprintAngle
-	 */
-	public double getMaxSprintAngle() {
-		return m_maxSprintAngle;
-	}
-
-	/**
-	 * @return the m_maxSprintTime
-	 */
-	public double getMaxSprintTime() {
-		return m_maxSprintTime;
-	}
-
-	/**
-	 * @return the m_sprintRest
-	 */
-	public double getSprintRest() {
-		return m_sprintRest;
-	}
-
-	/**
-	 * @return the m_movingSpeed
-	 */
-	public double getMovingSpeed() {
-		return m_movingSpeed;
-	}
 
 	/**
 	 * @return the m_visionRange
