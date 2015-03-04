@@ -24,9 +24,14 @@ public class MapDrawer extends JComponent
 		for(int i =0; i<placements.size;i++)
 		{
 		 	currentplacement = placements.get(i);
-		 	if(currentplacement is certain shape)
+		 	if(currentplacement instanceof Circular)
 		 	{
-		 		do a certain draw method
+		 		double startx, starty, radius;
+		 		startx = currentplacement.getX();
+		 		startx = currentplacement.getX();
+		 		radius = currentplacement.radius();
+		 		
+		 		g2.draw(new Ellipse2D.Double(startx, starty, radius, radius));
 		 	}
 		 	if(currentplacement instanceof Polygon && !currentplacement instanceof Line)
 		 	{
