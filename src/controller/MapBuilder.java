@@ -1,7 +1,7 @@
 package controller;
 
 import model.Map;
-import model.mapElements.Guard;
+import model.mapElements.agents.Guard;
 
 public class MapBuilder 
 {

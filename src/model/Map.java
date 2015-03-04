@@ -81,7 +81,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		sentries = new ArrayList<Sentry>();
 	}
 
-		/**
+	/**
 	 * 
 	 * checks the path of the agent a to the Destination
 	 * moves the agent to the destination or the closest obstructions.

@@ -27,9 +27,9 @@ public class Guard extends Agent {
 	public void enterSentry(){
 		//TODO sleep ()
 		m_currentSpeed = 0;
-		m_currentAngle = m_senteryVieuwAngle;
-		m_currentMaxVisionRange = m_senteryMaxVieuwRange;
-		m_currentMinVisionRange = m_senteryMinVieuwRange;
+		m_currentAngle = m_sentryViewAngle;
+		m_currentMaxVisionRange = m_sentryMaxViewRange;
+		m_currentMinVisionRange = m_sentryMinViewRange;
 	}
 	
 	public void leaveSentry(){
@@ -40,8 +40,8 @@ public class Guard extends Agent {
 		m_currentMinVisionRange = m_minVisionRange;
 	}
 	
-	protected double m_senteryMaxVieuwRange;
-	protected double m_senteryMinVieuwRange;
-	protected double m_senteryVieuwAngle;
+	protected double m_sentryMaxViewRange;
+	protected double m_sentryMinViewRange;
+	protected double m_sentryViewAngle;
 	
 }
