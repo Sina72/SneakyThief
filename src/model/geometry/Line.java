@@ -17,14 +17,17 @@ public class Line extends Polygonal {
 	}
 
 	@Override
-	double getWidth() {
+	public double getWidth() {
 		// TODO Auto-generated method stub
+		// Use this? Coordinate.getDistance(begin, end);
+		// What is width and what is height of line? 
 		return 0;
 	}
 
 	@Override
-	double getHeight() {
+	public double getHeight() {
 		// TODO Auto-generated method stub
+		// see getWidth
 		return 0;
 	}
 	

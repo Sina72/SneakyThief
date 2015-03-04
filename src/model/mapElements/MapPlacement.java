@@ -308,12 +308,14 @@ public class MapPlacement {
 	}
 
 	public double getWidth() {
-		// TODO Auto-generated method stub
+		// TODO Test this
+		this.shape.getWidth();
 		return 0;
 	}
 
 	public double getHeight() {
-		// TODO Auto-generated method stub
+		// TODO Test this
+		this.shape.getHeight();
 		return 0;
 	}
 }

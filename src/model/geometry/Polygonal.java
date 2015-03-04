@@ -40,7 +40,7 @@ public class Polygonal extends Shape {
 	}
 
 	@Override
-	double getWidth() {
+	public double getWidth() {
 		double maxX = points.get(0).getX();
 		double minX = points.get(0).getX();
 		for(Coordinate point : points){
@@ -54,7 +54,7 @@ public class Polygonal extends Shape {
 	}
 
 	@Override
-	double getHeight() {
+	public double getHeight() {
 		double maxY = points.get(0).getY();
 		double minY = points.get(0).getY();
 		for(Coordinate point : points){
