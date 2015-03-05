@@ -19,6 +19,12 @@ import model.mapElements.agents.Move;
  *
  */
 public class GameController extends Observable {
+	
+	
+	public static void main(String[] args){
+		
+	}
+	
 
 	// default time step
 	final private static double DEFAULT_DT = 1;

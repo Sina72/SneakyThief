@@ -23,15 +23,15 @@ public class MapPanel extends JPanel implements Observer {
 	private Map map;
 
 	
-	public MapPanel()
+	public MapPanel(Map map)
 	{
-		MapDrawer drawer = new MapDrawer();
+		this.map = map;
+		this.add(new MapDrawer(map));
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO update the map
-
+		repaint();
 	}
 	
 	public void paint(Graphics g, int x, int y)//x/y are end points of line
