@@ -82,13 +82,7 @@ public class GameController extends Observable {
 		
 		MainFrame frame = new MainFrame();
 		
-		MapPanel mapPanel = new MapPanel(map);
-		
-		controller.addObserver(mapPanel);
-		
-		frame.add(mapPanel);
-		
-		frame.setVisible(true);
+		frame.connectGameController(controller);
 		
 		controller.start();
 		
@@ -104,6 +98,10 @@ public class GameController extends Observable {
 
 	private double dt;
 	private Map map;
+	
+	public Map getMap(){
+		return map;
+	}
 
 	private HashMap<Agent, Double> waiting;
 
@@ -168,7 +166,7 @@ public class GameController extends Observable {
 			Agent agent = agentIt.next();
 
 			// calculate the move
-			Move move = agent.getMove();
+			Move move = agent.getMove();	
 			
 			Coordinate moveCoordinate = move.getDirectionCoordinate().times(
 					move.getSpeed() * dt);

@@ -6,6 +6,7 @@ import java.util.Random;
 import model.Map;
 import model.geometry.Circular;
 import model.geometry.Coordinate;
+import model.geometry.Shape;
 import model.mapElements.MapPlacement;
 
 
@@ -15,6 +16,10 @@ import model.mapElements.MapPlacement;
  *
  */
 public class Agent extends MapPlacement {
+	
+	
+	private final static double DEFAULT_AGENT_SIZE = 2;
+	public final static Shape DEFAULT_AGENT_SHAPE = new Circular(DEFAULT_AGENT_SIZE);
 	
 	private static int idCounter = 0;
 	
@@ -33,7 +38,7 @@ public class Agent extends MapPlacement {
 	 * @param shape Shape to represent the agent
 	 * @param orientation Begin orientation of the agent in angular degrees counterclockwise
 	 */
-	public Agent(Circular shape, Coordinate coordinate, double orientation) {
+	public Agent(Shape shape, Coordinate coordinate, double orientation) {
 		super(shape, coordinate, orientation);
 		beliefMap = new Map(this.getWidth(),super.getHeight());
 		this.id = ++idCounter;

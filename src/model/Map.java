@@ -296,7 +296,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * @param coordinate At this coordinate
 	 * @return
 	 */
-	private boolean checkOverlap(MapPlacement placement) {
+	public boolean checkOverlap(MapPlacement placement) {
 		for (MapPlacement p : placements)
 			if (p.intersects(placement))
 				return true;
@@ -389,7 +389,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * 
 	 * @param element MapElement to be removed.
 	 */
-	public void removeMapElement(MapPlacement placement) {
+	public void removeMapPlacement(MapPlacement placement) {
 		if (placement instanceof Obstruction)
 			removeObstruction((Obstruction) placement);
 		if (placement instanceof Agent)
@@ -438,6 +438,12 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 */
 	public Iterator<Sentry> sentryIterator() {
 		return sentries.iterator();
+	}
+
+	public void setSize(int width, int height) {
+		this.mapWidth = width;
+		this.mapHeight = height;
+		
 	}
 
 }

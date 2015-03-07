@@ -2,6 +2,8 @@ package model.mapElements.agents;
 
 import model.geometry.Circular;
 import model.geometry.Coordinate;
+import model.geometry.Shape;
+import model.mapElements.MapPlacement;
 
 /**
  * Intruder agent
@@ -11,12 +13,13 @@ import model.geometry.Coordinate;
  */
 public class Intruder extends Agent {
 
+	
 	public Intruder(Coordinate coordinate){
-		super( coordinate );
+		this(Agent.DEFAULT_AGENT_SHAPE,coordinate, MapPlacement.DEFAULT_ORIENTATION);
 		//TODO: setConstants(???) with sprint
 	}
 	
-	public Intruder(Circular shape, Coordinate coordinate, double orientation) {
+	public Intruder(Shape shape, Coordinate coordinate, double orientation) {
 		super(shape, coordinate, orientation);
 		// TODO Auto-generated constructor stub
 	}

@@ -3,9 +3,11 @@ package model.mapElements.agents;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import model.xmlReader.*;
 import model.geometry.Circular;
 import model.geometry.Coordinate;
+import model.geometry.Shape;
+import model.mapElements.MapPlacement;
+import model.xmlReader.XMLReader;
 
 /**
  * The guard agents.
@@ -16,11 +18,10 @@ import model.geometry.Coordinate;
 public class Guard extends Agent {
 
 	public Guard(Coordinate coordinate){
-		super(coordinate);
-		//TODO: setConstants(????)
+		this(Agent.DEFAULT_AGENT_SHAPE,coordinate,MapPlacement.DEFAULT_ORIENTATION);
 	}
 	
-	public Guard(Circular shape, Coordinate coordinate, double orientation) {
+	public Guard(Shape shape, Coordinate coordinate, double orientation) {
 		super(shape,coordinate, orientation);
 	}
 	
