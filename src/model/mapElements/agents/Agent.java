@@ -16,6 +16,10 @@ import model.mapElements.MapPlacement;
  */
 public class Agent extends MapPlacement {
 	
+	private static int idCounter = 0;
+	
+	private int id;
+	
 	/**
 	 * Default constructor
 	 */
@@ -32,6 +36,7 @@ public class Agent extends MapPlacement {
 	public Agent(Circular shape, Coordinate coordinate, double orientation) {
 		super(shape, coordinate, orientation);
 		beliefMap = new Map(this.getWidth(),super.getHeight());
+		this.id = ++idCounter;
 		// TODO Auto-generated constructor stub
 		
 	}
@@ -56,7 +61,7 @@ public class Agent extends MapPlacement {
 		//make a random move (random direction, random speed, and random rotation)
 		Random r = new Random();
 		return new Move(
-				r.nextDouble()*360, // random direction
+				r.nextDouble()*2*Math.PI, // random direction
 				r.nextDouble()*this.m_maxMovingSpeed, //random moving speed
 				r.nextDouble()*this.m_maxAngle*2 - this.m_maxAngle //random rotation speed
 				);
@@ -166,5 +171,9 @@ public class Agent extends MapPlacement {
 	 */
 	public double getVisionRange() {
 		return m_visionRange;
+	}
+	
+	public String toString(){
+		return "ID: " + id + " Position: " + super.getCoordinate().toString();
 	}
 }

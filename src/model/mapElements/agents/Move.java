@@ -78,5 +78,9 @@ public class Move {
 		this.rotationSpeed = rotationSpeed;
 	}
 	
+	public String toString(){
+		return "Direction: " + direction + " Speed: " + speed + " Rotation: " + rotationSpeed;
+	}
+	
 	
 }

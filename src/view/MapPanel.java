@@ -3,17 +3,12 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Map;
@@ -21,6 +16,10 @@ import model.geometry.Circular;
 import model.geometry.Line;
 import model.geometry.Polygonal;
 import model.mapElements.MapPlacement;
+import model.mapElements.Obstruction;
+import model.mapElements.agents.Guard;
+import model.mapElements.agents.Intruder;
+import model.mapElements.areas.Area;
 
 /**
  * Draws a map on a JPanel
@@ -65,70 +64,65 @@ public class MapPanel extends JPanel implements Observer {
 		g.drawLine(10, 10, 50, 50);
 	}
 
-	public void drawShape(Shape newshape) {
+	public void drawPlacement(MapPlacement placement, Graphics g) {
 
+		Graphics2D g2 = (Graphics2D) g;
+		
+		//Color coding
+		if(placement instanceof Guard)
+			g2.setColor(Color.BLUE);
+		else if(placement instanceof Obstruction)
+			g2.setColor(Color.WHITE);
+		else if(placement instanceof Intruder)
+			g2.setColor(Color.RED);
+		else if(placement instanceof Area)
+			g2.setColor(Color.DARK_GRAY);
+		else
+			g2.setColor(Color.GRAY); //Default color
+		
+		// Shape is circular
+		if (placement.getShape() instanceof Circular) {
+			double startx, starty, radius;
+			startx = scale(placement.getCoordinate().getX());
+			starty = scale(placement.getCoordinate().getY());
+			radius = scale(((Circular) placement.getShape())
+					.getRadius());
+
+			g2.draw(new Ellipse2D.Double(startx, starty, radius * 2,
+					radius * 2));
+		}
+
+		// Shape is Polygonal
+		if (placement.getShape() instanceof Polygonal) {
+
+			List<Line> lines = ((Polygonal) placement.getShape())
+					.toLines();
+			for (Line l : lines) {
+				double startx, starty, endx, endy;
+				startx = scale(placement.getCoordinate()
+						.plus(l.getBegin()).getX());
+				starty = scale(placement.getCoordinate()
+						.plus(l.getBegin()).getY());
+				endx = scale(placement.getCoordinate()
+						.plus(l.getEnd()).getX());
+				endy = scale(placement.getCoordinate()
+						.plus(l.getEnd()).getY());
+				
+				//TODO: Rotation implementation (from currentplacement.getOrientation())
+				g2.draw(new Line2D.Double(startx, starty, endx, endy));
+			}
+		}
 	}
 
 	public void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
 
-		Iterator<MapPlacement> placements = map.iterator();
-
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(Color.WHITE);
-
 		// TODO: Get the map and the placements
 		// TODO: Finish draw methods
-		while (placements.hasNext()) {
-			MapPlacement currentplacement = placements.next();
-
-			// Shape is circular
-			if (currentplacement.getShape() instanceof Circular) {
-				double startx, starty, radius;
-				startx = scale(currentplacement.getCoordinate().getX());
-				starty = scale(currentplacement.getCoordinate().getX());
-				radius = scale(((Circular) currentplacement.getShape())
-						.getRadius());
-
-				g2.draw(new Ellipse2D.Double(startx, starty, radius * 2,
-						radius * 2));
-			}
-
-			// Shape is Polygonal
-			if (currentplacement.getShape() instanceof Polygonal) {
-
-				List<Line> lines = ((Polygonal) currentplacement.getShape())
-						.toLines();
-				for (Line l : lines) {
-					double startx, starty, endx, endy;
-					startx = scale(currentplacement.getCoordinate()
-							.plus(l.getBegin()).getX());
-					starty = scale(currentplacement.getCoordinate()
-							.plus(l.getBegin()).getY());
-					endx = scale(currentplacement.getCoordinate()
-							.plus(l.getEnd()).getX());
-					endy = scale(currentplacement.getCoordinate()
-							.plus(l.getEnd()).getY());
-					
-					//TODO: Rotation
-					g2.draw(new Line2D.Double(startx, starty, endx, endy));
-				}
-			}
+		for(MapPlacement placement : map.getPlacements()){
+			drawPlacement(placement, g);
 		}
-
-	}
-	
-
-	public void drawShape(Rectangle shape, Graphics g) {
-		int x = (int) shape.getX();
-		int y = (int) shape.getY();
-		int width = (int) shape.getWidth();
-		int height = (int) shape.getHeight();
-		g.drawLine(x, y, x + width, y);
-		g.drawLine(x, y, x, y + height);
-		g.drawLine(x + width, y, x + width, y + height);
-		g.drawLine(x, y + height, x + width, y + height);
 
 	}
 }

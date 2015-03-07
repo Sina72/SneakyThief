@@ -3,14 +3,20 @@ package controller;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Observable;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import model.Map;
 import model.geometry.Coordinate;
+import model.geometry.Polygonal;
+import model.geometry.Rectangular;
 import model.mapElements.Obstruction;
 import model.mapElements.agents.Agent;
+import model.mapElements.agents.Guard;
 import model.mapElements.agents.Move;
+import view.MainFrame;
+import view.MapPanel;
 
 /**
  * Controls the game actions / time flow
@@ -23,11 +29,76 @@ public class GameController extends Observable {
 	
 	public static void main(String[] args){
 		
+		Map map = new Map(200,200);
+		
+		map.addPlacement(new Obstruction(
+				new Polygonal(
+						new Coordinate(0,0), 
+						new Coordinate(10,0), 
+						new Coordinate(15,10),
+						new Coordinate(10,20),
+						new Coordinate(0,20),
+						new Coordinate(-5,10)
+						), //Shape
+					new Coordinate(30,20), // Location
+					Math.PI/2 //Orientation
+					)
+				);
+		map.addPlacement(new Obstruction(
+					new Rectangular(80,2),
+					new Coordinate(0,0),
+					0
+				));
+		map.addPlacement(new Obstruction(
+				new Rectangular(80,2),
+				new Coordinate(2.1,80.1),
+				0
+			));
+		map.addPlacement(new Obstruction(
+				new Rectangular(2,80),
+				new Coordinate(0,2.1),
+				0
+			));
+		map.addPlacement(new Obstruction(
+				new Rectangular(2,60),
+				new Coordinate(80.1,0),
+				0
+			));
+		
+		
+		//TODO: Problem: Agents sometimes jump big steps.
+		//TODO: Problem?: Agents do not collide with each other (this might be desirable?)
+		//TODO: Problem: agents don't stop at objects
+		
+		for(int i = 0; i < 100; i++){
+			Guard guard = new Guard(new Coordinate(
+					new Random().nextInt((int)map.getMapWidth()),
+					new Random().nextInt((int)map.getMapHeight())));
+			guard.setConstants(1, 2, 2, 2, 2);
+			map.addPlacement(guard);
+		}
+		
+		GameController controller = new GameController(map, 1);
+		
+		MainFrame frame = new MainFrame();
+		
+		MapPanel mapPanel = new MapPanel(map);
+		
+		controller.addObserver(mapPanel);
+		
+		frame.add(mapPanel);
+		
+		frame.setVisible(true);
+		
+		controller.start();
+		
 	}
 	
 
 	// default time step
 	final private static double DEFAULT_DT = 1;
+
+	private static final double DELAY = 10;
 
 	Timer timer;
 
@@ -68,10 +139,11 @@ public class GameController extends Observable {
 					}
 				}, 
 				1, 
-				(long) (dt*1000));
+				(long) (dt*DELAY));
 	}
 
 	public void timeStep() {
+		//System.out.println("Timestep");
 		moveAgents();
 		informAgents();
 
@@ -97,9 +169,12 @@ public class GameController extends Observable {
 
 			// calculate the move
 			Move move = agent.getMove();
+			
 			Coordinate moveCoordinate = move.getDirectionCoordinate().times(
 					move.getSpeed() * dt);
 
+			
+			
 			// if obstruction met, store obstruction
 			Obstruction o = map.move(agent, moveCoordinate);
 			//rotate the agent (always allowed as agents are circular)
@@ -107,6 +182,7 @@ public class GameController extends Observable {
 
 			// if obstruction met
 			if (o != null) {
+				System.out.println("Agent " + agent + " met an obstruction");
 				// if the agent was already waiting at the obstruction
 				if (waiting.containsKey(agent)) {
 					// decrement time left to wait
@@ -126,7 +202,6 @@ public class GameController extends Observable {
 
 					// put the agent in the waiting map
 					waiting.put(agent, waitingTime);
-
 				}
 			} else {
 				// if the agent is not trying to move through an obstruction,

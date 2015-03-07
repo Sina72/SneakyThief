@@ -5,7 +5,7 @@ import model.geometry.Coordinate;
 import model.geometry.Polygonal;
 import model.geometry.Rectangular;
 import model.mapElements.Obstruction;
-import model.mapElements.agents.Agent;
+import model.mapElements.agents.Guard;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -34,7 +34,7 @@ public class MapPanelTest {
 		
 		map = new Map(100, 100);
 		
-		map.addPlacement(new Agent(new Coordinate(50,50)));
+		map.addPlacement(new Guard(new Coordinate(50,50)));
 		map.addPlacement(new Obstruction(
 				new Polygonal(
 						new Coordinate(0,0), 
@@ -84,7 +84,7 @@ public class MapPanelTest {
 
 	@Test
 	public void test() {
-		new MainFrame(map);
+		new MainFrame().add(new MapPanel(map));
 	}
 
 }

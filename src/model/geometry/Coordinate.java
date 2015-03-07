@@ -99,5 +99,8 @@ public class Coordinate{
 		return new Coordinate(x*d,y*d);
 	}
 	
+	public String toString(){
+		return "X: " + x + " Y: " + y;
+	}
 	
 }
