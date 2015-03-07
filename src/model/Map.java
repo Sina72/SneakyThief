@@ -28,6 +28,20 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	// Since Obstructions and Agents are keys, every obstruction or agent can
 	// only occur once on the map.
 
+	/**
+	 * @return the mapWidth
+	 */
+	public double getMapWidth() {
+		return mapWidth;
+	}
+
+	/**
+	 * @return the mapHeight
+	 */
+	public double getMapHeight() {
+		return mapHeight;
+	}
+
 	// list of all elements
 	private List<MapPlacement> placements;
 

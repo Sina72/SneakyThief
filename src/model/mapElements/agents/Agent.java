@@ -21,7 +21,7 @@ public class Agent extends MapPlacement {
 	 */
 	public Agent(Coordinate coordinate){
 		//default values should be changed/ moved to XML?
-		this(new Circular(0.25),coordinate,0.0);
+		this(new Circular(2),coordinate,0.0);
 	}
 	
 	/**
