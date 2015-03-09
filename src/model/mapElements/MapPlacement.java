@@ -9,6 +9,7 @@ import model.mapElements.areas.Area;
 
 
 public class MapPlacement {
+	public static final double DEFAULT_ORIENTATION = 0;
 	private Shape shape;
 	private Coordinate coordinate;
 	private double orientation;

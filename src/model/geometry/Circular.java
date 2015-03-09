@@ -9,7 +9,7 @@ package model.geometry;
 public class Circular extends Shape {
 
 	private double radius; //in meters
-	//i think we need a center coordinate for this!
+	//i think we need a center coordinate/ for this!
 	
 	public Circular(double radius) {
 		super();

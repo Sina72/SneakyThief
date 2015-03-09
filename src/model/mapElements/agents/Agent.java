@@ -6,7 +6,9 @@ import java.util.Random;
 import model.Map;
 import model.geometry.Circular;
 import model.geometry.Coordinate;
+import model.geometry.Shape;
 import model.mapElements.MapPlacement;
+
 
 /**
  * Basic class for the different agents
@@ -15,12 +17,20 @@ import model.mapElements.MapPlacement;
  */
 public class Agent extends MapPlacement {
 	
+	
+	private final static double DEFAULT_AGENT_SIZE = 2;
+	public final static Shape DEFAULT_AGENT_SHAPE = new Circular(DEFAULT_AGENT_SIZE);
+	
+	private static int idCounter = 0;
+	
+	private int id;
+	
 	/**
 	 * Default constructor
 	 */
 	public Agent(Coordinate coordinate){
 		//default values should be changed/ moved to XML?
-		this(new Circular(0.25),coordinate,0.0);
+		this(new Circular(2),coordinate,0.0);
 	}
 	
 	/**
@@ -28,9 +38,10 @@ public class Agent extends MapPlacement {
 	 * @param shape Shape to represent the agent
 	 * @param orientation Begin orientation of the agent in angular degrees counterclockwise
 	 */
-	public Agent(Circular shape, Coordinate coordinate, double orientation) {
+	public Agent(Shape shape, Coordinate coordinate, double orientation) {
 		super(shape, coordinate, orientation);
 		beliefMap = new Map(this.getWidth(),super.getHeight());
+		this.id = ++idCounter;
 		// TODO Auto-generated constructor stub
 		
 	}
@@ -55,7 +66,7 @@ public class Agent extends MapPlacement {
 		//make a random move (random direction, random speed, and random rotation)
 		Random r = new Random();
 		return new Move(
-				r.nextDouble()*360, // random direction
+				r.nextDouble()*2*Math.PI, // random direction
 				r.nextDouble()*this.m_maxMovingSpeed, //random moving speed
 				r.nextDouble()*this.m_maxAngle*2 - this.m_maxAngle //random rotation speed
 				);
@@ -165,5 +176,9 @@ public class Agent extends MapPlacement {
 	 */
 	public double getVisionRange() {
 		return m_visionRange;
+	}
+	
+	public String toString(){
+		return "ID: " + id + " Position: " + super.getCoordinate().toString();
 	}
 }

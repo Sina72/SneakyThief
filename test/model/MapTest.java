@@ -71,6 +71,16 @@ public class MapTest {
 		
 	}
 	
+	@Test
+	public void testMoveWithObstruction(){
+		//TODO: test move() with obstruction
+	}
+	
+	@Test
+	public void testMoveWithoutObstruction(){
+		//TODO: test move() without obstruction
+	}
+	
 	//can be tested as soon as the agent constants work
 	@Ignore @Test
 	public void testGetInViewWithObstruction(){
