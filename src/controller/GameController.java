@@ -29,41 +29,7 @@ public class GameController extends Observable {
 	
 	public static void main(String[] args){
 		
-		Map map = new Map(200,200);
-		
-		map.addPlacement(new Obstruction(
-				new Polygonal(
-						new Coordinate(0,0), 
-						new Coordinate(10,0), 
-						new Coordinate(15,10),
-						new Coordinate(10,20),
-						new Coordinate(0,20),
-						new Coordinate(-5,10)
-						), //Shape
-					new Coordinate(30,20), // Location
-					Math.PI/2 //Orientation
-					)
-				);
-		map.addPlacement(new Obstruction(
-					new Rectangular(80,2),
-					new Coordinate(0,0),
-					0
-				));
-		map.addPlacement(new Obstruction(
-				new Rectangular(80,2),
-				new Coordinate(2.1,80.1),
-				0
-			));
-		map.addPlacement(new Obstruction(
-				new Rectangular(2,80),
-				new Coordinate(0,2.1),
-				0
-			));
-		map.addPlacement(new Obstruction(
-				new Rectangular(2,60),
-				new Coordinate(80.1,0),
-				0
-			));
+		Map map = DefaultMaps.standardMap();
 		
 		
 		//TODO: Problem: Agents sometimes jump big steps.
