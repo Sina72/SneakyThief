@@ -18,7 +18,7 @@ import model.mapElements.areas.Target;
 public class MapBuilder 
 {
 	
-	//TODO: premade default maps (sharon?)
+	//TODO: premade default maps (sharon)
 	
 	//Permeability Constants
 	private static final double DEFAULT_DOOR_PERMEABILITY = 0;

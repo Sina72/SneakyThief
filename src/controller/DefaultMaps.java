@@ -27,7 +27,32 @@ public class DefaultMaps {
 			mapBuilder.addWall(new Coordinate(85,75), new Coordinate(115,75));
 			mapBuilder.addWall(new Coordinate(85,125), new Coordinate(115,125));
 			mapBuilder.addWall(new Coordinate(125,85), new Coordinate(125,115));
-			//mapBuilder.addGuard(new Coordinate(30,30));
+			mapBuilder.addGuard(new Coordinate(100,100));
+			
+			//etcetera
+			
+			
+			
+			
+			
+			
+		} catch (OverlapException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return mapBuilder.getMap();
+	}
+	
+	public static Map easyMap(){
+		mapBuilder = new MapBuilder(200,200);
+		
+		try {
+			//mapBuilder.addWall(Coordinate leftBottom, Coordinate rightTop)
+			mapBuilder.addWall(new Coordinate(10,10),new Coordinate(10,190));
+			mapBuilder.addWall(new Coordinate(30,30),new Coordinate(30,190));
+			mapBuilder.addWall(new Coordinate(50,50),new Coordinate(50,190));
+			mapBuilder.addGuard(new Coordinate(100,100));
 			
 			//etcetera
 			

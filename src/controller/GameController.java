@@ -29,20 +29,25 @@ public class GameController extends Observable {
 	
 	public static void main(String[] args){
 		
-		Map map = DefaultMaps.standardMap();
+		Map map = DefaultMaps.easyMap();
 		
 		
 		//TODO: Problem: Agents sometimes jump big steps.
 		//TODO: Problem?: Agents do not collide with each other (this might be desirable?)
 		//TODO: Problem: agents don't stop at objects
 		
-		for(int i = 0; i < 100; i++){
+		/**for(int i = 0; i < 100; i++){
 			Guard guard = new Guard(new Coordinate(
 					new Random().nextInt((int)map.getMapWidth()),
 					new Random().nextInt((int)map.getMapHeight())));
 			guard.setConstants(1, 2, 2, 2, 2);
 			map.addPlacement(guard);
 		}
+		**/
+		
+		Guard guard = new Guard(new Coordinate(100,100));
+		guard.setConstants(1, 2, 2, 2, 2);
+		map.addPlacement(guard);
 		
 		GameController controller = new GameController(map, 1);
 		
@@ -150,7 +155,10 @@ public class GameController extends Observable {
 				// if the agent was already waiting at the obstruction
 				if (waiting.containsKey(agent)) {
 					// decrement time left to wait
-					waiting.replace(agent, waiting.get(agent) - dt);
+					
+					//TODO : FIX REPLACE!! 
+					//waiting.replace(agent, waiting.get(agent) - dt);
+					
 					// if time left to wait runs out
 					if (waiting.get(agent) < 0)
 						// move the agent past the obstruction
