@@ -1,5 +1,6 @@
 package model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -28,6 +29,8 @@ public class MapTest {
 	 * @throws OutOfBoundsException
 	 * @throws OverlapException
 	 */
+	
+	
 	@Test
 	public void testAddObstruction() {
 		Map map = new Map(
@@ -71,9 +74,51 @@ public class MapTest {
 		
 	}
 	
-	@Test
+	//can be tested once intersect works with orientation
+	@Ignore @Test
 	public void testMoveWithObstruction(){
-		//TODO: test move() with obstruction
+		
+		Map map = new Map(
+				200,	//width
+				200		//height
+				);
+		
+		Guard a = new Guard(
+				new Coordinate(10,10)
+				);
+		map.addPlacement(a);
+		
+		Obstruction obstruction = new Obstruction(
+				new Line(new Coordinate (0,0),new Coordinate (40,0)),new Coordinate (0,30),0, 0);
+		map.addPlacement(obstruction);
+		
+		
+		assertSame(map.move(a,new Coordinate (0,60)),obstruction);
+		
+	}
+
+	
+	@Test
+	public void testIntersect(){
+		
+		Map map = new Map(
+				200,	//width
+				200		//height
+				);
+		
+		
+		Obstruction obstruction = new Obstruction(
+				new Line(new Coordinate (0,0),new Coordinate (40,0)),new Coordinate (0,30),0, 0);
+		map.addPlacement(obstruction);
+		
+		Obstruction obstructionTwo = new Obstruction(
+				new Line(new Coordinate (0,0),new Coordinate (40,0)),new Coordinate (10,10),Math.PI/2 , 0);
+		map.addPlacement(obstructionTwo);
+		
+		//TODO: fix the orientation for intersect methods.
+		assertTrue(obstructionTwo.intersects(obstruction));
+
+		
 	}
 	
 	@Test

@@ -52,6 +52,7 @@ public class MapPlacement {
 	
 	/**
 	 * Checks whether the placement intersects with the other placement
+	 * TODO: Fix Bug : it does not take into account the orientation of the MapPlacement.
 	 * @param otherPlacement
 	 * @return true if they intersect, false otherwise
 	 */
@@ -309,14 +310,10 @@ public class MapPlacement {
 	}
 
 	public double getWidth() {
-		// TODO Test this
-		this.shape.getWidth();
-		return 0;
+		return this.shape.getWidth();
 	}
 
 	public double getHeight() {
-		// TODO Test this
-		this.shape.getHeight();
-		return 0;
+		return this.shape.getHeight();
 	}
 }
