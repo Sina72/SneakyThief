@@ -15,7 +15,7 @@ public class DefaultMaps {
 		try {
 			//mapBuilder.addWall(Coordinate leftBottom, Coordinate rightTop)
 			mapBuilder.addWall(new Coordinate(10,10),new Coordinate(10,190));
-			mapBuilder.addWall(new Coordinate(10,190), new Coordinate(130,190));
+			mapBuilder.addWall(new Coordinate(11,190), new Coordinate(130,190));
 			mapBuilder.addWall(new Coordinate(70,170), new Coordinate(180,170));
 			mapBuilder.addWall(new Coordinate(180,70), new Coordinate(180,170));
 			mapBuilder.addWall(new Coordinate(170,30), new Coordinate(170,130));
