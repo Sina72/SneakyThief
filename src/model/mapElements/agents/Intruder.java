@@ -31,7 +31,7 @@ public class Intruder extends Agent {
 	
 	public int LoadSettingsXML(String pathToXML){
 		XMLReader reader = new XMLReader();
-		reader.setXmlFileName("agents.xml");
+		reader.setXmlFileName(pathToXML);
 		reader.OpenXML();
 		reader.ReadType("intruder");
 		ArrayList<HashMap<String, String>> settingsList;

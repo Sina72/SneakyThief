@@ -46,7 +46,8 @@ public class GameController extends Observable {
 		**/
 		
 		Guard guard = new Guard(new Coordinate(100,100));
-		guard.setConstants(1, 2, 2, 2, 2);
+		//guard.setConstants(1, 2, 2, 2, 2);
+		guard.LoadSettingsXML("./settings/settings.xml");
 		map.addPlacement(guard);
 		
 		GameController controller = new GameController(map, 1);

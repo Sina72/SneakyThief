@@ -82,45 +82,7 @@ public class Agent extends MapPlacement {
 	public int LoadSettingsXML(String pathToXML){
 		return -1;
 	}
-	/**
-	 * Sets all the basic constant variables, the sprint is switched off.
-	 * 
-	 * @param maxSpeed The maximum speed of the robot in m/s
-	 * @param maxAngle The maximum angle the robot can make in degrees/s
-	 * @param visionAngle The vision angel of the robot in degrees
-	 * @param maxVisionRange the maximum vision range of the robot in meters
-	 */
-	public void setConstants(
-			double maxSpeed, double maxAngle, double visionAngle,
-			double minVisionRange, double maxVisionRange){
-		m_maxMovingSpeed = maxSpeed;
-		m_maxAngle = maxAngle;
-		m_minVisionRange = minVisionRange;
-		m_maxVisionRange = maxVisionRange;
-		m_visionAngle = visionAngle;
-		m_senteryVisableRange = maxVisionRange;
-		m_structureVisableRange = maxVisionRange;
-	}
 	
-	/**
-	 * Sets all the basic constant variables, the sprint is switched off.
-	 * 
-	 * @param maxSpeed The maximum speed of the robot in m/s
-	 * @param maxAngle The maximum angle the robot can make in degrees/s
-	 * @param visionAngle The vision angel of the robot in degrees
-	 * @param maxVisionRange the maximum vision range of the robot in meters
-	 */
-	public void setConstants(
-			double maxSpeed, double maxAngle, double visionAngle,
-			double minVisionRange, double maxVisionRange, double senteryVisableRange, double structureVisableRange){
-		m_maxMovingSpeed = maxSpeed;
-		m_maxAngle = maxAngle;
-		m_minVisionRange = minVisionRange;
-		m_maxVisionRange = maxVisionRange;
-		m_visionAngle = visionAngle;
-		m_senteryVisableRange = senteryVisableRange;
-		m_structureVisableRange = structureVisableRange;
-	}
 	
 	public void setConstants(HashMap<String, String> settings)
 	{
