@@ -52,7 +52,9 @@ public class MapPanel extends JPanel implements Observer {
 	private double scale(double meters) {
 		double widthPanel = this.getWidth();
 		double heightPanel = this.getHeight();
-		
+		double scaleHeight = widthPanel/map.getMapHeight();
+		double scaleWidth = heightPanel/map.getMapWidth();
+		this.scale = Math.min(scaleHeight, scaleWidth)/4000;
 		return meters * PX_PER_M * scale;
 	}
 
@@ -84,6 +86,7 @@ public class MapPanel extends JPanel implements Observer {
 			g2.setColor(Color.GRAY); //Default color
 		
 		// Shape is circular
+		//?Scale works from meters to pixels, does this work then?
 		if (placement.getShape() instanceof Circular) {
 			double startx, starty, radius;
 			startx = scale(placement.getCoordinate().getX());
