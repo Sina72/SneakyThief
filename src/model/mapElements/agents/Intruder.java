@@ -1,9 +1,13 @@
 package model.mapElements.agents;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import model.geometry.Circular;
 import model.geometry.Coordinate;
 import model.geometry.Shape;
 import model.mapElements.MapPlacement;
+import model.xmlReader.XMLReader;
 
 /**
  * Intruder agent
@@ -26,6 +30,23 @@ public class Intruder extends Agent {
 	
 	
 	public int LoadSettingsXML(String pathToXML){
+		XMLReader reader = new XMLReader();
+		reader.setXmlFileName("agents.xml");
+		reader.OpenXML();
+		reader.ReadType("intruder");
+		ArrayList<HashMap<String, String>> settingsList;
+		settingsList = reader.GetHashMapArray();
+		if (settingsList.size() != 1)
+		{
+			return -3;
+		}
+		HashMap<String, String> settings = settingsList.get(0);
+		
+		setConstants(settings);
+		m_maxSprintSpeed =  ToDouble(settings.get("sprintSpeed"));
+		m_maxSprintAngle =  ToDouble(settings.get("sprintTime"));
+		m_maxSprintTime =  ToDouble(settings.get("sprintTime"));
+		m_sprintRest =  ToDouble(settings.get("sprintRest"));
 		return -1;
 	}
 	/**

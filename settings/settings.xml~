@@ -3,16 +3,16 @@
 <agents>
 	<surveillance id="1">
 		<baseSpeed>1.4</baseSpeed> <!-- The base speed in m/s -->
-		<maxTurnSpeed>180.0</maxTurnSpeed><!-- the maximal turn speed in  -->
-		<visionRange>6.0</visionRange> <!-- The maximal vision range in meters -->
-		<visionAngle>45.0</visionAngle> <!-- The vision angel in degrees -->
-		<visionRangeStructures>10.0</visionRangeStructures>
-		<visionRangeTowers>18.0</visionRangeTowers>
+		<maxTurnSpeed>180</maxTurnSpeed><!-- the maximal turn speed in  -->
+		<visionRange>6</visionRange> <!-- The maximal vision range in meters -->
+		<visionAngle>45</visionAngle> <!-- The vision angel in degrees -->
+		<visionRangeStructures>10</visionRangeStructures>
+		<visionRangeTowers>18</visionRangeTowers>
 
-		<maxTowerVisionRange>25.0</maxTowerVisionRange>
-		<minTowerVisionRange>6.0</minTowerVisionRange>
-		<towerVieuwAngle>120.0</towerVieuwAngle>
-		<towerMaxTurningAngle>45.0</towerMaxTurningAngle>
+		<maxTowerVisionRange>25</maxTowerVisionRange>
+		<minTowerVisionRange>6</minTowerVisionRange>
+		<towerVieuwAngle>120</towerVieuwAngle>
+		<towerMaxTurningAngle>45</towerMaxTurningAngle>
 		
 
 	</surveillance>

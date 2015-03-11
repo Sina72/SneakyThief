@@ -1,5 +1,6 @@
 package model.mapElements.agents;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +32,7 @@ public class Agent extends MapPlacement {
 	public Agent(Coordinate coordinate){
 		//default values should be changed/ moved to XML?
 		this(new Circular(2),coordinate,0.0);
+		m_currentSpeed  = 0;
 	}
 	
 	/**
@@ -96,6 +98,57 @@ public class Agent extends MapPlacement {
 		m_minVisionRange = minVisionRange;
 		m_maxVisionRange = maxVisionRange;
 		m_visionAngle = visionAngle;
+		m_senteryVisableRange = maxVisionRange;
+		m_structureVisableRange = maxVisionRange;
+	}
+	
+	/**
+	 * Sets all the basic constant variables, the sprint is switched off.
+	 * 
+	 * @param maxSpeed The maximum speed of the robot in m/s
+	 * @param maxAngle The maximum angle the robot can make in degrees/s
+	 * @param visionAngle The vision angel of the robot in degrees
+	 * @param maxVisionRange the maximum vision range of the robot in meters
+	 */
+	public void setConstants(
+			double maxSpeed, double maxAngle, double visionAngle,
+			double minVisionRange, double maxVisionRange, double senteryVisableRange, double structureVisableRange){
+		m_maxMovingSpeed = maxSpeed;
+		m_maxAngle = maxAngle;
+		m_minVisionRange = minVisionRange;
+		m_maxVisionRange = maxVisionRange;
+		m_visionAngle = visionAngle;
+		m_senteryVisableRange = senteryVisableRange;
+		m_structureVisableRange = structureVisableRange;
+	}
+	
+	public void setConstants(HashMap<String, String> settings)
+	{
+		m_maxMovingSpeed = ToDouble(settings.get("baseSpeed"));
+		m_maxAngle = ToDouble(settings.get("maxTurnSpeed"));
+		m_minVisionRange = 0.0;
+		m_maxVisionRange = ToDouble(settings.get("visionRange"));
+		m_visionAngle = ToDouble(settings.get("visionAngle"));
+		m_senteryVisableRange = ToDouble(settings.get("visionRangeTowers"));
+		m_structureVisableRange = ToDouble(settings.get("visionRangeStructures"));
+	}
+	
+	protected double ToDouble(String text)
+	{
+		return Double.parseDouble(text);
+	}
+	
+	/**
+	 * changes the speed of the agent and it checks if it isnt going faster as the maximum speed
+	 * @param speed the new speed
+	 * @return the speed witch is set
+	 */
+	public double setMovingSpeed(double speed)
+	{
+		if (speed > m_maxMovingSpeed)
+			speed = m_maxMovingSpeed;
+		m_currentSpeed = speed;
+		return m_currentSpeed;
 	}
 	
 	protected double m_maxMovingSpeed;
@@ -106,32 +159,33 @@ public class Agent extends MapPlacement {
 	
 	protected double m_visionRange;
 	
-	protected double m_wallVisableRange;
+	protected double m_structureVisableRange;
 	protected double m_senteryVisableRange;
 	
 	protected double m_currentSpeed;
 	protected double m_currentAngle;
+	protected double m_currentTurnSpeed;
 	protected double m_currentMaxVisionRange;
 	protected double m_currentMinVisionRange;
 	protected boolean m_isHidden;
 	
 	protected Map beliefMap;
 	
-	public double getM_currentSpeed() {
+	public double getCurrentSpeed() {
 		return m_currentSpeed;
 	}
 
 
-	public double getM_currentAngle() {
+	public double getCurrentAngle() {
 		return m_currentAngle;
 	}
 
 
-	public double getM_currentMaxVisionRange() {
+	public double getCurrentMaxVisionRange() {
 		return m_currentMaxVisionRange;
 	}
 
-	public double getM_currentMinVisionRange() {
+	public double getCurrentMinVisionRange() {
 		return m_currentMinVisionRange;
 	}
 	
