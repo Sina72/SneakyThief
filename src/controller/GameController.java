@@ -29,26 +29,29 @@ public class GameController extends Observable {
 	
 	public static void main(String[] args){
 		
-		Map map = DefaultMaps.easyMap();
+		Map map = DefaultMaps.standardMap();
 		
 		
 		//TODO: Problem: Agents sometimes jump big steps.
 		//TODO: Problem?: Agents do not collide with each other (this might be desirable?)
 		//TODO: Problem: agents don't stop at objects
 		
-		/**for(int i = 0; i < 100; i++){
+		for(int i = 0; i < 20; i++){
 			Guard guard = new Guard(new Coordinate(
 					new Random().nextInt((int)map.getMapWidth()),
 					new Random().nextInt((int)map.getMapHeight())));
-			guard.setConstants(1, 2, 2, 2, 2);
+			guard.LoadSettingsXML("./settings/settings.xml");
 			map.addPlacement(guard);
 		}
-		**/
 		
-		Guard guard = new Guard(new Coordinate(100,100));
-		guard.setConstants(1, 2, 2, 2, 2);
+		
+		/*Guard guard = new Guard(new Coordinate(100,100));
+		guard.LoadSettingsXML("./settings/settings.xml");
 		map.addPlacement(guard);
-		
+		Guard guard2 = new Guard(new Coordinate(50,50));
+		guard2.LoadSettingsXML("./settings/settings.xml");
+		map.addPlacement(guard2);
+		*/
 		GameController controller = new GameController(map, 1);
 		
 		MainFrame frame = new MainFrame();

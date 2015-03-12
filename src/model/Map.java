@@ -109,13 +109,15 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		// we create three view lines for the agent in order to check the
 		// obstructions according to the agent's vision abilities.
 		Coordinate aCoordinate = a.getCoordinate();
-		double angleOfMove = Coordinate.getAngle(a.getCoordinate(), destination);
+		double angleOfMove = Coordinate.getAngle(new Coordinate (0,0), destination);
 		double aRadius = a.getHeight() / 2;
-		double distAToC = Coordinate.getDistance(aCoordinate,destination) + aRadius;
+		double distAToC = Coordinate.getDistance(new Coordinate (0,0),destination) + aRadius;
 
 		Line sight = new Line(new Coordinate(0, 0), new Coordinate(distAToC, 0));
-		Coordinate aLeftHand = aCoordinate.plus(new Coordinate(- aRadius,0));
-		Coordinate aRightHand = aCoordinate.plus(new Coordinate(aRadius,0));
+		
+		Coordinate aHand = new Coordinate(aRadius * Math.sin(angleOfMove) ,aRadius * (- Math.cos(angleOfMove)));
+		Coordinate aLeftHand = aCoordinate.minus(aHand);
+		Coordinate aRightHand = aCoordinate.plus(aHand);
 		
 		double shortestDist = Double.POSITIVE_INFINITY;
 		Obstruction obst = null;
@@ -123,17 +125,17 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		for (Obstruction o : obstructions) {
 			
 			if (o.intersects(new MapPlacement(sight, aCoordinate, angleOfMove))) {
-				shortestDist = distToCollision(aCoordinate, o,distAToC,angleOfMove,shortestDist);
 				obst = o;
+				shortestDist = distToCollision(aCoordinate, o,distAToC,angleOfMove,shortestDist);
 			}
 			
 			if (o.intersects(new MapPlacement(sight, aLeftHand, angleOfMove))) {
-				shortestDist = distToCollision (aLeftHand, o,distAToC,angleOfMove,shortestDist);
 				obst = o;
+				shortestDist = distToCollision (aLeftHand, o,distAToC,angleOfMove,shortestDist);
 			}
 			if (o.intersects(new MapPlacement(sight, aRightHand, angleOfMove))) {
-				shortestDist = distToCollision (aRightHand, o,distAToC,angleOfMove,shortestDist);
 				obst = o;
+				shortestDist = distToCollision (aRightHand, o,distAToC,angleOfMove,shortestDist);
 			}
 		}
 

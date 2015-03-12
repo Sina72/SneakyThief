@@ -27,7 +27,7 @@ public class Guard extends Agent {
 	
 	public int LoadSettingsXML(String pathToXML){
 		XMLReader reader = new XMLReader();
-		reader.setXmlFileName("agents.xml");
+		reader.setXmlFileName(pathToXML);
 		reader.OpenXML();
 		reader.ReadType("surveillance");
 		ArrayList<HashMap<String, String>> settingsList;
@@ -38,7 +38,11 @@ public class Guard extends Agent {
 		}
 		HashMap<String, String> settings = settingsList.get(0);
 		
-		ToDouble(settings.get(""));
+		setConstants(settings);
+		m_sentryMaxViewRange = ToDouble(settings.get("maxTowerVisionRange"));
+		m_sentryMinViewRange = ToDouble(settings.get("minTowerVisionRange"));
+		m_sentryViewAngle = ToDouble(settings.get("towerVieuwAngle"));
+		m_sentryTurnSpeed = ToDouble(settings.get("towerMaxTurningAngle"));
 		return -1;
 	}
 	
@@ -48,6 +52,7 @@ public class Guard extends Agent {
 		m_currentAngle = m_sentryViewAngle;
 		m_currentMaxVisionRange = m_sentryMaxViewRange;
 		m_currentMinVisionRange = m_sentryMinViewRange;
+		m_currentTurnSpeed = m_sentryTurnSpeed;
 	}
 	
 	public void leaveSentry(){
@@ -56,19 +61,13 @@ public class Guard extends Agent {
 		m_currentAngle = m_maxAngle;
 		m_currentMaxVisionRange = m_maxVisionRange;
 		m_currentMinVisionRange = m_minVisionRange;
+		m_currentTurnSpeed = m_maxAngle;
 	}
 
 	
 	protected double m_sentryMaxViewRange;
 	protected double m_sentryMinViewRange;
 	protected double m_sentryViewAngle;
-
-	private double ToDouble(String text)
-	{
-		return Double.parseDouble(text);
-	}
-	protected double m_senteryMaxVieuwRange;
-	protected double m_senteryMinVieuwRange;
-	protected double m_senteryVieuwAngle;
+	protected double m_sentryTurnSpeed;
 	
 }

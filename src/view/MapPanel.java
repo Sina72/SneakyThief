@@ -31,7 +31,7 @@ public class MapPanel extends JPanel implements Observer {
 
 	private final static double PX_PER_M = 3779.527559055;
 
-	private static double scale = 1 / 1000.0;
+	private static double scale = 1 / 10000.0;
 
 	public MapPanel(Map map) {
 		// TODO: Make scale dependent on screen size, i.e. make map grow with
@@ -49,7 +49,12 @@ public class MapPanel extends JPanel implements Observer {
 	 * 
 	 * @return
 	 */
-	private static double scale(double meters) {
+	private double scale(double meters) {
+		double widthPanel = this.getWidth();
+		double heightPanel = this.getHeight();
+		double scaleHeight = widthPanel/map.getMapHeight();
+		double scaleWidth = heightPanel/map.getMapWidth();
+		this.scale = Math.min(scaleHeight, scaleWidth)/4000;
 		return meters * PX_PER_M * scale;
 	}
 
@@ -70,7 +75,7 @@ public class MapPanel extends JPanel implements Observer {
 		
 		//Color coding
 		if(placement instanceof Guard)
-			g2.setColor(Color.BLUE);
+			g2.setColor(Color.CYAN);
 		else if(placement instanceof Obstruction)
 			g2.setColor(Color.WHITE);
 		else if(placement instanceof Intruder)
@@ -81,6 +86,7 @@ public class MapPanel extends JPanel implements Observer {
 			g2.setColor(Color.GRAY); //Default color
 		
 		// Shape is circular
+		//?Scale works from meters to pixels, does this work then?
 		if (placement.getShape() instanceof Circular) {
 			double startx, starty, radius;
 			startx = scale(placement.getCoordinate().getX());
