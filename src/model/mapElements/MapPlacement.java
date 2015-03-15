@@ -134,11 +134,18 @@ public class MapPlacement {
 				placement.getCoordinate().plus(
 					((Line) placement.getShape()).getBegin()
 				);
+		
 		//end line 1 minus begin line 1
 		Coordinate r = 
 				((Line) placement.getShape()).getEnd().minus(
 					((Line) placement.getShape()).getBegin()
 				);
+		
+		// Orientation line 1
+		double o1 = placement.getOrientation() + Math.atan(((Line) placement.getShape()).getSlope());
+		
+		//Adjust r with the orientation
+		r = new Coordinate (r.absoluteValue() * Math.cos(o1), r.absoluteValue() * Math.sin(o1));
 		
 		//begin line 2
 		Coordinate q = 
@@ -150,6 +157,12 @@ public class MapPlacement {
 				((Line) otherPlacement.getShape()).getEnd().minus(
 					((Line) otherPlacement.getShape()).getBegin()
 				);
+		
+		// Orientation line 2
+				double o2 = otherPlacement.getOrientation() + Math.atan(((Line) otherPlacement.getShape()).getSlope());
+				
+				//Adjust r with the orientation
+				s = new Coordinate (s.absoluteValue() * Math.cos(o2), s.absoluteValue() * Math.sin(o2));
 		
 		Coordinate qMinP = q.minus(p);
 		
