@@ -56,7 +56,7 @@ public class MapPlacement {
 	 * @param otherPlacement
 	 * @return true if they intersect, false otherwise
 	 */
-	public boolean intersects(MapPlacement otherPlacement){
+	public Coordinate intersects(MapPlacement otherPlacement){
 		Shape thisShape = shape;
 		Shape otherShape = otherPlacement.getShape();
 		
@@ -74,7 +74,7 @@ public class MapPlacement {
 		if(thisShape instanceof Circular && otherShape instanceof Circular)
 			return intersectCircCirc(this, otherPlacement);
 		
-		return false;
+		return null;
 	}
 	
 	/**
@@ -113,12 +113,15 @@ public class MapPlacement {
 	 * @param otherPlacement
 	 * @return
 	 */
-	private static boolean intersectCircCirc(MapPlacement placement, MapPlacement otherPlacement) {
-		return 
+	private static Coordinate intersectCircCirc(MapPlacement placement, MapPlacement otherPlacement) {
+		if( 
 				Coordinate.getDistance(placement.getCoordinate(), otherPlacement.getCoordinate()) //distance between circle centers
 				< 
 				(((Circular) placement.getShape()).getRadius() + //radius this circle
-						((Circular) otherPlacement.getShape()).getRadius()); //radius other circle
+						((Circular) otherPlacement.getShape()).getRadius()) //radius other circle
+		)
+			return otherPlacement.getCoordinate().minus(placement.getCoordinate()).divideBy(2);
+	return null;
 	}
 
 	/**
@@ -127,7 +130,7 @@ public class MapPlacement {
 	 * @param otherPlacement
 	 * @return
 	 */
-	private static boolean intersectLineLine(MapPlacement placement, MapPlacement otherPlacement) {
+	private static Coordinate intersectLineLine(MapPlacement placement, MapPlacement otherPlacement) {
 		
 		//begin line 1
 		Coordinate p = 
@@ -170,7 +173,7 @@ public class MapPlacement {
 		//check if there is an intersection point
 		double rCrossS = r.determinant(s);
 		if(rCrossS == 0)
-			return false;
+			return null;
 		
 		//get the intersection points as linear combination of the two lines
 		double t = qMinP.determinant(s.divideBy(rCrossS));
@@ -178,9 +181,9 @@ public class MapPlacement {
 		
 		//if the intersection points lies within the line segments return true
 		if(t <= 1 && t >= 0 && u <= 1 && u >= 0)
-			return true;
+			return p.plus(r.times(t));
 		
-		return false;
+		return null;
 	}
 
 	/**
@@ -189,7 +192,7 @@ public class MapPlacement {
 	 * @param otherPlacement
 	 * @return
 	 */
-	private static boolean intersectPolyPoly(MapPlacement placement, MapPlacement otherPlacement) {
+	private static Coordinate intersectPolyPoly(MapPlacement placement, MapPlacement otherPlacement) {
 		
 		//TODO: implement checks for concentric polygons
 		//loop over the lines in the polygons
@@ -207,14 +210,17 @@ public class MapPlacement {
 				if(intersectLineLine(
 						one, //MapPlacement one 
 						two	//MapPlacement two
-						)) 
-					return true;
+						) != null) 
+					return intersectLineLine(
+							one, //MapPlacement one 
+							two	//MapPlacement two
+							);
 			}
 		
-		return false;
+		return null;
 	}
 	
-	private static boolean intersectCircLine(
+	private static Coordinate intersectCircLine(
 			MapPlacement circ, //circular
 			MapPlacement line //line
 			){
@@ -236,7 +242,7 @@ public class MapPlacement {
 				det*det;
 		
 		if(disc < 0) 
-			return false;
+			return null;
 		
 		//calculate intersection
 		// coordinates relative of the circle centre
@@ -267,7 +273,7 @@ public class MapPlacement {
 		// if the intersection lies on the line segement there is an intersection. Otherwise the intersection lies outside
 		// the line segment.
 		if(new Line(lineBegin,lineEnd).liesOnLine(new Coordinate(x,y)))
-			return true;
+			return new Coordinate(x,y);
 		
 		x = 
 				(
@@ -293,9 +299,9 @@ public class MapPlacement {
 				);
 		
 		if(new Line(lineBegin,lineEnd).liesOnLine(new Coordinate(x,y)))
-			return true;
+			return new Coordinate(x,y);
 		
-		return false;
+		return null;
 		
 	}
 	
@@ -315,11 +321,15 @@ public class MapPlacement {
 	 * @param poly
 	 * @return 
 	 */
-	private static boolean intersectCircPoly(MapPlacement circ, MapPlacement poly){
+	private static Coordinate intersectCircPoly(MapPlacement circ, MapPlacement poly){
+		Coordinate intersect = new Coordinate (0,0);
+		Coordinate closestIntersect = null;
 		for(Line line : ((Polygonal) poly.getShape()).toLines())
-			if(intersectCircLine(circ,new MapPlacement(line,poly.getCoordinate(),poly.getOrientation())))
-				return true;
-		return false;
+			if(intersectCircLine(circ,new MapPlacement(line,poly.getCoordinate(),poly.getOrientation())) != null){
+				return intersectCircLine(circ,new MapPlacement(line,poly.getCoordinate(),poly.getOrientation()));
+			}
+				
+		return closestIntersect;
 	}
 
 	public double getWidth() {

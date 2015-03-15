@@ -115,58 +115,54 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 
 		Line sight = new Line(new Coordinate(0, 0), new Coordinate(distAToC, 0));
 		
-		Coordinate aHand = new Coordinate(aRadius * Math.sin(angleOfMove) ,aRadius * (- Math.cos(angleOfMove)));
+		Coordinate aHand = new Coordinate(aRadius * (Math.sin(angleOfMove)) ,aRadius * (- Math.cos(angleOfMove)));
 		Coordinate aLeftHand = aCoordinate.minus(aHand);
 		Coordinate aRightHand = aCoordinate.plus(aHand);
 		
 		double shortestDist = Double.POSITIVE_INFINITY;
 		Obstruction obst = null;
+
 		
 		for (Obstruction o : obstructions) {
 			
-			if (o.intersects(new MapPlacement(sight, aCoordinate, angleOfMove))) {
+			Coordinate frontIntersection = o.intersects(
+					new MapPlacement(sight, aCoordinate, angleOfMove));
+			Coordinate rightIntersection = o.intersects(
+					new MapPlacement(sight, aRightHand, angleOfMove));
+			Coordinate leftIntersection = o.intersects(
+					new MapPlacement(sight, aLeftHand, angleOfMove));
+			
+			if (frontIntersection != null && frontIntersection.absoluteValue() < shortestDist) {
+				shortestDist = Coordinate.getDistance(aCoordinate, frontIntersection);
 				obst = o;
-				shortestDist = distToCollision(aCoordinate, o,distAToC,angleOfMove,shortestDist);
 			}
 			
-			if (o.intersects(new MapPlacement(sight, aLeftHand, angleOfMove))) {
+			if (leftIntersection != null && leftIntersection.absoluteValue() < shortestDist) {
+				shortestDist = Coordinate.getDistance(aLeftHand, leftIntersection);
 				obst = o;
-				shortestDist = distToCollision (aLeftHand, o,distAToC,angleOfMove,shortestDist);
 			}
-			if (o.intersects(new MapPlacement(sight, aRightHand, angleOfMove))) {
+			if (rightIntersection != null && rightIntersection.absoluteValue() < shortestDist) {
+				shortestDist = Coordinate.getDistance(aRightHand, rightIntersection);
 				obst = o;
-				shortestDist = distToCollision (aRightHand, o,distAToC,angleOfMove,shortestDist);
 			}
 		}
 
 		if(obst != null) {
-			Coordinate possibleDestin = new Coordinate(
-					Math.cos(angleOfMove) * (shortestDist - aRadius),
-					Math.sin(angleOfMove) * (shortestDist - aRadius));
+
+			Coordinate collision = new Coordinate (
+					(shortestDist * Math.cos(angleOfMove)),
+					(shortestDist * Math.sin(angleOfMove)));
+			Coordinate possibleDestin = collision.minus(new Coordinate (
+					aRadius * Math.cos(angleOfMove),
+					aRadius * Math.sin(angleOfMove)));
 			a.move(possibleDestin);
 			return obst;
 		}
 		
 		a.move(destination);
 		return null;
-			
 	}
 	
-	/**
-	 * 
-	 * @return the distance to a possible collision
-	 *
-	 */
-	private double distToCollision (Coordinate orgin,Obstruction collidedObs, 
-		double distAToC, double angleOfMove,double shortest)
-	{
-		double angleToObstruction = Coordinate.getAngle(orgin, collidedObs.getCoordinate());
-		double adjacent = distAToC * Math.abs(Math.cos(angleToObstruction));
-		double distToObstruction =  adjacent / (Math.abs(Math.cos(angleOfMove)));
-		if ( shortest > distToObstruction )
-			return distToObstruction;
-		return shortest;
-	}
 
 	// moves an agent without checking any obstructions
 	// used for moving agents past permeable obstructions
@@ -254,7 +250,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		// checks for obstructions
 		Line viewLine = new Line(agentPosition, coordinate);
 		for (Obstruction o : obstructions)
-			if (o.intersects(new MapPlacement(viewLine, new Coordinate(0, 0), 0)))
+			if (o.intersects(new MapPlacement(viewLine, new Coordinate(0, 0), 0)) != null)
 				return false;
 
 		return true;
@@ -300,7 +296,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 */
 	public boolean checkOverlap(MapPlacement placement) {
 		for (MapPlacement p : placements)
-			if (p.intersects(placement))
+			if (p.intersects(placement) != null)
 				return true;
 		return false;
 	}
