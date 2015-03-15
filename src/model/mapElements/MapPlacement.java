@@ -322,7 +322,6 @@ public class MapPlacement {
 	 * @return 
 	 */
 	private static Coordinate intersectCircPoly(MapPlacement circ, MapPlacement poly){
-		Coordinate intersect = new Coordinate (0,0);
 		Coordinate closestIntersect = null;
 		for(Line line : ((Polygonal) poly.getShape()).toLines())
 			if(intersectCircLine(circ,new MapPlacement(line,poly.getCoordinate(),poly.getOrientation())) != null){
