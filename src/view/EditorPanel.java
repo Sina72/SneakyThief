@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -71,9 +72,32 @@ public class EditorPanel extends JPanel
       	this.add(guardmarker4);
       	this.add(thiefmarker4);
       	this.add(guardmarker5);
-      	this.add(thiefmarker5); 
-		 
+      	this.add(thiefmarker5); 		 
+	}
+	//Create values for inputs 	
+	int width;
+	int height;
+	int guardnum;
+	int thiefnum;
+	int sentrynum;
+	int goalnum;
+	
+	public int setValue(int inputvalue)
+	{
+		int returnvalue = inputvalue;
 		
+		return returnvalue;
+	}
+	
+	public ArrayList<Integer> giveValues(){
+		ArrayList<Integer> values = new ArrayList<Integer>();
+		values.set(0, width);
+		values.set(1, height);
+		values.set(2, guardnum);
+		values.set(3, thiefnum);
+		values.set(4, sentrynum);
+		values.set(5, goalnum);
+		return values;
 	}
 
 }

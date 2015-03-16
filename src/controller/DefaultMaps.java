@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Random;
+
 import model.Map;
 import model.exceptions.OverlapException;
 import model.geometry.Coordinate;
@@ -38,8 +40,7 @@ public class DefaultMaps {
 			//mapBuilder.addGuard(new Coordinate(100,100));
 			//mapBuilder.addGuard(new Coordinate(50,50));
 			//mapBuilder.addGuard(new Coordinate(150,150));
-			
-			
+			mapBuilder.addGuards(10);
 			
 			
 			
@@ -82,6 +83,16 @@ public class DefaultMaps {
 		//build the map
 		
 		return mapBuilder.getMap();
+	}
+	
+	public static Map customMap(int width, int height)
+	{
+		mapBuilder = new MapBuilder(width,height);
+		
+		//editor paconnections
+		
+		return mapBuilder.getMap();
+		
 	}
 	
 }

@@ -15,7 +15,7 @@ public class MainFrame extends JFrame {
 	private void initFrame() {
 		//TODO: Color legend
 		this.setLayout(new BorderLayout());
-		setSize(400,400);
+		setSize(700,500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		this.add(new EditorPanel(), BorderLayout.WEST);
