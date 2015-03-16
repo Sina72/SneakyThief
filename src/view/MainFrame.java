@@ -17,10 +17,9 @@ public class MainFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		setSize(400,400);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
 		this.add(new EditorPanel(), BorderLayout.WEST);
 		this.add(new ControllerPanel(), BorderLayout.NORTH);
-		
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setVisible(true);
 	}
 	
