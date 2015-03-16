@@ -77,7 +77,7 @@ public class MapTest {
 	}
 	
 	//can be tested once intersect works with orientation
-	@Ignore @Test
+	@Test
 	public void testMoveWithObstruction(){
 		
 		Map map = new Map(
@@ -91,11 +91,11 @@ public class MapTest {
 		map.addPlacement(a);
 		
 		Obstruction obstruction = new Obstruction(
-				new Line(new Coordinate (0,0),new Coordinate (40,0)),new Coordinate (0,30),0, 0);
+				new Line(new Coordinate (0,0),new Coordinate (0,80)),new Coordinate (30,0),0, 0);
 		map.addPlacement(obstruction);
+		map.move(a,new Coordinate (100,0));
 		
-		
-		assertSame(map.move(a,new Coordinate (0,60)),obstruction);
+		assertEquals(new Coordinate (28,10),a.getCoordinate());
 		
 	}
 
@@ -118,7 +118,7 @@ public class MapTest {
 		map.addPlacement(obstructionTwo);
 		
 		//TODO: fix the orientation for intersect methods.
-		assertTrue(obstructionTwo.intersects(obstruction));
+		assertTrue(obstructionTwo.intersects(obstruction) != null);
 
 		
 	}

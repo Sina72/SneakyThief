@@ -55,7 +55,7 @@ public class MapPlacementTest {
 		Line two = new Line(new Coordinate(10,0), new Coordinate(0,10));
 		MapPlacement placement = new MapPlacement(one,new Coordinate(0,0),0.0);
 		MapPlacement otherPlacement = new MapPlacement(two,new Coordinate(0,0),0);
-		assertTrue(placement.intersects(otherPlacement));
+		assertTrue(placement.intersects(otherPlacement) != null);
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class MapPlacementTest {
 		Line two = new Line(new Coordinate(10,0), new Coordinate(10,10));
 		MapPlacement placement = new MapPlacement(one,new Coordinate(0,0),0.0);
 		MapPlacement otherPlacement = new MapPlacement(two,new Coordinate(0,0),0);
-		assertFalse(placement.intersects(otherPlacement));
+		assertFalse(placement.intersects(otherPlacement) != null);
 	}
 	
 	@Test
@@ -83,7 +83,7 @@ public class MapPlacementTest {
 				0 //orientation
 				);
 		
-		assertTrue(placement.intersects(otherPlacement));
+		assertTrue(placement.intersects(otherPlacement) != null);
 	}
 	
 	@Test
@@ -102,7 +102,7 @@ public class MapPlacementTest {
 				0 //orientation
 				);
 		
-		assertFalse(placement.intersects(otherPlacement));
+		assertFalse(placement.intersects(otherPlacement) != null);
 	}
 	
 	@Test
@@ -135,7 +135,7 @@ public class MapPlacementTest {
 				30
 				);
 		
-		assertTrue(placementOne.intersects(placementTwo));
+		assertTrue(placementOne.intersects(placementTwo) != null);
 	}
 	
 	@Test
@@ -168,7 +168,7 @@ public class MapPlacementTest {
 				0
 				);
 		
-		assertFalse(placementOne.intersects(placementTwo));
+		assertFalse(placementOne.intersects(placementTwo) != null);
 	}
 	
 	@Test
@@ -192,7 +192,7 @@ public class MapPlacementTest {
 				0
 				);
 		
-		assertTrue(placementOne.intersects(placementTwo));
+		assertTrue(placementOne.intersects(placementTwo) != null);
 	}
 	
 	@Test
@@ -215,7 +215,7 @@ public class MapPlacementTest {
 				0
 				);
 		
-		assertFalse(placementOne.intersects(placementTwo));
+		assertFalse(placementOne.intersects(placementTwo) != null);
 	}
 	
 	@Test
@@ -241,7 +241,7 @@ public class MapPlacementTest {
 				0
 				);
 		
-		assertTrue(placementOne.intersects(placementTwo));
+		assertTrue(placementOne.intersects(placementTwo) != null);
 	}
 	
 	@Test
@@ -267,7 +267,7 @@ public class MapPlacementTest {
 				0
 				);
 		
-		assertFalse(placementOne.intersects(placementTwo));
+		assertFalse(placementOne.intersects(placementTwo) != null);
 	}
 
 }
