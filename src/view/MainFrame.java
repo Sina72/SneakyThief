@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -17,9 +18,10 @@ public class MainFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		setSize(700,500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		this.add(new EditorPanel(), BorderLayout.WEST);
-		this.add(new ControllerPanel(), BorderLayout.NORTH);
+		EditorPanel editorpanel = new EditorPanel();
+		ControllerPanel controllerpanel = new ControllerPanel();
+		this.add(editorpanel, BorderLayout.WEST);
+		this.add(controllerpanel, BorderLayout.NORTH);
 		
 		this.setVisible(true);
 	}
@@ -30,4 +32,13 @@ public class MainFrame extends JFrame {
 		this.add(mapPanel, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Get the input values from the editor panel
+	 * @param panel
+	 * @return ArrayList with inputs
+	 */
+	public ArrayList<Integer> giveValues(EditorPanel panel)
+	{
+		return panel.getValues();
+	}
 }

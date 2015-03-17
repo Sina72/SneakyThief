@@ -17,36 +17,35 @@ import javax.swing.JTextField;
  */
 public class EditorPanel extends JPanel 
 {
+	//OUR MENU OPTIONS	
+	GridLayout mainlayout = new GridLayout(12,2);
+	JLabel widthlabel = new JLabel("Width: ");
+	JTextField widthinput = new JTextField("Must be >200");
+	JLabel heightlabel = new JLabel("Height: ");
+	JTextField heightinput = new JTextField("Must be >200");
+	JLabel guardlabel = new JLabel("Guard number: ");	
+	JTextField guardinput = new JTextField("1");
+	JLabel thieflabel = new JLabel("Thief number: ");	
+	JTextField thiefinput = new JTextField("1");
+	JLabel sentrylabel = new JLabel("Sentry number: ");	
+	JTextField sentryinput = new JTextField("1");
+	JLabel goallabel = new JLabel("Amount of goal zones: ");	
+	JTextField goalinput = new JTextField("1");
+	JLabel guardmarkerlabel = new JLabel("Markers available to the guards.");	
+	JLabel thiefmarkerlabel = new JLabel("Markers available to the thieves.");	
+	JRadioButton guardmarker1 = new JRadioButton("Guard Marker 1");
+	JRadioButton thiefmarker1 = new JRadioButton("Thief Marker 1");		
+	JRadioButton guardmarker2 = new JRadioButton("Guard Marker 2");
+	JRadioButton thiefmarker2 = new JRadioButton("Thief Marker 2");	
+	JRadioButton guardmarker3 = new JRadioButton("Guard Marker 3");
+	JRadioButton thiefmarker3 = new JRadioButton("Thief Marker 3");	
+	JRadioButton guardmarker4 = new JRadioButton("Guard Marker 4");
+	JRadioButton thiefmarker4 = new JRadioButton("Thief Marker 4");	
+	JRadioButton guardmarker5 = new JRadioButton("Guard Marker 5");
+	JRadioButton thiefmarker5 = new JRadioButton("Thief Marker 5");	
 	//THIS PANEL PLACED ON THE LEFT OF THE BORDER LAYOUT
 	public EditorPanel()
-	{
-		//OUR MENU OPTIONS
-		GridLayout mainlayout = new GridLayout(12,2);
-		JLabel widthlabel = new JLabel("Width: ");
-		JTextField widthinput = new JTextField("Must be >200");
-		JLabel heightlabel = new JLabel("Height: ");
-		JTextField heightinput = new JTextField("Must be >200");
-		JLabel guardlabel = new JLabel("Guard number: ");	
-		JTextField guardinput = new JTextField("1");
-		JLabel thieflabel = new JLabel("Thief number: ");	
-		JTextField thiefinput = new JTextField("1");
-		JLabel sentrylabel = new JLabel("Sentry number: ");	
-		JTextField sentryinput = new JTextField("1");
-		JLabel goallabel = new JLabel("Amount of goal zones: ");	
-		JTextField goalinput = new JTextField("1");
-		JLabel guardmarkerlabel = new JLabel("Markers available to the guards.");	
-		JLabel thiefmarkerlabel = new JLabel("Markers available to the thieves.");	
-		JRadioButton guardmarker1 = new JRadioButton("Guard Marker 1");
-		JRadioButton thiefmarker1 = new JRadioButton("Thief Marker 1");		
-		JRadioButton guardmarker2 = new JRadioButton("Guard Marker 2");
-		JRadioButton thiefmarker2 = new JRadioButton("Thief Marker 2");	
-		JRadioButton guardmarker3 = new JRadioButton("Guard Marker 3");
-		JRadioButton thiefmarker3 = new JRadioButton("Thief Marker 3");	
-		JRadioButton guardmarker4 = new JRadioButton("Guard Marker 4");
-		JRadioButton thiefmarker4 = new JRadioButton("Thief Marker 4");	
-		JRadioButton guardmarker5 = new JRadioButton("Guard Marker 5");
-		JRadioButton thiefmarker5 = new JRadioButton("Thief Marker 5");	
-		
+	{	
 		//ADD OPTIONS IN THIS ORDER
 		this.setLayout(mainlayout);
 	 	this.add(widthlabel);
@@ -74,6 +73,9 @@ public class EditorPanel extends JPanel
       	this.add(guardmarker5);
       	this.add(thiefmarker5); 		 
 	}
+	/**
+	 * NOTE: THIS IS THE ORDER OF INPUTS IN THE ARRAYLIST
+	 */
 	//Create values for inputs 	
 	int width;
 	int height;
@@ -89,14 +91,19 @@ public class EditorPanel extends JPanel
 		return returnvalue;
 	}
 	
-	public ArrayList<Integer> giveValues(){
+	/**
+	 * Gets inputs from the user
+	 * @return ArrayLIst of inputs
+	 */
+	
+	public ArrayList<Integer> getValues(){
 		ArrayList<Integer> values = new ArrayList<Integer>();
-		values.set(0, width);
-		values.set(1, height);
-		values.set(2, guardnum);
-		values.set(3, thiefnum);
-		values.set(4, sentrynum);
-		values.set(5, goalnum);
+		values.set(0, Integer.parseInt(widthinput.getText()));
+		values.set(1, Integer.parseInt(heightinput.getText()));
+		values.set(2, Integer.parseInt(guardinput.getText()));
+		values.set(3, Integer.parseInt(thiefinput.getText()));
+		values.set(4, Integer.parseInt(sentryinput.getText()));
+		values.set(5, Integer.parseInt(goalinput.getText()));
 		return values;
 	}
 

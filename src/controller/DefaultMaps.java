@@ -23,7 +23,7 @@ public class DefaultMaps {
 			mapBuilder.addWall(new Coordinate(180,70), new Coordinate(180,169.9));
 			mapBuilder.addWall(new Coordinate(170,30.1), new Coordinate(170,120));
 			mapBuilder.addWall(new Coordinate(70,30), new Coordinate(170,30));
-			mapBuilder.addWall(new Coordinate(30,40), new Coordinate(130,40));
+			mapBuilder.addWall(new Coordinate(30,40), new Coordinate(50 ,40));
 			mapBuilder.addWall(new Coordinate(30,40.1), new Coordinate(30,80));
 			
 			mapBuilder.addWall(new Coordinate(75,85), new Coordinate(75,115));
