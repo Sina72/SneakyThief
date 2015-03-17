@@ -191,10 +191,13 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		ArrayList<Agent> agentsInView = new ArrayList<Agent>();
 
 		Iterator<Agent> it = agents.iterator();
-		while (it.hasNext() && it.next() != agent) {
-			Agent otherAgent = it.next();
-			if (inView(agent, otherAgent.getCoordinate()))
-				agentsInView.add(otherAgent);
+		while (it.hasNext()) {
+			Agent tempAgent = it.next();
+			if (tempAgent != agent){
+				Agent otherAgent = tempAgent;
+				if (inView(agent, otherAgent.getCoordinate()))
+					agentsInView.add(otherAgent);
+			}
 		}
 
 		return agentsInView;
