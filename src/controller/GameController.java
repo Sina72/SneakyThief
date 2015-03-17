@@ -25,7 +25,7 @@ import view.MapPanel;
  *
  */
 public class GameController extends Observable {
-	
+	private boolean m_debug = false;
 	
 	public static void main(String[] args){
 		
@@ -154,7 +154,7 @@ public class GameController extends Observable {
 
 			// if obstruction met
 			if (o != null) {
-				System.out.println("Agent " + agent + " met an obstruction");
+				if (m_debug) System.out.println("Agent " + agent + " met an obstruction");
 				// if the agent was already waiting at the obstruction
 				if (waiting.containsKey(agent)) {
 					// decrement time left to wait
