@@ -8,21 +8,8 @@ package model.mapElements.agents;
  *
  */
 public class AgentConstants {
-	public AgentConstants(double maxMovingSpeed, 
-			double maxTurningSpeed,
-			double minimalVisionRange, 
-			double maximalVisionRange,
-			double visionAngle,
-			double sentryVisableRange,
-			double structureVisableRange)
-	{
-		InitAgent( 	maxMovingSpeed, 
-					maxTurningSpeed,
-					minimalVisionRange, 
-					maximalVisionRange,
-					visionAngle,
-					sentryVisableRange,
-					structureVisableRange);
+	public AgentConstants(){
+		m_isInit = false;
 	}
 	
 	public double getMaxMovingSpeed()
@@ -55,7 +42,7 @@ public class AgentConstants {
 		return m_structureVisableRange;
 	}
 	
-	protected void InitAgent(	double maxMovingSpeed, 
+	public void InitAgent(	double maxMovingSpeed, 
 								double maxTurningSpeed,
 								double minimalVisionRange, 
 								double maximalVisionRange,
@@ -63,6 +50,9 @@ public class AgentConstants {
 								double sentryVisableRange,
 								double structureVisableRange)
 	{
+		if (m_isInit)
+			return;
+		m_isInit = true;
 		m_maxMovingSpeed = maxMovingSpeed;
 		m_maxTurningSpeed = maxTurningSpeed;
 		
@@ -73,14 +63,15 @@ public class AgentConstants {
 		m_senteryVisableRange = sentryVisableRange;	
 		m_structureVisableRange = structureVisableRange;					
 	}
-	protected double m_maxMovingSpeed;
-	protected double m_maxTurningSpeed;
+	private boolean m_isInit;
+	private double m_maxMovingSpeed;
+	private double m_maxTurningSpeed;
 	
-	protected double m_minVisionRange;
-	protected double m_maxVisionRange;
-	protected double m_visionAngle;
+	private double m_minVisionRange;
+	private double m_maxVisionRange;
+	private double m_visionAngle;
 
-	protected double m_structureVisableRange;
-	protected double m_senteryVisableRange;
+	private double m_structureVisableRange;
+	private double m_senteryVisableRange;
 
 }
