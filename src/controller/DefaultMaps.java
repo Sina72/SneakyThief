@@ -27,6 +27,7 @@ public class DefaultMaps {
 			mapBuilder.addWall(new Coordinate(85,75), new Coordinate(115,75));
 			mapBuilder.addWall(new Coordinate(85,125), new Coordinate(115,125));
 			mapBuilder.addWall(new Coordinate(125,85), new Coordinate(125,115));
+			
 			mapBuilder.addGuard(new Coordinate(100,100));
 			
 			//etcetera

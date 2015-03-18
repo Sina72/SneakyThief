@@ -349,7 +349,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	 * @param coordinate the Coordinate of the left bottom corner of the MapElement
 	 * @throws OutOfBoundsException if the MapElement does not fit into the map at the specified coordinates.
 	 */
-	public void addPlacement(MapPlacement placement)/* throws OutOfBoundsException, OverlapException*/{
+	public void addPlacement(MapPlacement placement){
 		// TODO: Do we want these exceptions here? or maybe check this at the
 		// mapBuilder?
 		// check whether the placement is valid
