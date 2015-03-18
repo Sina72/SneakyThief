@@ -7,6 +7,12 @@ import model.exceptions.OverlapException;
 import model.geometry.Coordinate;
 import model.mapElements.agents.Guard;
 
+/**
+ * 
+ * @author Sharonneke
+ *
+ */
+
 public class DefaultMaps {
 	private static MapBuilder mapBuilder;
 	

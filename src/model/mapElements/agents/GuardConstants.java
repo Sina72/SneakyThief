@@ -34,9 +34,25 @@ public class GuardConstants extends AgentConstants{
 				m_sentryTurnSpeed = sentryTurnSpeed;
 				
 			}
-	protected boolean m_isInitGuard;
-	protected double m_sentryMaxViewRange;
-	protected double m_sentryMinViewRange;
-	protected double m_sentryViewAngle;
-	protected double m_sentryTurnSpeed;
+	public double getSentryMaxVieuwRange()
+	{
+		return m_sentryMaxViewRange;
+	}
+	public double getSentryMinVieuwRange()
+	{
+		return m_sentryMinViewRange;
+	}
+	public double getSentryViewAngle()
+	{
+		return m_sentryViewAngle;
+	}
+	public double getSentryTurnSpeed()
+	{
+		return m_sentryTurnSpeed;
+	}
+	private boolean m_isInitGuard;
+	private double m_sentryMaxViewRange;
+	private double m_sentryMinViewRange;
+	private double m_sentryViewAngle;
+	private double m_sentryTurnSpeed;
 }
