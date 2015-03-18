@@ -9,7 +9,7 @@ package model.mapElements.agents;
  */
 public class AgentConstants {
 	public AgentConstants(double maxMovingSpeed, 
-			double maxTurnSpeed,
+			double maxTurningSpeed,
 			double minimalVisionRange, 
 			double maximalVisionRange,
 			double visionAngle,
@@ -17,7 +17,7 @@ public class AgentConstants {
 			double structureVisableRange)
 	{
 		InitAgent( 	maxMovingSpeed, 
-					maxTurnSpeed,
+					maxTurningSpeed,
 					minimalVisionRange, 
 					maximalVisionRange,
 					visionAngle,
@@ -25,12 +25,38 @@ public class AgentConstants {
 					structureVisableRange);
 	}
 	
-	public double getMaxMovementSpeed()
+	public double getMaxMovingSpeed()
 	{
 		return m_maxMovingSpeed;
 	}
+	public double getMaxTurningSpeed()
+	{
+		return m_maxTurningSpeed;
+	}
+	public double getMinimalVisionRange()
+	{
+		return m_minVisionRange;
+	}
+	public double getMaximalVisionRange()
+	{
+		return m_maxVisionRange;
+	}
+	public double getVisionAngle()
+	{
+		return m_visionAngle;
+	}
+	public double getSentryVisableRange()
+	{
+		return m_structureVisableRange;
+	}
+	
+	public double getStructureVisableRange()
+	{
+		return m_structureVisableRange;
+	}
+	
 	protected void InitAgent(	double maxMovingSpeed, 
-								double maxTurnSpeed,
+								double maxTurningSpeed,
 								double minimalVisionRange, 
 								double maximalVisionRange,
 								double visionAngle,
@@ -38,14 +64,14 @@ public class AgentConstants {
 								double structureVisableRange)
 	{
 		m_maxMovingSpeed = maxMovingSpeed;
-		m_maxTurningSpeed = maxTurnSpeed;
+		m_maxTurningSpeed = maxTurningSpeed;
 		
 		m_minVisionRange = minimalVisionRange;
 		m_maxVisionRange = maximalVisionRange;
 		m_visionAngle = visionAngle;
 
-		m_structureVisableRange = structureVisableRange;
-		m_senteryVisableRange = sentryVisableRange;						
+		m_senteryVisableRange = sentryVisableRange;	
+		m_structureVisableRange = structureVisableRange;					
 	}
 	protected double m_maxMovingSpeed;
 	protected double m_maxTurningSpeed;
