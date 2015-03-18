@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 public class EditorPanel extends JPanel 
 {
 	//OUR MENU OPTIONS	
-	GridLayout mainlayout = new GridLayout(12,2);
+	GridLayout mainlayout = new GridLayout(13,2);
 	JLabel widthlabel = new JLabel("Width: ");
 	JTextField widthinput = new JTextField("Must be >200");
 	JLabel heightlabel = new JLabel("Height: ");
@@ -43,6 +43,9 @@ public class EditorPanel extends JPanel
 	JRadioButton thiefmarker4 = new JRadioButton("Thief Marker 4");	
 	JRadioButton guardmarker5 = new JRadioButton("Guard Marker 5");
 	JRadioButton thiefmarker5 = new JRadioButton("Thief Marker 5");	
+	JButton buildmapbutton = new JButton("Build Map");
+	JButton addagentsbutton = new JButton("Add Agents");
+	
 	//THIS PANEL PLACED ON THE LEFT OF THE BORDER LAYOUT
 	public EditorPanel()
 	{	
@@ -71,7 +74,9 @@ public class EditorPanel extends JPanel
       	this.add(guardmarker4);
       	this.add(thiefmarker4);
       	this.add(guardmarker5);
-      	this.add(thiefmarker5); 		 
+      	this.add(thiefmarker5); 
+      	this.add(buildmapbutton);
+      	this.add(addagentsbutton);
 	}
 	/**
 	 * NOTE: THIS IS THE ORDER OF INPUTS IN THE ARRAYLIST

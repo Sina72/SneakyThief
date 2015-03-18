@@ -29,7 +29,7 @@ public class GameController extends Observable {
 	
 	public static void main(String[] args){
 		
-		Map map = DefaultMaps.doubleWallMap();
+		Map map = DefaultMaps.mazeMap();
 		
 	
 		

@@ -102,8 +102,8 @@ public class DefaultMaps {
 			mapBuilder.addWall(new Coordinate(86,87.1), new Coordinate(87,115));
 			mapBuilder.addWall(new Coordinate(87.1,114), new Coordinate(115,115));
 			mapBuilder.addWall(new Coordinate(114.1,86), new Coordinate(115,113.9));
-//			mapBuilder.addWall(new Coordinate(50,50), new Coordinate(100,100));
-//			mapBuilder.addWall(new Coordinate(150,50), new Coordinate(200,100));
+			mapBuilder.addWall(new Coordinate(25,25), new Coordinate(50,50));
+			mapBuilder.addWall(new Coordinate(125,125), new Coordinate(150,150));
 			
 		} catch (OverlapException e) {
 			// TODO Auto-generated catch block

@@ -20,6 +20,7 @@ import model.mapElements.Obstruction;
 import model.mapElements.agents.Guard;
 import model.mapElements.agents.Intruder;
 import model.mapElements.areas.Area;
+import model.mapElements.areas.Sentry;
 
 /**
  * Draws a map on a JPanel
@@ -75,13 +76,18 @@ public class MapPanel extends JPanel implements Observer {
 		
 		//Color coding
 		if(placement instanceof Guard)
-			g2.setColor(Color.CYAN);
+			g2.setColor(Color.GREEN);
 		else if(placement instanceof Obstruction)
 			g2.setColor(Color.WHITE);
 		else if(placement instanceof Intruder)
 			g2.setColor(Color.RED);
 		else if(placement instanceof Area)
-			g2.setColor(Color.DARK_GRAY);
+		{
+			if(placement instanceof Sentry)
+				g2.setColor(Color.CYAN);
+			else
+				g2.setColor(Color.DARK_GRAY);	
+		}
 		else
 			g2.setColor(Color.GRAY); //Default color
 		

@@ -135,14 +135,12 @@ public class MapPlacement {
 		//begin line 1
 		Coordinate p = 
 				placement.getCoordinate().plus(
-					((Line) placement.getShape()).getBegin()
-				);
+					((Line) placement.getShape()).getBegin());
 		
 		//end line 1 minus begin line 1
 		Coordinate r = 
 				((Line) placement.getShape()).getEnd().minus(
-					((Line) placement.getShape()).getBegin()
-				);
+					((Line) placement.getShape()).getBegin());
 		
 		// Orientation line 1
 		double o1 = placement.getOrientation() + Math.atan(((Line) placement.getShape()).getSlope());
