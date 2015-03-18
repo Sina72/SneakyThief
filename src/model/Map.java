@@ -106,60 +106,77 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 	
 	public Obstruction move(Agent a, Coordinate destination) {
 
-		// we create three view lines for the agent in order to check the
-		// obstructions according to the agent's vision abilities.
-		Coordinate aCoordinate = a.getCoordinate();
-		double angleOfMove = Coordinate.getAngle(new Coordinate (0,0), destination);
-		double aRadius = a.getHeight() / 2;
-		double distAToC = Coordinate.getDistance(new Coordinate (0,0),destination) + aRadius;
-
-		Line sight = new Line(new Coordinate(0, 0), new Coordinate(distAToC, 0));
-		
-		Coordinate aHand = new Coordinate(aRadius * (Math.sin(angleOfMove)) ,aRadius * (- Math.cos(angleOfMove)));
-		Coordinate aLeftHand = aCoordinate.minus(aHand);
-		Coordinate aRightHand = aCoordinate.plus(aHand);
-		
-		double shortestDist = Double.POSITIVE_INFINITY;
-		Obstruction obst = null;
-
-		
-		for (Obstruction o : obstructions) {
-			
-			Coordinate frontIntersection = o.intersects(
-					new MapPlacement(sight, aCoordinate, angleOfMove));
-			Coordinate rightIntersection = o.intersects(
-					new MapPlacement(sight, aRightHand, angleOfMove));
-			Coordinate leftIntersection = o.intersects(
-					new MapPlacement(sight, aLeftHand, angleOfMove));
-			
-			if (frontIntersection != null && frontIntersection.absoluteValue() < shortestDist) {
-				shortestDist = Coordinate.getDistance(aCoordinate, frontIntersection);
-				obst = o;
-			}
-			
-			if (leftIntersection != null && leftIntersection.absoluteValue() < shortestDist) {
-				shortestDist = Coordinate.getDistance(aLeftHand, leftIntersection);
-				obst = o;
-			}
-			if (rightIntersection != null && rightIntersection.absoluteValue() < shortestDist) {
-				shortestDist = Coordinate.getDistance(aRightHand, rightIntersection);
-				obst = o;
-			}
-		}
-
-		if(obst != null) {
-
-			Coordinate collision = new Coordinate (
-					(shortestDist * Math.cos(angleOfMove)),
-					(shortestDist * Math.sin(angleOfMove)));
-			Coordinate possibleDestin = collision.minus(new Coordinate (
-					aRadius* 3 * Math.cos(angleOfMove),
-					aRadius* 3 * Math.sin(angleOfMove)));
-			a.move(possibleDestin);
-			return obst;
-		}
-		
-		a.move(destination);
+		Obstruction obs = checkMove(a,destination);
+		if(obs == null)
+			a.move(destination);
+		return obs;
+//		
+//		// we create three view lines for the agent in order to check the
+//		// obstructions according to the agent's vision abilities.
+//		Coordinate aCoordinate = a.getCoordinate();
+//		double angleOfMove = Coordinate.getAngle(new Coordinate (0,0), destination);
+//		double aRadius = a.getHeight() / 2;
+//		double distAToC = Coordinate.getDistance(new Coordinate (0,0),destination) + aRadius;
+//
+//		Line sight = new Line(new Coordinate(0, 0), new Coordinate(distAToC, 0));
+//		
+//		Coordinate aHand = new Coordinate(aRadius * (Math.sin(angleOfMove)) ,aRadius * (- Math.cos(angleOfMove)));
+//		Coordinate aLeftHand = aCoordinate.minus(aHand);
+//		Coordinate aRightHand = aCoordinate.plus(aHand);
+//		
+//		double shortestDist = Double.POSITIVE_INFINITY;
+//		Obstruction obst = null;
+//
+//		
+//		for (Obstruction o : obstructions) {
+//			
+//			Coordinate frontIntersection = o.intersects(
+//					new MapPlacement(sight, aCoordinate, angleOfMove));
+//			Coordinate rightIntersection = o.intersects(
+//					new MapPlacement(sight, aRightHand, angleOfMove));
+//			Coordinate leftIntersection = o.intersects(
+//					new MapPlacement(sight, aLeftHand, angleOfMove));
+//			
+//			if (frontIntersection != null && frontIntersection.absoluteValue() < shortestDist) {
+//				shortestDist = Coordinate.getDistance(aCoordinate, frontIntersection);
+//				obst = o;
+//			}
+//			
+//			if (leftIntersection != null && leftIntersection.absoluteValue() < shortestDist) {
+//				shortestDist = Coordinate.getDistance(aLeftHand, leftIntersection);
+//				obst = o;
+//			}
+//			if (rightIntersection != null && rightIntersection.absoluteValue() < shortestDist) {
+//				shortestDist = Coordinate.getDistance(aRightHand, rightIntersection);
+//				obst = o;
+//			}
+//		}
+//
+//		if(obst != null) {
+//
+//			Coordinate collision = new Coordinate (
+//					(shortestDist * Math.cos(angleOfMove)),
+//					(shortestDist * Math.sin(angleOfMove)));
+//			Coordinate possibleDestin = collision.minus(new Coordinate (
+//					aRadius* 3 * Math.cos(angleOfMove),
+//					aRadius* 3 * Math.sin(angleOfMove)));
+//			a.move(possibleDestin);
+//			return obst;
+//		}
+//		
+//		a.move(destination);
+//		return null;
+	}
+	
+	private Obstruction checkMove(Agent a, Coordinate destination){
+		for(Obstruction o : obstructions)
+			if(new MapPlacement(
+					a.getShape(),
+					a.getCoordinate().plus(destination),
+					a.getOrientation()
+					
+					).intersects(o) != null)
+				return o;
 		return null;
 	}
 	
