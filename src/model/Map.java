@@ -163,6 +163,23 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		return null;
 	}
 	
+	private List<Obstruction> getObstructionsInLine(Coordinate a, Coordinate b){
+		ArrayList<Obstruction> obs = new ArrayList<Obstruction>();
+		
+		Line l = new Line(a,b);
+		
+		for(Obstruction o : obstructions){
+			if(o.intersects(new MapPlacement(l,new Coordinate(0,0), 0)) != null){
+				obs.add(o);
+			}
+		}
+		
+		return obs;
+	}
+	
+	public void obstructedMove(Agent a, Coordinate c){
+		
+	}
 
 	// moves an agent without checking any obstructions
 	// used for moving agents past permeable obstructions
