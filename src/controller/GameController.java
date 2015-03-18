@@ -29,9 +29,8 @@ public class GameController extends Observable {
 	
 	public static void main(String[] args){
 		
-		Map map = DefaultMaps.easyMap();
+		Map map = DefaultMaps.doubleWallMap();
 		
-		Map map = DefaultMaps.standardMap();
 	
 		
 		//TODO: Problem: Agents sometimes jump big steps.
@@ -39,13 +38,13 @@ public class GameController extends Observable {
 		//TODO: Problem: agents don't stop at objects
 		
 		
-		/*Guard guard = new Guard(new Coordinate(100,100));
+		Guard guard = new Guard(new Coordinate(150,100));
 		guard.LoadSettingsXML("./settings/settings.xml");
 		map.addPlacement(guard);
-		Guard guard2 = new Guard(new Coordinate(50,50));
+		Guard guard2 = new Guard(new Coordinate(100,150));
 		guard2.LoadSettingsXML("./settings/settings.xml");
 		map.addPlacement(guard2);
-		*/
+		
 		GameController controller = new GameController(map, 1);
 		
 		MainFrame frame = new MainFrame();
