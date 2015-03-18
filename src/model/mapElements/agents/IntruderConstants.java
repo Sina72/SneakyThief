@@ -34,6 +34,25 @@ public class IntruderConstants extends AgentConstants{
 				m_sprintRest = sprintRestTime;
 				
 			}
+	
+	public double getSprintMaxSpeed()
+	{
+		return m_maxSprintSpeed;
+	}
+	public double getSprintMaxTurnAngle()
+	{
+		return m_maxSprintAngle;
+	}
+	public double getSprintMaxTime()
+	{
+		return m_maxSprintTime;
+	}
+	public double getSprintRestTime()
+	{
+		return m_sprintRest;
+	}
+	
+	
 	private boolean m_isInitIntruder;
 	private double m_maxSprintSpeed;
 	private double m_maxSprintAngle;
