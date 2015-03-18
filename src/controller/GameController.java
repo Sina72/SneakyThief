@@ -25,12 +25,27 @@ import view.MapPanel;
  *
  */
 public class GameController extends Observable {
-	
+	private boolean m_debug = false;
 	
 	public static void main(String[] args){
 		
 		Map map = DefaultMaps.easyMap();
 		
+		Map map = DefaultMaps.standardMap();
+	
+		
+		//TODO: Problem: Agents sometimes jump big steps.
+		//TODO: Problem?: Agents do not collide with each other (this might be desirable?)
+		//TODO: Problem: agents don't stop at objects
+		
+		
+		/*Guard guard = new Guard(new Coordinate(100,100));
+		guard.LoadSettingsXML("./settings/settings.xml");
+		map.addPlacement(guard);
+		Guard guard2 = new Guard(new Coordinate(50,50));
+		guard2.LoadSettingsXML("./settings/settings.xml");
+		map.addPlacement(guard2);
+		*/
 		GameController controller = new GameController(map, 1);
 		
 		MainFrame frame = new MainFrame();
@@ -133,7 +148,7 @@ public class GameController extends Observable {
 
 			// if obstruction met
 			if (o != null) {
-				System.out.println("Agent " + agent + " met an obstruction");
+				if (m_debug) System.out.println("Agent " + agent + " met an obstruction");
 				// if the agent was already waiting at the obstruction
 				if (waiting.containsKey(agent)) {
 					// decrement time left to wait

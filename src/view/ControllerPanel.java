@@ -1,9 +1,13 @@
 package view;
 
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import controller.GameController;
 
 /**
  * Panel with user controls
@@ -12,7 +16,6 @@ import javax.swing.JPanel;
  *
  */
 public class ControllerPanel extends JPanel {
-
 	
 	public ControllerPanel()
 	{
@@ -28,4 +31,77 @@ public class ControllerPanel extends JPanel {
 		this.add(pausegame);
 		this.add(stopgame);
 	}
+}
+
+class StartListener implements MouseListener
+{
+
+	@Override
+	public void mouseClicked(MouseEvent event) {
+		//TODO: GIVE ALL INFORMATION FROM EDITOR PANEL TO MAP
+		//TODO: BUILD MAP
+		//TODO: RUN THE GAME
+		
+	}
+
+	//DONT NEED THESE
+	@Override
+	public void mouseEntered(MouseEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+class PauseListener implements MouseListener
+{
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -152,7 +152,7 @@ public class XMLReader {
 		mh_buffer = new HashMap<String, String>();
 	}
 	private static final String NEW_LINE = System.getProperty("line.separator");
-	private final boolean m_debug = true;
+	private final boolean m_debug = false;
 	private File m_fXmlFile;
 	private Document m_doc;
 	private String  m_xmlFileName;

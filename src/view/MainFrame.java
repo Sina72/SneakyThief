@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -15,12 +16,12 @@ public class MainFrame extends JFrame {
 	private void initFrame() {
 		//TODO: Color legend
 		this.setLayout(new BorderLayout());
-		setSize(400,400);
+		setSize(700,500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		this.add(new EditorPanel(), BorderLayout.WEST);
 		this.add(new ControllerPanel(), BorderLayout.NORTH);
-		
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setVisible(true);
 	}
 	
@@ -30,4 +31,13 @@ public class MainFrame extends JFrame {
 		this.add(mapPanel, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Get the input values from the editor panel
+	 * @param panel
+	 * @return ArrayList with inputs
+	 */
+	public ArrayList<Integer> giveValues(EditorPanel panel)
+	{
+		return panel.getValues();
+	}
 }

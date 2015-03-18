@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -13,6 +14,7 @@ import model.geometry.Line;
 import model.geometry.Rectangular;
 import model.mapElements.MapPlacement;
 import model.mapElements.Obstruction;
+import model.mapElements.agents.Agent;
 import model.mapElements.agents.Guard;
 import model.mapElements.agents.Intruder;
 
@@ -75,7 +77,7 @@ public class MapTest {
 	}
 	
 	//can be tested once intersect works with orientation
-	@Ignore @Test
+	@Test
 	public void testMoveWithObstruction(){
 		
 		Map map = new Map(
@@ -89,11 +91,11 @@ public class MapTest {
 		map.addPlacement(a);
 		
 		Obstruction obstruction = new Obstruction(
-				new Line(new Coordinate (0,0),new Coordinate (40,0)),new Coordinate (0,30),0, 0);
+				new Line(new Coordinate (0,0),new Coordinate (0,80)),new Coordinate (30,0),0, 0);
 		map.addPlacement(obstruction);
+		map.move(a,new Coordinate (100,0));
 		
-		
-		assertSame(map.move(a,new Coordinate (0,60)),obstruction);
+		assertEquals(new Coordinate (28,10),a.getCoordinate());
 		
 	}
 
@@ -116,18 +118,30 @@ public class MapTest {
 		map.addPlacement(obstructionTwo);
 		
 		//TODO: fix the orientation for intersect methods.
-		assertTrue(obstructionTwo.intersects(obstruction));
+		assertTrue(obstructionTwo.intersects(obstruction) != null);
 
 		
 	}
 	
 	@Test
 	public void testMoveWithoutObstruction(){
-		//TODO: test move() without obstruction
+		
+		Map map = new Map(
+				200,	//width
+				200		//height
+				);
+		// set a guard at (10,10)
+		Guard a = new Guard(
+				new Coordinate(10,10)
+				);
+		map.addPlacement(a);
+		// move the guard to (20,60)
+		map.unobstructedMove(a, new Coordinate(10,50));
+		assertEquals(a.getCoordinate(),new Coordinate(20,60));
 	}
 	
-	//can be tested as soon as the agent constants work
-	@Ignore @Test
+	//TODO: fix the inView method
+	@Test
 	public void testGetInViewWithObstruction(){
 		
 		Map map = new Map(
@@ -140,22 +154,24 @@ public class MapTest {
 				new Coordinate(10,10)
 				);
 		Intruder intruder = new Intruder(
-				new Coordinate(20,10)
+				new Coordinate(15,10)
 				);
 		
 		map.addPlacement(guard);
 		map.addPlacement(intruder);
 		
+		/*
 		//obstruction is a vertical line between the guard and the intruder
 		Obstruction obstruction = new Obstruction(
-				new Line( new Coordinate (5,10) ),
-				new Coordinate (15,0),
+				new Line(new Coordinate (0,0), new Coordinate (0,20) ),
+				new Coordinate (30,0),
 				0, 0
 				);
 		map.addPlacement(obstruction);
+		*/
 		
-		//intruder should not be seen by the guard
-		assertTrue(map.getAgentsInView(guard).isEmpty());
+		//intruder should be seen by the guard
+		assertFalse(map.getAgentsInView(guard).isEmpty());
 		
 	}
 

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Random;
+
 import model.Map;
 import model.exceptions.MapPlacementNotFoundException;
 import model.exceptions.OverlapException;
@@ -55,6 +57,26 @@ public class MapBuilder
 	 */
 	public Map getMap(){
 		return map;
+	}
+	
+	/**
+	 * Adds a certain amount of guards to the map
+	 * @param guardnum
+	 * @throws OverlapException
+	 */
+	public void addGuards(int guardnum) throws OverlapException
+	{
+		//TODO: Implement Exception
+		int i = 0;
+		while(i<guardnum){
+				Guard guard = new Guard(new Coordinate(		
+					new Random().nextInt((int)map.getMapWidth()),
+				
+					new Random().nextInt((int)map.getMapHeight())));
+			guard.LoadSettingsXML("./settings/settings.xml");
+			map.addPlacement(guard);
+			i++;
+		}
 	}
 	
 	/**

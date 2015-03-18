@@ -67,9 +67,10 @@ public class Agent extends MapPlacement {
 	public Move getMove(){
 		//make a random move (random direction, random speed, and random rotation)
 		Random r = new Random();
+		setMovingSpeed(m_maxMovingSpeed);
 		return new Move(
 				r.nextDouble()*2*Math.PI, // random direction
-				r.nextDouble()*this.m_maxMovingSpeed, //random moving speed
+				r.nextDouble()*this.m_currentSpeed, //random moving speed
 				r.nextDouble()*this.m_maxAngle*2 - this.m_maxAngle //random rotation speed
 				);
 	}
@@ -93,6 +94,8 @@ public class Agent extends MapPlacement {
 		m_visionAngle = ToDouble(settings.get("visionAngle"));
 		m_senteryVisableRange = ToDouble(settings.get("visionRangeTowers"));
 		m_structureVisableRange = ToDouble(settings.get("visionRangeStructures"));
+		m_isHidden = false;
+		m_currentSpeed = 0;
 	}
 	
 	protected double ToDouble(String text)
