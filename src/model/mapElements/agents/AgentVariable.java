@@ -10,8 +10,9 @@ import model.Map;
  *
  */
 public class AgentVariable {
-	AgentVariable()
+	AgentVariable(AgentConstants constants)
 	{
+		m_constants = constants;
 	}
 	
 	
@@ -21,8 +22,8 @@ public class AgentVariable {
 	}
 
 	public void setMovementSpeed(double speed) {
-		if(m_currentMovementSpeed > constants.getMaxMovingSpeed()){
-			speed = constants.getMaxMovingSpeed();
+		if(m_currentMovementSpeed > m_constants.getMaxMovingSpeed()){
+			speed = m_constants.getMaxMovingSpeed();
 		}
 		this.m_currentMovementSpeed = speed;
 	}
@@ -36,8 +37,8 @@ public class AgentVariable {
 
 
 	public void setTurnSpeed(double turnSpeed) {
-		if(m_currentTurnSpeed > constants.getMaxTurningSpeed()){
-			turnSpeed = constants.getMaxTurningSpeed();
+		if(m_currentTurnSpeed > m_constants.getMaxTurningSpeed()){
+			turnSpeed = m_constants.getMaxTurningSpeed();
 		}
 		this.m_currentTurnSpeed = turnSpeed;
 	}
@@ -79,8 +80,8 @@ public class AgentVariable {
 
 
 	public void setMaxVisionRange(double visionRange) {
-		if(visionRange > constants.getMaximalVisionRange()){
-			visionRange = constants.getMaximalVisionRange();
+		if(visionRange > m_constants.getMaximalVisionRange()){
+			visionRange = m_constants.getMaximalVisionRange();
 		}
 		this.m_currentMaxVisionRange = visionRange;
 	}
@@ -94,8 +95,8 @@ public class AgentVariable {
 
 
 	public void setMinVisionRange(double visionRange) {
-		if(visionRange > constants.getMinimalVisionRange()){
-			visionRange = constants.getMinimalVisionRange();
+		if(visionRange > m_constants.getMinimalVisionRange()){
+			visionRange = m_constants.getMinimalVisionRange();
 		}
 		this.m_currentMaxVisionRange = visionRange;
 	}
@@ -134,7 +135,7 @@ public class AgentVariable {
 	private double m_currentMinVisionRange;
 	private boolean m_currentIsHidden;
 	
-	private AgentConstants constants;
+	private AgentConstants m_constants;
 	
 	private Map beliefMap;
 
