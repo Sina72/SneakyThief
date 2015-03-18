@@ -153,8 +153,8 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 					(shortestDist * Math.cos(angleOfMove)),
 					(shortestDist * Math.sin(angleOfMove)));
 			Coordinate possibleDestin = collision.minus(new Coordinate (
-					aRadius * Math.cos(angleOfMove),
-					aRadius * Math.sin(angleOfMove)));
+					aRadius* 3 * Math.cos(angleOfMove),
+					aRadius* 3 * Math.sin(angleOfMove)));
 			a.move(possibleDestin);
 			return obst;
 		}
@@ -400,7 +400,6 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		}
 	}
 
-	@Override
 	public Iterator<MapPlacement> iterator() {
 		return placements.iterator();
 	}
