@@ -67,10 +67,15 @@ public class Agent extends MapPlacement {
 	public Move getMove(){
 		//make a random move (random direction, random speed, and random rotation)
 		Random r = new Random();
-		setMovingSpeed(m_maxMovingSpeed);
+		//setMovingSpeed(m_maxMovingSpeed);
+		setMovingSpeed((0.9 * this.m_currentSpeed + .1 * r.nextDouble()*this.m_currentSpeed)+0.01);
+		double dir = setDirection(((0.9* m_currentDirection + 0.1 * r.nextDouble()*2*Math.PI)));
 		return new Move(
-				r.nextDouble()*2*Math.PI, // random direction
-				r.nextDouble()*this.m_currentSpeed, //random moving speed
+				//r.nextDouble()*2*Math.PI, // random direction
+				//0 + .5 *r.nextDouble()*2*Math.PI,
+				dir,
+				//r.nextDouble()*this.m_currentSpeed, //random moving speed
+				this.m_currentSpeed,
 				r.nextDouble()*this.m_maxAngle*2 - this.m_maxAngle //random rotation speed
 				);
 	}
@@ -116,6 +121,14 @@ public class Agent extends MapPlacement {
 		return m_currentSpeed;
 	}
 	
+	public double setDirection(double dir)
+	{
+		if (dir > 2*Math.PI)
+			dir = dir % 2*Math.PI;
+		m_currentDirection = dir;
+		return m_currentDirection;
+	}
+	
 	protected double m_maxMovingSpeed;
 	protected double m_maxAngle;
 	protected double m_minVisionRange;
@@ -130,6 +143,7 @@ public class Agent extends MapPlacement {
 	protected double m_currentSpeed;
 	protected double m_currentAngle;
 	protected double m_currentTurnSpeed;
+	protected double m_currentDirection;
 	protected double m_currentMaxVisionRange;
 	protected double m_currentMinVisionRange;
 	protected boolean m_isHidden;
