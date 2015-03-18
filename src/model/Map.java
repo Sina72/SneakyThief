@@ -123,7 +123,7 @@ public class Map extends Observable implements Iterable<MapPlacement> {
 		//double shortestDist = Double.POSITIVE_INFINITY;
 		Obstruction obst = null;
 
-		
+		//TODO: Add a check if there is a agent in front of him and optimise this rutine
 		for (Obstruction o : obstructions) {
 			
 			Coordinate frontIntersection = o.intersects(
